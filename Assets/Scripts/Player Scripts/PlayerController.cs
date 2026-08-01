@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask TerrainLayer;
     public Rigidbody rb;
     public SpriteRenderer sr;
+    [SerializeField] Interact Touchy;
+    [SerializeField] GameObject Inventory;
 
     void Start()
     {
@@ -15,6 +19,14 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
+    {
+        PlayerRotateOnDir();
+
+
+
+    }
+
+    void PlayerRotateOnDir()
     {
         RaycastHit hit;
         Vector3 castPos = transform.position;
@@ -32,16 +44,27 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         Vector3 moveDir = new Vector3(x, 0f, y);
-        rb.velocity = new Vector3(moveDir.x * speed, rb.velocity.y, moveDir.z * speed);
+        rb.linearVelocity = new Vector3(moveDir.x * speed, rb.linearVelocity.y, moveDir.z * speed);
 
-        if (x !< 0f)
+        if (x! < 0f)
         {
-            sr.flipX = false;
+            sr.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        else if (x !> 0f)
+        else if (x! > 0f)
         {
-            sr.flipX = true;
+            sr.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
+    }
+
+    void Interact()
+    {
 
     }
+
+    void OpenInventory()
+    {
+      
+    }
+
+    
 }
