@@ -10,23 +10,26 @@ public class PlayerController : MonoBehaviour
     public LayerMask TerrainLayer;
     public Rigidbody rb;
     public SpriteRenderer sr;
-    [SerializeField] Interact Touchy;
+    [SerializeField] Interact Interacted;
     [SerializeField] GameObject Inventory;
+
+    public bool KeyGet;
 
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        KeyGet = false;
     }
 
     private void Update()
     {
         PlayerRotateOnDir();
-
+        InteractWObject();
 
 
     }
 
-    void PlayerRotateOnDir()
+    void PlayerRotateOnDir() // Movement Controls
     {
         RaycastHit hit;
         Vector3 castPos = transform.position;
@@ -56,9 +59,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Interact()
+    void InteractWObject()
     {
-
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            if (Interacted.selection != null)
+            {
+                Interacted.selection.GetComponent<Interactables>().Interact();
+            }
+        }
     }
 
     void OpenInventory()
