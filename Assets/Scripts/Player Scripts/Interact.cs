@@ -69,5 +69,10 @@ public class Interact : MonoBehaviour
             _selection = null;
             selection = null;
         }
+
+        if (_selection == null)
+        {
+            interactionText.SetActive(false);
+        }
     }
 }

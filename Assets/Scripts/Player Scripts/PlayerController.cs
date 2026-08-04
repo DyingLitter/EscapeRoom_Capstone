@@ -13,12 +13,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Interact Interacted;
     [SerializeField] GameObject Inventory;
 
-    public bool KeyGet;
+  
 
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        KeyGet = false;
+        
     }
 
     private void Update()

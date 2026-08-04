@@ -4,12 +4,14 @@ public class Interactables : MonoBehaviour
 {
     private Interact Interacted;
     private PlayerController player;
+    private GameManager Key;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
       player = FindAnyObjectByType<PlayerController>();
       Interacted = FindAnyObjectByType<Interact>();
+      Key = FindAnyObjectByType<GameManager>();
     }
 
     // Update is called once per frame
@@ -20,21 +22,22 @@ public class Interactables : MonoBehaviour
 
     public void Interact()
     {
-        if (Interacted.selectableTags.Contains("Key"))
+        if (Interacted.selection.tag == "Stick")
         {
-           player.KeyGet = true;
+           Key.StickGet = true;
            Interacted.selection.SetActive(false);
         }
 
-        if (Interacted.selectableTags.Contains("Door"))
+        if (Interacted.selection.tag == "BabyGate")
         {
-            if (player.KeyGet == true)
+            if (Key.StickGet == true)
             {
                 Interacted.selection.SetActive(false);
+                Key.StickGet = false;
             }
-            else
+            else if (Key.StickGet == false)
             {
-                return;
+                Debug.Log("Gate Locked");
             }
         }
     }
