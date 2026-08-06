@@ -25,8 +25,6 @@ public class PlayerController : MonoBehaviour
     {
         PlayerRotateOnDir();
         InteractWObject();
-
-
     }
 
     void PlayerRotateOnDir() // Movement Controls
