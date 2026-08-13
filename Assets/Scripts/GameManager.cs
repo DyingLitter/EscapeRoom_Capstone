@@ -17,8 +17,5 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void SceneReset()
-    {
-        SceneManager.LoadScene("SampleScene");
-    }
+  
 }
