@@ -18,6 +18,7 @@ public class ScreenResChange : MonoBehaviour
     void Start()
     {
         Screen.SetResolution(1920, 1080, true);
+        ResDrop.value = SelectedRes;
         isFullScreen = true;
         AllResolutions = Screen.resolutions;
 

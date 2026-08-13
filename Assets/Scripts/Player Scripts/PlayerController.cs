@@ -7,6 +7,12 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float groundDist;
 
+    public bool IfMoving;
+    public bool IfUp;
+    public bool IfDown;
+
+    public Animator anim_player;
+
     public LayerMask TerrainLayer;
     public Rigidbody rb;
     public SpriteRenderer sr;
@@ -18,7 +24,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        
+        anim_player.SetBool("IfMoving", false);
     }
 
     private void Update()
@@ -42,19 +48,53 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+     
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         Vector3 moveDir = new Vector3(x, 0f, y);
         rb.linearVelocity = new Vector3(moveDir.x * speed, rb.linearVelocity.y, moveDir.z * speed);
 
+      
+        if (Input.GetKeyDown(KeyCode.A) || (Input.GetKeyDown(KeyCode.D)))
+        {
+            anim_player.SetBool("IfMoving", true);
+        }
+        
+        if (!Input.anyKey)
+        {
+            anim_player.SetBool("IfMoving", false);
+            anim_player.SetBool("IfUp", false);
+            anim_player.SetBool("IfDown", false);
+        }
+
         if (x! < 0f)
         {
             sr.transform.rotation = Quaternion.Euler(0, 0, 0);
+            anim_player.SetBool("IfMoving", true);
+            anim_player.SetBool("IfUp", false);
+            anim_player.SetBool("IfDown", false);
         }
         else if (x! > 0f)
         {
             sr.transform.rotation = Quaternion.Euler(0, 180, 0);
+            anim_player.SetBool("IfMoving", true);
+            anim_player.SetBool("IfDown", false);
+            anim_player.SetBool("IfUp", false);
         }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            anim_player.SetBool("IfUp", true);
+            anim_player.SetBool("IfDown", false);
+        }
+     
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            anim_player.SetBool("IfDown", true);
+            anim_player.SetBool("IfUp", false);
+        }
+
     }
 
     void InteractWObject()
