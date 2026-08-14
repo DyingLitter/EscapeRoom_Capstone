@@ -25,7 +25,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
-        image.raycastTarget = false;
+        if (image != null) image.raycastTarget = false;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -39,8 +39,31 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         Debug.Log("End Drag");
         transform.SetParent(parentAfterDrag);
-        image.raycastTarget = true;
+        if (image != null) image.raycastTarget = true;
         mouseButtonReleased = true;
+
+        // If we dropped on another UI element, eventData.pointerEnter will be that object (or a child).
+        if (eventData != null && eventData.pointerEnter != null)
+        {
+            var targetItem = FindItemDragFrom(eventData.pointerEnter);
+            if (targetItem != null && targetItem != this)
+            {
+                TryCombineWith(targetItem);
+            }
+        }
+    }
+
+    private ItemDrag FindItemDragFrom(GameObject go)
+    {
+        if (go == null) return null;
+        var current = go.transform;
+        while (current != null)
+        {
+            var itemDrag = current.GetComponent<ItemDrag>();
+            if (itemDrag != null) return itemDrag;
+            current = current.parent;
+        }
+        return null;
     }
 
     private string GetBaseName(string fullName)
@@ -50,17 +73,15 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         return idx > 0 ? fullName.Substring(0, idx) : fullName;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void TryCombineWith(ItemDrag other)
     {
         if (!mouseButtonReleased) return;
-        if (collision == null || collision.gameObject == null) return;
 
         string thisBase = GetBaseName(gameObject.name);
-        string otherBase = GetBaseName(collision.gameObject.name);
+        string otherBase = GetBaseName(other.gameObject.name);
 
         if (string.IsNullOrEmpty(thisBase) || string.IsNullOrEmpty(otherBase)) return;
 
-        // Find a matching combination (order-insensitive)
         foreach (var combo in combinations)
         {
             if ((combo.itemA == thisBase && combo.itemB == otherBase) ||
@@ -73,12 +94,25 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                     mouseButtonReleased = false;
                     return;
                 }
+                // Determine the slot where the resulting item should be placed.
+                // Prefer the other's recorded parentAfterDrag (if it was dragged), otherwise use its current parent.
+                Transform targetSlot = other.parentAfterDrag != null
+                    ? other.parentAfterDrag
+                    : (other.transform.parent != null ? other.transform.parent : other.transform);
 
-                Instantiate(prefab, transform.position, Quaternion.identity);
+                // Instantiate as a child of the target slot so it occupies the same slot.
+                var newGO = Instantiate(prefab, targetSlot);
+                newGO.name = prefab.name; // keep a clean name (optional)
+
+                // Reset transform so it fits the UI slot (RectTransform aware).
+                var rect = newGO.GetComponent<RectTransform>();
+         
+                // Preserve slot ordering
+                newGO.transform.SetSiblingIndex(other.transform.GetSiblingIndex());
+
                 mouseButtonReleased = false;
 
-                // Destroy both originals
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
                 Destroy(gameObject);
                 return;
             }
