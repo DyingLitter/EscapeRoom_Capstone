@@ -4,7 +4,18 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+
+    [System.Serializable]
+    public struct Combination
+    {
+        public string itemA;          // base name before the '_' (e.g. "Stick (Broken)")
+        public string itemB;          // other item (order is ignored)
+        public string resultPrefab;   // Resources path to resulting prefab (e.g. "Stick (Fixed)")
+    }
+
     public Image image;
+    public Combination[] combinations;
+
     public static bool mouseButtonReleased;
     [HideInInspector] public Transform parentAfterDrag;
 
@@ -32,28 +43,45 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         mouseButtonReleased = true;
     }
 
+    private string GetBaseName(string fullName)
+    {
+        if (string.IsNullOrEmpty(fullName)) return fullName;
+        int idx = fullName.IndexOf("_");
+        return idx > 0 ? fullName.Substring(0, idx) : fullName;
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
-        string thisGameobjectName;
-        string otherGameobjectName;
+        if (!mouseButtonReleased) return;
+        if (collision == null || collision.gameObject == null) return;
 
-        thisGameobjectName = gameObject.name.Substring(0, name.IndexOf("_"));
-        otherGameobjectName = collision.gameObject.name.Substring(0, name.IndexOf("_"));
+        string thisBase = GetBaseName(gameObject.name);
+        string otherBase = GetBaseName(collision.gameObject.name);
 
-        if (mouseButtonReleased && thisGameobjectName == "Stick" && otherGameobjectName == "Tape")
+        if (string.IsNullOrEmpty(thisBase) || string.IsNullOrEmpty(otherBase)) return;
+
+        // Find a matching combination (order-insensitive)
+        foreach (var combo in combinations)
         {
-            Instantiate(Resources.Load("Fixed-Stick"), transform.position, Quaternion.identity);
-            mouseButtonReleased = false;
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
-        else if (mouseButtonReleased && thisGameobjectName == "" && thisGameobjectName == otherGameobjectName)
-        {
-            Instantiate(Resources.Load(""), transform.position, Quaternion.identity);
-            mouseButtonReleased = false;
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
+            if ((combo.itemA == thisBase && combo.itemB == otherBase) ||
+                (combo.itemA == otherBase && combo.itemB == thisBase))
+            {
+                var prefab = Resources.Load<GameObject>(combo.resultPrefab);
+                if (prefab == null)
+                {
+                    Debug.LogWarning($"Result prefab '{combo.resultPrefab}' not found in Resources for combination {combo.itemA} + {combo.itemB}");
+                    mouseButtonReleased = false;
+                    return;
+                }
 
+                Instantiate(prefab, transform.position, Quaternion.identity);
+                mouseButtonReleased = false;
+
+                // Destroy both originals
+                Destroy(collision.gameObject);
+                Destroy(gameObject);
+                return;
+            }
+        }
     }
 }
