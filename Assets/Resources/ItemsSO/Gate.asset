@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d58072da1aed6ac4292f99df66f8d21c, type: 3}
-  m_Name: Stick
+  m_Name: Gate
   m_EditorClassIdentifier: 
-  ItemName: Stick
-  ItemDescription: Its a Stick
-  InventoryPrefab: {fileID: 4315462355574087460, guid: f6e781ca96edb9a4c9f530d88fbf330d, type: 3}
-  ItemPrefab: {fileID: 4315462355574087460, guid: f6e781ca96edb9a4c9f530d88fbf330d, type: 3}
+  ItemName: Gate
+  ItemDescription: 
+  InventoryPrefab: {fileID: 0}
+  ItemPrefab: {fileID: 0}
   ItemAnimator: {fileID: 0}
   combinations: []

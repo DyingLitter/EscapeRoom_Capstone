@@ -8,7 +8,9 @@ public class Interactables : MonoBehaviour
 
     private GameManager Key;
     private Inventory Inventory;
-    
+
+    public ItemsSO ISO;
+
     public void Start()
     {
         Interacted = FindAnyObjectByType<Interact>();
@@ -19,15 +21,17 @@ public class Interactables : MonoBehaviour
     {
         if (Interacted == null || Interacted.selection == null) return;
 
-        var pickup = Interacted.selection.GetComponent<ItemPickup>();
-        if (pickup != null && pickup.ISO != null)
+        var pickup = Interacted.selection.GetComponent<Interactables>();
+        if (pickup != null && pickup.ISO != null && pickup.ISO.name != "Gate")
         {
             Inventory?.AddItem(pickup.ISO);
 
-            if (pickup.ISO.ItemName == "Stick")
+            if (pickup.ISO.ItemName == "Stick" && Key != null)
             {
-                if (Key != null) Key.StickGet = true;
+                Key.StickGet = true;
             }
+
+
 
             Interacted.selection.SetActive(false);
             if (Interacted.interactionText != null) Interacted.interactionText.SetActive(false);
@@ -35,6 +39,8 @@ public class Interactables : MonoBehaviour
             return;
 
         }
+
+        ISO.InteractChecks();
 
     }
 

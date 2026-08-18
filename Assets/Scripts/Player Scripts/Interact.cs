@@ -5,7 +5,6 @@ public class Interact : MonoBehaviour
 {
     public GameObject selection;
     [SerializeField] GameObject TouchZone;
-    private Material _previousMaterial;
     [SerializeField] public GameObject interactionText;
     private Transform _selection;
     // Start is called once before the first execution of Update after the MonoBehaviour is created

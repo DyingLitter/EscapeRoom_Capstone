@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
 
         Transform spawnPoint = null;
 
-        if (HotbarSlots != null)
+        if (HotbarSlots != null && HotbarSlots.Length > 0)
         {
             for (int i = 0; i < HotbarSlots.Length; i++)
             {
@@ -42,8 +42,8 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
-
-        if (spawnPoint == null && InventorySlots != null)
+        
+        if (spawnPoint == null && InventorySlots != null && InventorySlots.Length > 0)
         {
             for (int i = 0; i < InventorySlots.Length; i++)
             {
@@ -72,10 +72,50 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    //public void AddItemSo(ItemsSO SelectedItem)
-    //{
-    //    Transform spawnPoint = InventorySlots[0];
-    //    GameObject item = Resources.Load<GameObject>(SelectedItem.InventoryPrefab.name); //Need to get GameObject name instead of reference
-    //    GameObject itemspawn = Instantiate(item, spawnPoint, false);
-    //}
+    private string GetBaseName(string fullName)
+    {
+        if (string.IsNullOrEmpty(fullName)) return fullName;
+        int idx = fullName.IndexOf("_");
+        return idx > 0 ? fullName.Substring(0, idx) : fullName;
+    }
+
+    public bool ReplaceItem(string oldBaseName, GameObject newItemPrefab)
+    {
+        if (string.IsNullOrEmpty(oldBaseName)) return false;
+
+        Transform found = FindItemByBaseNameInSlots(oldBaseName, HotbarSlots)
+                         ?? FindItemByBaseNameInSlots(oldBaseName, InventorySlots);
+
+        if (found == null) return false;
+
+        Transform parentSlot = found.parent;
+        int siblingIndex = found.GetSiblingIndex();
+
+        Destroy(found.gameObject);
+
+        if (newItemPrefab != null)
+        {
+            GameObject newGO = Instantiate(newItemPrefab, parentSlot, false);
+            newGO.name = newItemPrefab.name;
+            newGO.transform.SetSiblingIndex(siblingIndex);
+        }
+
+        return true;
+    }
+
+    private Transform FindItemByBaseNameInSlots(string baseName, Transform[] slots)
+    {
+        if (slots == null) return null;
+        foreach (var slot in slots)
+        {
+            if (slot == null) continue;
+            for (int i = 0; i < slot.childCount; i++)
+            {
+                var child = slot.GetChild(i);
+                if (GetBaseName(child.name) == baseName)
+                    return child;
+            }
+        }
+        return null;
+    }
 }

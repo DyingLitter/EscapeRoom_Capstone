@@ -10,11 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d58072da1aed6ac4292f99df66f8d21c, type: 3}
-  m_Name: Stick
+  m_Name: Tape
   m_EditorClassIdentifier: 
-  ItemName: Stick
-  ItemDescription: Its a Stick
-  InventoryPrefab: {fileID: 4315462355574087460, guid: f6e781ca96edb9a4c9f530d88fbf330d, type: 3}
-  ItemPrefab: {fileID: 4315462355574087460, guid: f6e781ca96edb9a4c9f530d88fbf330d, type: 3}
+  ItemName: Tape
+  ItemDescription: Its Tape
+  InventoryPrefab: {fileID: 3065181573529278039, guid: da897cfad6ba1f747a85307f67e8cb7b, type: 3}
+  ItemPrefab: {fileID: 3672176732234715497, guid: acd762c78dfd5774fa4a36f423230acf, type: 3}
   ItemAnimator: {fileID: 0}
-  combinations: []
+  combinations:
+  - itemA: Stick (Broken)
+    itemB: Tape
+    resultPrefab: Stick (Fixed)

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &417995064422323985
+--- !u!1 &4315462355574087460
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8430567733340130458}
-  - component: {fileID: 6168076195210840035}
-  - component: {fileID: 3188571841926656828}
-  - component: {fileID: 6096395472585183438}
-  - component: {fileID: 8464558717495241422}
+  - component: {fileID: 6847389243881060494}
+  - component: {fileID: 2867095397427051184}
+  - component: {fileID: 2676646898770565134}
+  - component: {fileID: 3368606481220026530}
+  - component: {fileID: 3637007529249546237}
   m_Layer: 5
-  m_Name: Stick (Broken)
+  m_Name: Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &8430567733340130458
+--- !u!224 &6847389243881060494
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417995064422323985}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 4315462355574087460}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -39,21 +39,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &6168076195210840035
+--- !u!222 &2867095397427051184
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417995064422323985}
+  m_GameObject: {fileID: 4315462355574087460}
   m_CullTransparentMesh: 1
---- !u!114 &3188571841926656828
+--- !u!114 &2676646898770565134
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417995064422323985}
+  m_GameObject: {fileID: 4315462355574087460}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b6f3a45ea9b379e4aa8a353482d099fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5eacfe53f7a9070449ab35a586e259b3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -77,31 +77,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6096395472585183438
+--- !u!114 &3368606481220026530
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417995064422323985}
+  m_GameObject: {fileID: 4315462355574087460}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71e2f2f6cc2987c429d1a71430c77aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 3188571841926656828}
-  combinations:
-  - itemA: Stick (Broken)
-    itemB: Tape
-    resultPrefab: Stick (Fixed)
+  image: {fileID: 2676646898770565134}
+  Items: {fileID: 11400000, guid: 4b605ae62a25c8447990b1cdeb9b2532, type: 2}
   parentAfterDrag: {fileID: 0}
---- !u!61 &8464558717495241422
+--- !u!61 &3637007529249546237
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417995064422323985}
+  m_GameObject: {fileID: 4315462355574087460}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1

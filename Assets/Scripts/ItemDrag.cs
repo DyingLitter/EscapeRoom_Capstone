@@ -7,7 +7,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public Image image;
 
-    private ItemsSO Items;
+   [SerializeField] private ItemsSO Items;
 
     public static bool mouseButtonReleased;
     [HideInInspector] public Transform parentAfterDrag;
