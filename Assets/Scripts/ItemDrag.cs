@@ -5,16 +5,9 @@ using UnityEngine.UI;
 public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
 
-    [System.Serializable]
-    public struct Combination
-    {
-        public string itemA;          // base name before the '_' (e.g. "Stick (Broken)")
-        public string itemB;          // other item (order is ignored)
-        public string resultPrefab;   // Resources path to resulting prefab (e.g. "Stick (Fixed)")
-    }
-
     public Image image;
-    public Combination[] combinations;
+
+    private ItemsSO Items;
 
     public static bool mouseButtonReleased;
     [HideInInspector] public Transform parentAfterDrag;
@@ -82,7 +75,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
         if (string.IsNullOrEmpty(thisBase) || string.IsNullOrEmpty(otherBase)) return;
 
-        foreach (var combo in combinations)
+        foreach (var combo in Items.combinations)
         {
             if ((combo.itemA == thisBase && combo.itemB == otherBase) ||
                 (combo.itemA == otherBase && combo.itemB == thisBase))
