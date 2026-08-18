@@ -99,11 +99,16 @@ public class PlayerController : MonoBehaviour
 
     void InteractWObject()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (Interacted.selection != null)
             {
                 Interacted.selection.GetComponent<Interactables>().Interact();
+                Debug.Log("Item Picked UP");
+            }
+            else
+            {
+                Debug.Log("Item Not Found");
             }
         }
     }

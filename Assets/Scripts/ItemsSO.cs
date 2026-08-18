@@ -1,0 +1,51 @@
+using System;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+[CreateAssetMenu(fileName = "ItemsSO", menuName = "Scriptable Objects/ItemsSO")]
+public class ItemsSO : ScriptableObject
+{
+    public string ItemName;
+    public string ItemDescription;
+    public GameObject InventoryPrefab; //Inventory Object
+    public GameObject ItemPrefab; //In-Game Object
+
+    private Interact Interacted;
+    private GameManager Key;
+    private Inventory Inventory;
+
+    public Animator ItemAnimator; // Animator for the item
+
+    [System.Serializable]
+    public struct Combination
+    {
+        public string itemA;          // base name before the '_' (e.g. "Stick (Broken)")
+        public string itemB;          // other item (order is ignored)
+        public string resultPrefab;   // Resources path to resulting prefab (e.g. "Stick (Fixed)")
+    }
+
+    public Combination[] combinations;
+
+    public void InteractChecks()
+    {
+        if (Interacted == null) Interacted = FindAnyObjectByType<Interact>();
+        if (Key == null) Key = FindAnyObjectByType<GameManager>();
+        if (Inventory == null) Inventory = FindAnyObjectByType<Inventory>();
+
+
+        if (Interacted.selection.name == "Gate" && Key.StickGet == true)
+        {
+            GameObject BrokenStick = Resources.Load<GameObject>("Stick (Broken)");
+            Animator gateAnimator = Interacted.selection.GetComponent<Animator>();
+
+            Key.StickGet = false;
+            gateAnimator.SetTrigger("Open");
+            if (BrokenStick != null)
+            {
+                Inventory?.ReplaceItem("Stick", BrokenStick);
+            }
+        }
+        return;
+    }
+}

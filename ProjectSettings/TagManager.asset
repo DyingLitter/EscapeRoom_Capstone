@@ -9,6 +9,7 @@ TagManager:
   - Door
   - Stick
   - BabyGate
+  - Tape
   layers:
   - Default
   - TransparentFX

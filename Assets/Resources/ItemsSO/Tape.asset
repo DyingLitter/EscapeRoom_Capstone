@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58072da1aed6ac4292f99df66f8d21c, type: 3}
+  m_Name: Tape
+  m_EditorClassIdentifier: 
+  ItemName: Tape
+  ItemDescription: Its Tape
+  InventoryPrefab: {fileID: 3065181573529278039, guid: da897cfad6ba1f747a85307f67e8cb7b, type: 3}
+  ItemPrefab: {fileID: 3672176732234715497, guid: acd762c78dfd5774fa4a36f423230acf, type: 3}
+  ItemAnimator: {fileID: 0}
+  combinations:
+  - itemA: Stick (Broken)
+    itemB: Tape
+    resultPrefab: Stick (Fixed)
