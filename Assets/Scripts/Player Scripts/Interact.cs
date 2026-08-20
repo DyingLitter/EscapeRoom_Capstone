@@ -39,7 +39,7 @@ public class Interact : MonoBehaviour
                 {
                     Vector3 selectionpos = selection.transform.position;
 
-                    interactionText.transform.position = new Vector3(selectionpos.x, selectionpos.y + 0.5f, selectionpos.z); 
+                    interactionText.transform.position = new Vector3(selectionpos.x, selectionpos.y + 0.6f, selectionpos.z); 
                     interactionText.SetActive(true);
                     previousMaterial = selectionRenderer.material;
                     selectionRenderer.material = highlightMaterial;
@@ -64,5 +64,12 @@ public class Interact : MonoBehaviour
             interactionText.SetActive(false);
            
         }
+    }
+
+    private void OnTriggerExit(Collider col)
+    {
+        interactionText.SetActive(false);
+        _selection = null;
+        selection = null;
     }
 }

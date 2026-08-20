@@ -48,6 +48,14 @@ public class ItemsSO : ScriptableObject
                 Inventory?.ReplaceItem("Stick", BrokenStick);
             }
         }
+
+        if (Interacted.selection.name == "Door" && Key.StickFixed == true)
+        {
+            Animator DoorAnimator = Interacted.selection.GetComponent<Animator>();
+
+            Key.StickFixed = false;
+
+        }
         return;
     }
 }

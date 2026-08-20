@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
         {
             anim_player.SetBool("IfUp", true);
             anim_player.SetBool("IfDown", false);
-            //Interacted.transform.position = 
+        
         }
      
 
