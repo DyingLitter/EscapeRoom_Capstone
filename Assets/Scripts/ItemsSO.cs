@@ -38,11 +38,13 @@ public class ItemsSO : ScriptableObject
         {
             GameObject BrokenStick = Resources.Load<GameObject>("Stick (Broken)");
             Animator gateAnimator = Interacted.selection.GetComponent<Animator>();
+            BoxCollider gatecol = Interacted.selection.GetComponent<BoxCollider>();
 
             Key.StickGet = false;
             gateAnimator.SetTrigger("Open");
             if (BrokenStick != null)
             {
+                gatecol.enabled = false;
                 Inventory?.ReplaceItem("Stick", BrokenStick);
             }
         }
