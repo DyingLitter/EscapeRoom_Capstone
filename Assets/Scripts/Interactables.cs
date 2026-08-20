@@ -35,7 +35,10 @@ public class Interactables : MonoBehaviour
 
             Interacted.selection.SetActive(false);
             if (Interacted.interactionText != null) Interacted.interactionText.SetActive(false);
-            Interacted.selection = null;
+            {
+                Interacted.selection = null;
+            }
+ 
             return;
 
         }
