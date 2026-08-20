@@ -68,6 +68,9 @@ public class Interact : MonoBehaviour
 
     private void OnTriggerExit(Collider col)
     {
+        var selectionRenderer = selection.GetComponent<Renderer>();
+
+        selectionRenderer.material = previousMaterial;
         interactionText.SetActive(false);
         _selection = null;
         selection = null;
