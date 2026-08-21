@@ -31,6 +31,11 @@ public class Interactables : MonoBehaviour
                 Key.StickGet = true;
             }
 
+            if (pickup.ISO.ItemName == "Tape" && Key != null)
+            {
+                Key.TapeGet = true;
+            }
+
 
 
             Interacted.selection.SetActive(false);
