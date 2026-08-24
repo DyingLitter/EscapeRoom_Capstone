@@ -7,8 +7,9 @@ public class Interactables : MonoBehaviour
     private Interact Interacted;
 
     private GameManager Key;
+    private GameObject Canvas;
     private Inventory Inventory;
-
+    private GameObject Player;
     public ItemsSO ISO;
 
     public void Start()
@@ -16,10 +17,14 @@ public class Interactables : MonoBehaviour
         Interacted = FindAnyObjectByType<Interact>();
         Key = FindAnyObjectByType<GameManager>();
         Inventory = FindAnyObjectByType<Inventory>();
+        Player = FindAnyObjectByType<PlayerController>().gameObject;
+        Canvas = FindAnyObjectByType<Canvas>().gameObject;
     }
     public void Interact()
     {
         if (Interacted == null || Interacted.selection == null) return;
+
+        ISO.InteractChecks();
 
         var pickup = Interacted.selection.GetComponent<Interactables>();
         if (pickup != null && pickup.ISO != null && pickup.ISO.name != "Gate")
@@ -48,10 +53,15 @@ public class Interactables : MonoBehaviour
 
         }
 
-        ISO.InteractChecks();
+        
 
     }
 
+    public void PlayerHide()
+    {
+        Player.SetActive(false);
+        Canvas.SetActive(false);
+    }
  
 
 

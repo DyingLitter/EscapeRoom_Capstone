@@ -28,6 +28,11 @@ public class GameManager : MonoBehaviour
         {
             Tut2.SetActive(false);
         }
+
+        if (Inventory.HasItem("Stick (Fixed)"))
+        {
+            StickFixed = true;
+        }
     }
 
   

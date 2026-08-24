@@ -118,4 +118,11 @@ public class Inventory : MonoBehaviour
         }
         return null;
     }
+
+    public bool HasItem(string baseName)
+    {
+        if (string.IsNullOrEmpty(baseName)) return false;
+        return FindItemByBaseNameInSlots(baseName, HotbarSlots) != null
+            || FindItemByBaseNameInSlots(baseName, InventorySlots) != null;
+    }
 }

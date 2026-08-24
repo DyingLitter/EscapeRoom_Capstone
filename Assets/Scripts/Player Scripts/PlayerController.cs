@@ -49,53 +49,34 @@ public class PlayerController : MonoBehaviour
         }
 
      
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-        Vector3 moveDir = new Vector3(x, 0f, y);
+        float rawX = Input.GetAxisRaw("Horizontal");
+        float rawY = Input.GetAxisRaw("Vertical");
+
+        Vector3 moveDir = new Vector3(rawX, 0f, rawY);
+
+        if (moveDir.sqrMagnitude > 1f)
+            moveDir.Normalize();
+
         rb.linearVelocity = new Vector3(moveDir.x * speed, rb.linearVelocity.y, moveDir.z * speed);
 
-      
-        if (Input.GetKeyDown(KeyCode.A) || (Input.GetKeyDown(KeyCode.D)))
-        {
-            anim_player.SetBool("IfMoving", true);
-        }
-        
-        if (!Input.anyKey)
-        {
-            anim_player.SetBool("IfMoving", false);
-            anim_player.SetBool("IfUp", false);
-            anim_player.SetBool("IfDown", false);
-        }
 
-        if (x! < 0f)
+        if (moveDir == Vector3.zero)
         {
-            sr.transform.rotation = Quaternion.Euler(0, 0, 0);
-            anim_player.SetBool("IfMoving", true);
-            anim_player.SetBool("IfUp", false);
-            anim_player.SetBool("IfDown", false);
+            anim_player.Play("player_idle");
         }
-        else if (x! > 0f)
+        else
         {
-            sr.transform.rotation = Quaternion.Euler(0, 180, 0);
-            anim_player.SetBool("IfMoving", true);
-            anim_player.SetBool("IfDown", false);
-            anim_player.SetBool("IfUp", false);
+            if (Mathf.Abs(moveDir.x) > Mathf.Abs(moveDir.z))
+            {
+                if (moveDir.x < 0f) anim_player.Play("playerwalk");
+                else anim_player.Play("playerwalkright");
+            }
+            else
+            {
+                if (moveDir.z < 0f) anim_player.Play("playerwalkdown");
+                else anim_player.Play("playerwalkup");
+            }
         }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            anim_player.SetBool("IfUp", true);
-            anim_player.SetBool("IfDown", false);
-        
-        }
-     
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            anim_player.SetBool("IfDown", true);
-            anim_player.SetBool("IfUp", false);
-        }
-
     }
 
     void InteractWObject()
@@ -105,7 +86,7 @@ public class PlayerController : MonoBehaviour
             if (Interacted.selection != null)
             {
                 Interacted.selection.GetComponent<Interactables>().Interact();
-                Debug.Log("Item Picked UP");
+                Debug.Log("Item has Itemed");
             }
             else
             {

@@ -15,14 +15,12 @@ public class ItemsSO : ScriptableObject
     private GameManager Key;
     private Inventory Inventory;
 
-    public Animator ItemAnimator; // Animator for the item
-
     [System.Serializable]
     public struct Combination
     {
-        public string itemA;          // base name before the '_' (e.g. "Stick (Broken)")
-        public string itemB;          // other item (order is ignored)
-        public string resultPrefab;   // Resources path to resulting prefab (e.g. "Stick (Fixed)")
+        public string itemA;         
+        public string itemB;         
+        public string resultPrefab;   
     }
 
     public Combination[] combinations;
@@ -53,6 +51,8 @@ public class ItemsSO : ScriptableObject
         {
             Animator DoorAnimator = Interacted.selection.GetComponent<Animator>();
 
+            DoorAnimator.SetTrigger("Open");
+           
             Key.StickFixed = false;
 
         }
