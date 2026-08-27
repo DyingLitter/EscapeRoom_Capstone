@@ -62,6 +62,16 @@ public class Interactables : MonoBehaviour
         Player.SetActive(false);
         Canvas.SetActive(false);
     }
+
+    private void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    private void SceneTransition()
+    {
+
+    }
  
 
 
