@@ -10,7 +10,7 @@ public class ItemsSO : ScriptableObject
     public string ItemDescription;
     public GameObject InventoryPrefab; //Inventory Object
     public GameObject ItemPrefab; //In-Game Object
-
+    private NPC npc;
     private Interact Interacted;
     private GameManager Key;
     private Inventory Inventory;
@@ -27,10 +27,20 @@ public class ItemsSO : ScriptableObject
 
     public void InteractChecks()
     {
+      
+
         if (Interacted == null) Interacted = FindAnyObjectByType<Interact>();
         if (Key == null) Key = FindAnyObjectByType<GameManager>();
         if (Inventory == null) Inventory = FindAnyObjectByType<Inventory>();
 
+        if (Interacted.selection.name == "NPC")
+        {
+            npc = Interacted.selection.GetComponent<NPC>();
+            if (npc != null)
+            {
+                npc.InteractedWith(Interacted.selection.gameObject);
+            }
+        }
 
         if (Interacted.selection.name == "Gate" && Key.StickGet == true)
         {
@@ -56,6 +66,9 @@ public class ItemsSO : ScriptableObject
             Key.StickFixed = false;
 
         }
+
+       
+       
         return;
     }
 }

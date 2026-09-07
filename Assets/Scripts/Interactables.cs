@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.SceneManagement;
 
 public class Interactables : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class Interactables : MonoBehaviour
     private Inventory Inventory;
     private GameObject Player;
     public ItemsSO ISO;
-
+    [SerializeField] private string SceneName;
     public void Start()
     {
         Interacted = FindAnyObjectByType<Interact>();
@@ -27,7 +28,7 @@ public class Interactables : MonoBehaviour
         ISO.InteractChecks();
 
         var pickup = Interacted.selection.GetComponent<Interactables>();
-        if (pickup != null && pickup.ISO != null && pickup.ISO.name != "Gate")
+        if (pickup != null && pickup.ISO != null && pickup.ISO.name != "Gate" && pickup.ISO.name != "NPC")
         {
             Inventory?.AddItem(pickup.ISO);
 
@@ -70,7 +71,7 @@ public class Interactables : MonoBehaviour
 
     private void SceneTransition()
     {
-
+        SceneManager.LoadScene(SceneName);
     }
  
 

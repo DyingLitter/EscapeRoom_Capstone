@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public bool IfDown;
 
     public Animator anim_player;
+    private NPC npc;
 
     public LayerMask TerrainLayer;
     public Rigidbody rb;
@@ -31,6 +32,13 @@ public class PlayerController : MonoBehaviour
     {
         PlayerRotateOnDir();
         InteractWObject();
+
+        if (npc != null && npc.isDialogueActive)
+        {
+           
+            Interacted.interactionText.SetActive(false); // Hide the interaction text
+
+        }
     }
 
     void PlayerRotateOnDir() // Movement Controls
@@ -62,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
         if (moveDir == Vector3.zero)
         {
-            anim_player.Play("player_idle");
+            anim_player.Play("playeridle");
         }
         else
         {
@@ -92,6 +100,9 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("Item Not Found");
             }
+
+          
+
         }
     }
 

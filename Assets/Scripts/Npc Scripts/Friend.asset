@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f32f9d42d5c6094194fa9e37b5eb95a, type: 3}
+  m_Name: Friend
+  m_EditorClassIdentifier: 
+  npcName: Friend
+  NPCPortrait: {fileID: -1262743199, guid: d78414c5e3d3cb54586f76e808ff94e2, type: 3}
+  playerPortrait: {fileID: -1728574421, guid: 7e1228c108ed1bd47905fc1952af9bf1, type: 3}
+  dialogueLines:
+  - Yo we got da party at 10pm
+  - 'gotta figure sumting out den. '
+  - I'll send you the details l8tr
+  autoProgressDelay: 2
+  textSpeed: 0.05
+  OneTimeDialogue: 0
+  autoProgress: 1
+  endDialogueLines: 000001
+  Italics: 0
+  choices:
+  - dialogueIndex: 0
+    choices:
+    - but me ma m8ke me slep at tiem
+    nextDialogueIndexes: 01000000
+    actions: []

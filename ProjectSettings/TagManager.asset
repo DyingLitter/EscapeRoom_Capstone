@@ -10,6 +10,7 @@ TagManager:
   - Stick
   - BabyGate
   - Tape
+  - NPC
   layers:
   - Default
   - TransparentFX

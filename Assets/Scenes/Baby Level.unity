@@ -6947,6 +6947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ISO: {fileID: 11400000, guid: 5eca395b972255343abebb69f47998e0, type: 2}
+  SceneName: 
 --- !u!65 &2115837287
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7289,6 +7290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ISO: {fileID: 11400000, guid: 5eca395b972255343abebb69f47998e0, type: 2}
+  SceneName: Cutscene1
 --- !u!95 &919132147985004991
 Animator:
   serializedVersion: 7
