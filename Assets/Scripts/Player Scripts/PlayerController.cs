@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        anim_player.SetBool("IfMoving", false);
     }
 
     private void Update()
@@ -71,6 +70,8 @@ public class PlayerController : MonoBehaviour
         if (moveDir == Vector3.zero)
         {
             anim_player.Play("playeridle");
+
+
         }
         else
         {

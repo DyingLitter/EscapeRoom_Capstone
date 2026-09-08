@@ -7,7 +7,7 @@ public class Interactables : MonoBehaviour
 {
     private Interact Interacted;
 
-    private GameManager Key;
+    private BabyLevelManager BKey;
     private GameObject Canvas;
     private Inventory Inventory;
     private GameObject Player;
@@ -16,7 +16,7 @@ public class Interactables : MonoBehaviour
     public void Start()
     {
         Interacted = FindAnyObjectByType<Interact>();
-        Key = FindAnyObjectByType<GameManager>();
+        BKey = FindAnyObjectByType<BabyLevelManager>();
         Inventory = FindAnyObjectByType<Inventory>();
         Player = FindAnyObjectByType<PlayerController>().gameObject;
         Canvas = FindAnyObjectByType<Canvas>().gameObject;
@@ -32,14 +32,14 @@ public class Interactables : MonoBehaviour
         {
             Inventory?.AddItem(pickup.ISO);
 
-            if (pickup.ISO.ItemName == "Stick" && Key != null)
+            if (pickup.ISO.ItemName == "Stick" && BKey != null)
             {
-                Key.StickGet = true;
+                BKey.StickGet = true;
             }
 
-            if (pickup.ISO.ItemName == "Tape" && Key != null)
+            if (pickup.ISO.ItemName == "Tape" && BKey != null)
             {
-                Key.TapeGet = true;
+                BKey.TapeGet = true;
             }
 
 

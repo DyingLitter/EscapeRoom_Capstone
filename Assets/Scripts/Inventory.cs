@@ -7,9 +7,10 @@ public class Inventory : MonoBehaviour
 {
     public Transform[] InventorySlots;
     public Transform[] HotbarSlots;
+    private Transform ItemSlot;
     private Interactables Interactables;
     private Interact Interacted;
-    private GameManager Key;
+    private BabyLevelManager BKey;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -1,14 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-
     public Image image;
 
    [SerializeField] private ItemsSO Items;
-
     public static bool mouseButtonReleased;
     [HideInInspector] public Transform parentAfterDrag;
 

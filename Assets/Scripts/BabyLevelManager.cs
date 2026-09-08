@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class BabyLevelManager : MonoBehaviour
 {
     public bool StickGet;
     public bool StickFixed;
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (TapeGet == true)
         {

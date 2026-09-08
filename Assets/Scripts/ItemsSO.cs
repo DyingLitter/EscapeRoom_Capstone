@@ -12,7 +12,7 @@ public class ItemsSO : ScriptableObject
     public GameObject ItemPrefab; //In-Game Object
     private NPC npc;
     private Interact Interacted;
-    private GameManager Key;
+    private BabyLevelManager BKey;
     private Inventory Inventory;
 
     [System.Serializable]
@@ -30,7 +30,7 @@ public class ItemsSO : ScriptableObject
       
 
         if (Interacted == null) Interacted = FindAnyObjectByType<Interact>();
-        if (Key == null) Key = FindAnyObjectByType<GameManager>();
+        if (BKey == null) BKey = FindAnyObjectByType<BabyLevelManager>();
         if (Inventory == null) Inventory = FindAnyObjectByType<Inventory>();
 
         if (Interacted.selection.name == "NPC")
@@ -42,13 +42,13 @@ public class ItemsSO : ScriptableObject
             }
         }
 
-        if (Interacted.selection.name == "Gate" && Key.StickGet == true)
+        if (Interacted.selection.name == "Gate" && BKey.StickGet == true)
         {
             GameObject BrokenStick = Resources.Load<GameObject>("Stick (Broken)");
             Animator gateAnimator = Interacted.selection.GetComponent<Animator>();
             BoxCollider gatecol = Interacted.selection.GetComponent<BoxCollider>();
 
-            Key.StickGet = false;
+            BKey.StickGet = false;
             gateAnimator.SetTrigger("Open");
             if (BrokenStick != null)
             {
@@ -57,13 +57,20 @@ public class ItemsSO : ScriptableObject
             }
         }
 
-        if (Interacted.selection.name == "Door" && Key.StickFixed == true)
+        if (Interacted.selection.name == "Door")
         {
+           
             Animator DoorAnimator = Interacted.selection.GetComponent<Animator>();
 
             DoorAnimator.SetTrigger("Open");
            
-            Key.StickFixed = false;
+            if (BKey.StickFixed == true)
+            {
+                DoorAnimator.SetTrigger("LevelEnd");
+            }
+            
+
+            BKey.StickFixed = false;
 
         }
 
