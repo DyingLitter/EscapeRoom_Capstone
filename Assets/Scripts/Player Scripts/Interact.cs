@@ -41,6 +41,7 @@ public class Interact : MonoBehaviour
 
                     interactionText.transform.position = new Vector3(selectionpos.x, selectionpos.y + 0.6f, selectionpos.z); 
                     interactionText.SetActive(true);
+                    
                     previousMaterial = selectionRenderer.material;
                     selectionRenderer.material = highlightMaterial;
                 }

@@ -43,7 +43,6 @@ public class Interactables : MonoBehaviour
             }
 
 
-
             Interacted.selection.SetActive(false);
             if (Interacted.interactionText != null) Interacted.interactionText.SetActive(false);
             {

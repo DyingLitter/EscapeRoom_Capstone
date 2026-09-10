@@ -10,12 +10,15 @@ public class ItemsSO : ScriptableObject
     public string ItemDescription;
     public GameObject InventoryPrefab; //Inventory Object
     public GameObject ItemPrefab; //In-Game Object
+    [SerializeField] PlayerController Player;
     private NPC npc;
     private Interact Interacted;
     private BabyLevelManager BKey;
     private Inventory Inventory;
 
     [System.Serializable]
+
+
     public struct Combination
     {
         public string itemA;         
@@ -27,7 +30,7 @@ public class ItemsSO : ScriptableObject
 
     public void InteractChecks()
     {
-      
+        if (Player == null) Player = FindAnyObjectByType<PlayerController>();
 
         if (Interacted == null) Interacted = FindAnyObjectByType<Interact>();
         if (BKey == null) BKey = FindAnyObjectByType<BabyLevelManager>();
@@ -59,7 +62,6 @@ public class ItemsSO : ScriptableObject
 
         if (Interacted.selection.name == "Door")
         {
-           
             Animator DoorAnimator = Interacted.selection.GetComponent<Animator>();
 
             DoorAnimator.SetTrigger("Open");
@@ -69,8 +71,6 @@ public class ItemsSO : ScriptableObject
                 DoorAnimator.SetTrigger("LevelEnd");
             }
             
-
-            BKey.StickFixed = false;
 
         }
 
