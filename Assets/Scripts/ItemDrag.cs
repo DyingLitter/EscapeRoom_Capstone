@@ -18,6 +18,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
         if (image != null) image.raycastTarget = false;
+        
     }
 
     public void OnDrag(PointerEventData eventData)

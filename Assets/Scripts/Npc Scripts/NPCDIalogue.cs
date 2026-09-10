@@ -62,7 +62,7 @@ public class NPCDialogue : ScriptableObject
 
     private void TriggerWorldChange(string action)
     {
-        NPC npc = GameObject.FindObjectOfType<NPC>();
+        NPC npc = GameObject.FindAnyObjectByType<NPC>();
         if (action == "fail")
         {
             Debug.Log("Player has failed the dialogue choice.");
