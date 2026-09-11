@@ -1,57 +1,69 @@
-using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
+using System.Collections;
 public class DoorController : MonoBehaviour
 {
-    public Camera BedroomCam;
-    public Camera LivingCam;
-    public Camera KitchenCam;
-
-    public bool bedroom;
-    public bool living;
-    public bool kitchen;
-
-    [SerializeField] GameObject[] DoorTriggers;
+    [SerializeField] private Camera ToggledCam;
+    [SerializeField] private Camera DisCam;
+    private Camera CurrentCam;
+    private float colliderDisableDuration = 1.5f;
 
     private PlayerController Player;
+    private Collider doorCollider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        BedroomCam.enabled = true;
-        LivingCam.enabled = false;
-        KitchenCam.enabled = false;
-        living = false;
-        kitchen = false;
-    }
-
-    private void Update()
-    {
-       if (living == true)
-        {
-            BedroomCam.enabled = false;
-            LivingCam.enabled = true;
-        }
-
-       if (kitchen == true)
-        {
-            LivingCam.enabled = false;
-            KitchenCam.enabled = true;
-        }
+        Player = FindAnyObjectByType<PlayerController>();
+        doorCollider = GetComponent<Collider>();
+        CurrentCam = DisCam;
     }
 
 
-    public void OnTriggerEnter(Collider Player)
+    public void OnTriggerEnter(Collider other)
     {
-       if (DoorTriggers[0])
+        if (other.CompareTag("Player"))
         {
-            living = !true;
-            bedroom = false;
+            StartCoroutine(DisableColliderTemporarily(colliderDisableDuration));
+        }
+    }
+
+    void ReverseControls()
+    {
+        if (CurrentCam.name == "LivingCam")
+        {
+            Player.SetControlsReversed(true);
+        }
+        else
+        {
+            Player.SetControlsReversed(false);
+        }
+    }
+
+    private IEnumerator DisableColliderTemporarily(float duration)
+    {
+    
+        doorCollider.enabled = false;
+        yield return new WaitForSeconds(duration);
+        Player.enabled = false;
+
+        if (ToggledCam.gameObject.activeSelf)
+        {
+            ToggledCam.gameObject.SetActive(false);
+            DisCam.gameObject.SetActive(true);
+            CurrentCam = DisCam;
+        }
+        else
+        {
+            ToggledCam.gameObject.SetActive(true);
+            DisCam.gameObject.SetActive(false);
+            CurrentCam = ToggledCam;
         }
 
-       if (DoorTriggers[1])
-        {
-            kitchen = !true;
-        }
+        ReverseControls();
+
+        doorCollider.enabled = true;
+     
+        Player.enabled = true;
     }
 }
