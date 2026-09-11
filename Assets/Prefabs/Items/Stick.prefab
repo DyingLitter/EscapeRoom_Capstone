@@ -89,4 +89,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 3191281256122294089}
+  Items: {fileID: 11400000, guid: 4b605ae62a25c8447990b1cdeb9b2532, type: 2}
   parentAfterDrag: {fileID: 0}

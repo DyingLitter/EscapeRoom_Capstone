@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d58072da1aed6ac4292f99df66f8d21c, type: 3}
-  m_Name: Stick (Fixed)
+  m_Name: Desk
   m_EditorClassIdentifier: 
-  ItemName: Stick (Fixed)
+  ItemName: 
   ItemDescription: 
-  InventoryPrefab: {fileID: 8548881687962142105, guid: 193a7506660c36b4f8869aad5abd65c5, type: 3}
+  InventoryPrefab: {fileID: 0}
   ItemPrefab: {fileID: 0}
-  CanBePickedUp: 1
+  CanBePickedUp: 0
   combinations: []

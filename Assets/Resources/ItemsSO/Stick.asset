@@ -16,5 +16,5 @@ MonoBehaviour:
   ItemDescription: Its a Stick
   InventoryPrefab: {fileID: 4315462355574087460, guid: f6e781ca96edb9a4c9f530d88fbf330d, type: 3}
   ItemPrefab: {fileID: 4315462355574087460, guid: f6e781ca96edb9a4c9f530d88fbf330d, type: 3}
-  ItemAnimator: {fileID: 0}
+  CanBePickedUp: 1
   combinations: []

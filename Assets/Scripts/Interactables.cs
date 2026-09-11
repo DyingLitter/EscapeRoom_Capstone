@@ -1,34 +1,50 @@
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Interactables : MonoBehaviour
 {
     private Interact Interacted;
 
     private BabyLevelManager BKey;
-    private GameObject Canvas;
+    private Canvas Canvas;
+    private GameObject Canvass;
     private Inventory Inventory;
     private GameObject Player;
     public ItemsSO ISO;
     [SerializeField] private string SceneName;
+    private Animator CanAni;
     public void Start()
     {
         Interacted = FindAnyObjectByType<Interact>();
         BKey = FindAnyObjectByType<BabyLevelManager>();
         Inventory = FindAnyObjectByType<Inventory>();
         Player = FindAnyObjectByType<PlayerController>().gameObject;
-        Canvas = FindAnyObjectByType<Canvas>().gameObject;
+        Canvas = FindAnyObjectByType<Canvas>();
+        Canvass = FindAnyObjectByType<Canvas>().gameObject;
+        CanAni = Canvas.GetComponent<Animator>();
     }
     public void Interact()
     {
+        var pickup = Interacted.selection.GetComponent<Interactables>();
+        ISO.InteractChecks();
+        if (pickup.ISO.name == "Desk")
+        {
+            CanAni.SetTrigger("OpenInv");
+        }
+
+          if (ISO.CanBePickedUp == false)
+        {
+            return;
+        }
+
         if (Interacted == null || Interacted.selection == null) return;
 
-        ISO.InteractChecks();
-
-        var pickup = Interacted.selection.GetComponent<Interactables>();
-        if (pickup != null && pickup.ISO != null && pickup.ISO.name != "Gate" && pickup.ISO.name != "NPC")
+        
+        if (pickup != null && pickup.ISO != null && pickup.ISO.CanBePickedUp == true)
         {
             Inventory?.AddItem(pickup.ISO);
 
@@ -60,7 +76,7 @@ public class Interactables : MonoBehaviour
     public void PlayerHide()
     {
         Player.SetActive(false);
-        Canvas.SetActive(false);
+        Canvass.SetActive(false);
     }
 
     private void QuitGame()

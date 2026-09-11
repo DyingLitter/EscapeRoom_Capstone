@@ -83,6 +83,10 @@ public class NPC : MonoBehaviour
 
         if (dialogueData.endDialogueLines.Length > dialogueIndex && dialogueData.endDialogueLines[dialogueIndex])
         {
+            if (dialogueIndex < dialogueData.endDialogueActions.Length && !string.IsNullOrEmpty(dialogueData.endDialogueActions[dialogueIndex]))
+            {
+                dialogueData.TriggerWorldChange(dialogueData.endDialogueActions[dialogueIndex]);
+            }
             EndDialogue();
             return;
         }
@@ -191,7 +195,7 @@ public class NPC : MonoBehaviour
         StopAllCoroutines();
         isDialogueActive = false;
 
-        player.speed = 3;
+        player.speed = 4;
         dialogueUI.SetDialogueText("");
         dialogueUI.ShowDialogueUI(false);
 
@@ -202,6 +206,7 @@ public class NPC : MonoBehaviour
         {
             gameObject.GetComponent<NPC>().enabled = false;
         }
+
     }
 
     public void EmergencyClear()

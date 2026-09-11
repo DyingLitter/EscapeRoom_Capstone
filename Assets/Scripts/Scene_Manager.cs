@@ -4,9 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class Scene_Manager : MonoBehaviour
 {
-    public void MoveToGame()
+    public string SceneName;
+    public void ChangeScene()
     {
-        SceneManager.LoadScene("Baby Level");
+        SceneManager.LoadScene(SceneName);
     }
 
     public void ExitGame()
