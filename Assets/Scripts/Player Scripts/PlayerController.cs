@@ -1,16 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float groundDist;
-
-    public bool IfMoving;
-    public bool IfUp;
-    public bool IfDown;
-
     public Animator anim_player;
     private NPC npc;
 
@@ -40,6 +36,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    [SerializeField] private bool controlsReversed = false;
+
+    public void SetControlsReversed(bool reversed)
+    {
+        if (controlsReversed != reversed)  
+        {
+            controlsReversed = reversed;
+            sr.flipX = !sr.flipX;          
+        }
+    }
+
     void PlayerRotateOnDir() // Movement Controls
     {
         RaycastHit hit;
@@ -55,9 +62,16 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-     
+
         float rawX = Input.GetAxisRaw("Horizontal");
         float rawY = Input.GetAxisRaw("Vertical");
+
+        if (controlsReversed)
+        {
+            rawX = -rawX;
+            rawY = -rawY;
+
+        }
 
         Vector3 moveDir = new Vector3(rawX, 0f, rawY);
 
@@ -69,9 +83,8 @@ public class PlayerController : MonoBehaviour
 
         if (moveDir == Vector3.zero)
         {
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
             anim_player.Play("playeridle");
-
-
         }
         else
         {
@@ -82,10 +95,21 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if (moveDir.z < 0f) anim_player.Play("playerwalkdown");
-                else anim_player.Play("playerwalkup");
+                if (controlsReversed)
+                {
+                    if (moveDir.z > 0f) anim_player.Play("playerwalkdown");
+                    else anim_player.Play("playerwalkup");
+                }
+                else
+                {
+                    if (moveDir.z < 0f) anim_player.Play("playerwalkdown");
+                    else anim_player.Play("playerwalkup");
+                }
             }
+           
+
         }
+
     }
 
     void InteractWObject()

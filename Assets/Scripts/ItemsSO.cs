@@ -15,6 +15,7 @@ public class ItemsSO : ScriptableObject
     private Interact Interacted;
     private BabyLevelManager BKey;
     private Inventory Inventory;
+    private DoorController Door;
 
     [System.Serializable]
 
@@ -62,12 +63,10 @@ public class ItemsSO : ScriptableObject
 
         if (Interacted.selection.name == "Door")
         {
-            Animator DoorAnimator = Interacted.selection.GetComponent<Animator>();
-
-            DoorAnimator.SetTrigger("Open");
-
+            
             if (BKey.StickFixed == true)
             {
+                Animator DoorAnimator = Interacted.selection.GetComponent<Animator>();
                 DoorAnimator.SetTrigger("LevelEnd");
             }
         }
