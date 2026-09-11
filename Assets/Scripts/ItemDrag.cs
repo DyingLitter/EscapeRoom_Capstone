@@ -1,79 +1,75 @@
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
+
+[RequireComponent(typeof(RectTransform))]
 public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Image image;
 
-   [SerializeField] private ItemsSO Items;
-    public static bool mouseButtonReleased;
+    [SerializeField] private ItemsSO Items;
     [HideInInspector] public Transform parentAfterDrag;
+
+    private RectTransform rectTransform;
+    private CanvasGroup canvasGroup;
+
+    private void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        canvasGroup = GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        }
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Begin Drag");
         parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
+
+        Canvas currentCanvas = GetComponentInParent<Canvas>();
+        if (currentCanvas != null)
+        {
+            transform.SetParent(currentCanvas.rootCanvas.transform, true);
+        }
+
         transform.SetAsLastSibling();
+
+        canvasGroup.blocksRaycasts = false;
         if (image != null) image.raycastTarget = false;
-        
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("Dragging");
-        transform.position = Input.mousePosition;
-        mouseButtonReleased = false;
+        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
+            rectTransform,
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector3 worldPoint))
+        {
+            rectTransform.position = worldPoint;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("End Drag");
-        transform.SetParent(parentAfterDrag);
+        canvasGroup.blocksRaycasts = true;
         if (image != null) image.raycastTarget = true;
-        mouseButtonReleased = true;
 
-        // If we dropped on another UI element, eventData.pointerEnter will be that object (or a child).
-        if (eventData != null && eventData.pointerEnter != null)
-        {
-            var targetItem = FindItemDragFrom(eventData.pointerEnter);
-            if (targetItem != null && targetItem != this)
-            {
-                TryCombineWith(targetItem);
-            }
-        }
+        if (parentAfterDrag == null) return;
+
+        transform.SetParent(parentAfterDrag, false);
+        ResetRectTransform(rectTransform);
     }
 
-    private ItemDrag FindItemDragFrom(GameObject go)
+    public bool TryCombineWith(ItemDrag other, Transform targetSlot)
     {
-        if (go == null) return null;
-        var current = go.transform;
-        while (current != null)
-        {
-            var itemDrag = current.GetComponent<ItemDrag>();
-            if (itemDrag != null) return itemDrag;
-            current = current.parent;
-        }
-        return null;
-    }
-
-    private string GetBaseName(string fullName)
-    {
-        if (string.IsNullOrEmpty(fullName)) return fullName;
-        int idx = fullName.IndexOf("_");
-        return idx > 0 ? fullName.Substring(0, idx) : fullName;
-    }
-
-    private void TryCombineWith(ItemDrag other)
-    {
-        if (!mouseButtonReleased) return;
+        if (Items == null || Items.combinations == null) return false;
 
         string thisBase = GetBaseName(gameObject.name);
         string otherBase = GetBaseName(other.gameObject.name);
 
-        if (string.IsNullOrEmpty(thisBase) || string.IsNullOrEmpty(otherBase)) return;
+        if (string.IsNullOrEmpty(thisBase) || string.IsNullOrEmpty(otherBase)) return false;
 
         foreach (var combo in Items.combinations)
         {
@@ -83,32 +79,40 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 var prefab = Resources.Load<GameObject>(combo.resultPrefab);
                 if (prefab == null)
                 {
-                    Debug.LogWarning($"Result prefab '{combo.resultPrefab}' not found in Resources for combination {combo.itemA} + {combo.itemB}");
-                    mouseButtonReleased = false;
-                    return;
+                    Debug.LogWarning($"Result prefab '{combo.resultPrefab}' not found in Resources for {combo.itemA} + {combo.itemB}");
+                    return false;
                 }
-                // Determine the slot where the resulting item should be placed.
-                // Prefer the other's recorded parentAfterDrag (if it was dragged), otherwise use its current parent.
-                Transform targetSlot = other.parentAfterDrag != null
-                    ? other.parentAfterDrag
-                    : (other.transform.parent != null ? other.transform.parent : other.transform);
 
-                // Instantiate as a child of the target slot so it occupies the same slot.
                 var newGO = Instantiate(prefab, targetSlot);
-                newGO.name = prefab.name; // keep a clean name (optional)
+                newGO.name = prefab.name;
 
-                // Reset transform so it fits the UI slot (RectTransform aware).
                 var rect = newGO.GetComponent<RectTransform>();
-         
-                // Preserve slot ordering
-                newGO.transform.SetSiblingIndex(other.transform.GetSiblingIndex());
-
-                mouseButtonReleased = false;
+                if (rect != null)
+                {
+                    ResetRectTransform(rect);
+                }
 
                 Destroy(other.gameObject);
                 Destroy(gameObject);
-                return;
+                return true;
             }
         }
+
+        return false;
+    }
+
+    private void ResetRectTransform(RectTransform targetRect)
+    {
+        targetRect.anchoredPosition = Vector2.zero;
+        targetRect.localPosition = Vector3.zero;
+        targetRect.localRotation = Quaternion.identity;
+        targetRect.localScale = Vector3.one;
+    }
+
+    private string GetBaseName(string fullName)
+    {
+        if (string.IsNullOrEmpty(fullName)) return fullName;
+        int idx = fullName.IndexOf("_");
+        return idx > 0 ? fullName.Substring(0, idx) : fullName;
     }
 }

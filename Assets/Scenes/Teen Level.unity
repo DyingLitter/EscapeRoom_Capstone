@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.20865466, g: 0.26467207, b: 0.31446534, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientSkyColor: {r: 0.67567724, g: 0.46838728, b: 0.8415094, a: 1}
+  m_AmbientEquatorColor: {r: 0.37657592, g: 0.16695617, b: 0.6754716, a: 1}
+  m_AmbientGroundColor: {r: 0.24723731, g: 0.14015658, b: 0.4792453, a: 1}
   m_AmbientIntensity: 0.36
-  m_AmbientMode: 3
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -1959,9 +1959,9 @@ Light:
   m_GameObject: {fileID: 616111885}
   m_Enabled: 1
   serializedVersion: 11
-  m_Type: 0
-  m_Color: {r: 0.654088, g: 0.654088, b: 0.654088, a: 1}
-  m_Intensity: 29.2
+  m_Type: 1
+  m_Color: {r: 0.2320754, g: 0.4443963, b: 1, a: 1}
+  m_Intensity: 0.1
   m_Range: 19.4
   m_SpotAngle: 108.5692
   m_InnerSpotAngle: 48.99532
@@ -2004,8 +2004,8 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
+  m_ColorTemperature: 10325
+  m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1

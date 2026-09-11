@@ -65,17 +65,12 @@ public class ItemsSO : ScriptableObject
             Animator DoorAnimator = Interacted.selection.GetComponent<Animator>();
 
             DoorAnimator.SetTrigger("Open");
-           
+
             if (BKey.StickFixed == true)
             {
                 DoorAnimator.SetTrigger("LevelEnd");
             }
-            
-
         }
-
-       
-       
         return;
     }
 }

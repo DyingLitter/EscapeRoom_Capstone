@@ -1,7 +1,8 @@
-using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
+using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 
 {
@@ -12,16 +13,16 @@ public class Inventory : MonoBehaviour
     private Interact Interacted;
     private BabyLevelManager BKey;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
         Interacted = FindAnyObjectByType<Interact>();
     }
 
-    // Update is called once per frame
-    void Update()
+    // Update is called once per frame
+    void Update()
     {
-        
+
     }
 
     public void AddItem(ItemsSO SelectedItem)
@@ -43,7 +44,7 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
-        
+
         if (spawnPoint == null && InventorySlots != null && InventorySlots.Length > 0)
         {
             for (int i = 0; i < InventorySlots.Length; i++)
@@ -85,7 +86,7 @@ public class Inventory : MonoBehaviour
         if (string.IsNullOrEmpty(oldBaseName)) return false;
 
         Transform found = FindItemByBaseNameInSlots(oldBaseName, HotbarSlots)
-                         ?? FindItemByBaseNameInSlots(oldBaseName, InventorySlots);
+            ?? FindItemByBaseNameInSlots(oldBaseName, InventorySlots);
 
         if (found == null) return false;
 
@@ -124,6 +125,6 @@ public class Inventory : MonoBehaviour
     {
         if (string.IsNullOrEmpty(baseName)) return false;
         return FindItemByBaseNameInSlots(baseName, HotbarSlots) != null
-            || FindItemByBaseNameInSlots(baseName, InventorySlots) != null;
+         || FindItemByBaseNameInSlots(baseName, InventorySlots) != null;
     }
 }
