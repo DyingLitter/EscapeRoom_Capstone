@@ -8,6 +8,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public Image image;
 
     [SerializeField] private ItemsSO Items;
+    public static bool mouseButtonReleased;
     [HideInInspector] public Transform parentAfterDrag;
 
     private RectTransform rectTransform;
@@ -16,6 +17,8 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+
+        // CanvasGroup guarantees mouse raycasts pass through to the slot underneath
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null)
         {
@@ -25,8 +28,10 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Debug.Log("Begin Drag");
         parentAfterDrag = transform.parent;
 
+        // Reparent to the root Canvas rather than the scene root (transform.root)
         Canvas currentCanvas = GetComponentInParent<Canvas>();
         if (currentCanvas != null)
         {
@@ -35,12 +40,16 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
         transform.SetAsLastSibling();
 
+        // Disable raycasting so the world slot or target item beneath detects the pointer
         canvasGroup.blocksRaycasts = false;
         if (image != null) image.raycastTarget = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        mouseButtonReleased = false;
+
+        // Converts screen mouse input into proper coordinates for Overlay, Camera, or World Space
         if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
             rectTransform,
             eventData.position,
@@ -53,66 +62,32 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        Debug.Log("End Drag");
+
         canvasGroup.blocksRaycasts = true;
         if (image != null) image.raycastTarget = true;
+        mouseButtonReleased = true;
 
-        if (parentAfterDrag == null) return;
+        // If the item was consumed and destroyed (e.g., opened the gate), exit immediately
+        if (this == null || parentAfterDrag == null) return;
 
+        // Return or snap to the target slot
         transform.SetParent(parentAfterDrag, false);
-        ResetRectTransform(rectTransform);
-    }
 
-    public bool TryCombineWith(ItemDrag other, Transform targetSlot)
-    {
-        if (Items == null || Items.combinations == null) return false;
+        // Reset local transformations so the item fits the slot without scaling bugs
+        rectTransform.anchoredPosition = Vector2.zero;
+        rectTransform.localPosition = Vector3.zero;
+        rectTransform.localRotation = Quaternion.identity;
+        rectTransform.localScale = Vector3.one;
 
-        string thisBase = GetBaseName(gameObject.name);
-        string otherBase = GetBaseName(other.gameObject.name);
-
-        if (string.IsNullOrEmpty(thisBase) || string.IsNullOrEmpty(otherBase)) return false;
-
-        foreach (var combo in Items.combinations)
+        // Check for item combination
+        if (eventData != null && eventData.pointerEnter != null && Items != null)
         {
-            if ((combo.itemA == thisBase && combo.itemB == otherBase) ||
-                (combo.itemA == otherBase && combo.itemB == thisBase))
+            var targetItem = Items.FindItemDragFrom(eventData.pointerEnter);
+            if (targetItem != null && targetItem != this)
             {
-                var prefab = Resources.Load<GameObject>(combo.resultPrefab);
-                if (prefab == null)
-                {
-                    Debug.LogWarning($"Result prefab '{combo.resultPrefab}' not found in Resources for {combo.itemA} + {combo.itemB}");
-                    return false;
-                }
-
-                var newGO = Instantiate(prefab, targetSlot);
-                newGO.name = prefab.name;
-
-                var rect = newGO.GetComponent<RectTransform>();
-                if (rect != null)
-                {
-                    ResetRectTransform(rect);
-                }
-
-                Destroy(other.gameObject);
-                Destroy(gameObject);
-                return true;
+                Items.TryCombineWith(this, targetItem);
             }
         }
-
-        return false;
-    }
-
-    private void ResetRectTransform(RectTransform targetRect)
-    {
-        targetRect.anchoredPosition = Vector2.zero;
-        targetRect.localPosition = Vector3.zero;
-        targetRect.localRotation = Quaternion.identity;
-        targetRect.localScale = Vector3.one;
-    }
-
-    private string GetBaseName(string fullName)
-    {
-        if (string.IsNullOrEmpty(fullName)) return fullName;
-        int idx = fullName.IndexOf("_");
-        return idx > 0 ? fullName.Substring(0, idx) : fullName;
     }
 }

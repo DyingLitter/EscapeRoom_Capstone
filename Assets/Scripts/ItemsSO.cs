@@ -112,13 +112,6 @@ public class ItemsSO : ScriptableObject
             }
         }
 
-        
-
-        if (Interacted.selection.name == "Gate" && BKey.StickGet == true)
-        {
-            OpenGate();
-        }
-
         if (Interacted.selection.name == "Door")
         {
             
