@@ -5,18 +5,12 @@ using UnityEngine.EventSystems;
 public class WorldInteractSlot : MonoBehaviour, IDropHandler
 {
     [SerializeField] private string requiredItemName = "Stick";
-
-    
-    [SerializeField] private GameObject returnItem;
-
-    [SerializeField] private Transform groundSpawnPoint;
-
-   
-    [SerializeField] private bool destroySlotAfterUse = false;
+    [SerializeField] private bool consumeItemOnSuccess = true;
 
     public UnityEvent onCorrectItemPlaced;
     public UnityEvent onWrongItemPlaced;
 
+    
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag == null) return;
@@ -28,24 +22,18 @@ public class WorldInteractSlot : MonoBehaviour, IDropHandler
 
         if (!string.IsNullOrEmpty(requiredItemName) && droppedItemName == requiredItemName)
         {
-            incomingItem.parentAfterDrag = null;
-            Destroy(incomingItem.gameObject);
-
-            if (returnItem != null)
+            if (consumeItemOnSuccess)
             {
-                Vector3 spawnPos = groundSpawnPoint != null ? groundSpawnPoint.position : transform.position;
-                Quaternion spawnRot = groundSpawnPoint != null ? groundSpawnPoint.rotation : Quaternion.identity;
-
-                GameObject spawnedItem = Instantiate(returnItem, spawnPos, spawnRot);
-                spawnedItem.name = returnItem.name;
+                incomingItem.parentAfterDrag = null;
+                Destroy(incomingItem.gameObject);
+                Destroy(gameObject);
+            }
+            else
+            {
+                incomingItem.parentAfterDrag = transform;
             }
 
             onCorrectItemPlaced?.Invoke();
-
-            if (destroySlotAfterUse)
-            {
-                Destroy(gameObject);
-            }
         }
         else
         {
@@ -59,4 +47,5 @@ public class WorldInteractSlot : MonoBehaviour, IDropHandler
         int idx = fullName.IndexOf("_");
         return idx > 0 ? fullName.Substring(0, idx) : fullName;
     }
+    
 }

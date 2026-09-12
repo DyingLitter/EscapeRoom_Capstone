@@ -2793,9 +2793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredItemName: Stick
-  returnItem: {fileID: 1431468685705871985, guid: c046e4c8b49eba94db01002cf4eed3a0, type: 3}
-  groundSpawnPoint: {fileID: 1700469155}
-  destroySlotAfterUse: 1
+  consumeItemOnSuccess: 1
   onCorrectItemPlaced:
     m_PersistentCalls:
       m_Calls:
@@ -2803,6 +2801,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
         m_MethodName: SetTrigger
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Open
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1700469156}
+        m_TargetAssemblyTypeName: ReturnItem, Assembly-CSharp
+        m_MethodName: DispenseItem
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4329,6 +4339,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1492759060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1492759061}
+  - component: {fileID: 1492759062}
+  - component: {fileID: 1492759063}
+  m_Layer: 0
+  m_Name: DetectionZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1492759061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492759060}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1814, z: 0}
+  m_LocalScale: {x: 2499.999, y: 2499.9998, z: 3.1260936}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1628152154}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1492759062
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492759060}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.6391277, y: 1, z: 1}
+  m_Center: {x: 0.023951054, y: 0, z: -5.718372e-10}
+--- !u!114 &1492759063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492759060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c9a4cd33639cc4da99fc0936cea34d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionZone: {fileID: 1492759060}
+  questSlot: {fileID: 754017940}
 --- !u!1 &1550818381
 GameObject:
   m_ObjectHideFlags: 0
@@ -4702,6 +4780,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 754017941}
+  - {fileID: 1492759061}
   m_Father: {fileID: 241114498}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5014,6 +5093,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1700469155}
+  - component: {fileID: 1700469156}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -5036,6 +5116,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 241114498}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1700469156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700469154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e4428634cf52041b16d5e74153d66c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToReturn: {fileID: 1431468685705871985, guid: c046e4c8b49eba94db01002cf4eed3a0, type: 3}
 --- !u!1001 &1712507822
 PrefabInstance:
   m_ObjectHideFlags: 0
