@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "NewNPCDialogue", menuName = "Dialogue System/Dialogue")]
 public class NPCDialogue : ScriptableObject
@@ -26,7 +27,8 @@ public class NPCDialogue : ScriptableObject
         //public bool useSecondBox;
         public bool autoProgress;
         public bool[] endDialogueLines;
-    
+        public string[] endDialogueActions;
+
         public bool Italics;
 
         public DialogueChoice[] choices;
@@ -60,48 +62,26 @@ public class NPCDialogue : ScriptableObject
        
     }
 
-    private void TriggerWorldChange(string action)
+    public void OnDialogueEnd(int currentDialogueIndex)
+    {
+        // Check if this is an end dialogue line
+        if (currentDialogueIndex >= 0 && currentDialogueIndex < endDialogueLines.Length && endDialogueLines[currentDialogueIndex])
+        {
+            // Check if there's a corresponding action
+            if (currentDialogueIndex < endDialogueActions.Length && !string.IsNullOrEmpty(endDialogueActions[currentDialogueIndex]))
+            {
+                TriggerWorldChange(endDialogueActions[currentDialogueIndex]);
+            }
+        }
+    }
+
+    public void TriggerWorldChange(string action)
     {
         NPC npc = GameObject.FindAnyObjectByType<NPC>();
-        if (action == "fail")
+
+        if (action == ("Next"))
         {
-            Debug.Log("Player has failed the dialogue choice.");
-            npc.EndDialogue();
-            GameObject player = GameObject.FindWithTag("Player");
-            Animator animator = player.GetComponent<Animator>();
-
-            if (animator != null)
-            {
-                animator.applyRootMotion = false;
-                animator.SetTrigger("Launch");
-            }
-
+            SceneManager.LoadScene("Teen Level");
         }
-
-        if (action == "pass")
-        {
-            Animator animator = npc.GetComponent<Animator>();
-            if (animator != null)
-            {
-                animator.SetTrigger("Launch2");
-                npc.EndDialogue();
-            }
-
-            GameObject gate = GameObject.Find("BridgePontoon3");
-            gate.GetComponent<MeshRenderer>().enabled = true;
-  
-        }
-
-            if (action == "Gate1Open") //Change this to the actual action you want to trigger
-            {
-                GameObject gate = GameObject.Find("BridgePontoon1");
-                gate.GetComponent<MeshRenderer>().enabled = true;
-        }
-
-            if (action == "Gate2Open") //Change this to the actual action you want to trigger
-            {
-                GameObject gate = GameObject.Find("BridgePontoon2");
-                gate.GetComponent<MeshRenderer>().enabled = true;
-        }        
     }
 }

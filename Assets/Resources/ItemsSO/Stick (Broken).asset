@@ -16,7 +16,7 @@ MonoBehaviour:
   ItemDescription: 
   InventoryPrefab: {fileID: 417995064422323985, guid: bff47279886ae38408ae2138901eb534, type: 3}
   ItemPrefab: {fileID: 0}
-  ItemAnimator: {fileID: 0}
+  CanBePickedUp: 1
   combinations:
   - itemA: Stick (Broken)
     itemB: Tape

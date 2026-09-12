@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour
             if (Interacted.selection != null)
             {
                 Interacted.selection.GetComponent<Interactables>().Interact();
+                Interacted.interactionText.SetActive(false);
                 Debug.Log("Item has Itemed");
             }
             else

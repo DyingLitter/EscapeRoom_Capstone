@@ -8,8 +8,13 @@ public class Interact : MonoBehaviour
     [SerializeField] Material highlightMaterial;
     private Material previousMaterial;
     [SerializeField] public GameObject interactionText;
-    private Transform _selection;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [HideInInspector] public Transform _selection;
+    private Camera mainCamera;
+    
+    private void Start()
+    {
+        mainCamera = Camera.main;
+    }
 
     private void OnTriggerEnter(Collider col)
     {
@@ -38,10 +43,12 @@ public class Interact : MonoBehaviour
                 if (_selection != selection.transform)
                 {
                     Vector3 selectionpos = selection.transform.position;
+                    Vector3 screenPos = mainCamera.WorldToScreenPoint(selectionpos);
+                    screenPos.y += 70f; 
 
-                    interactionText.transform.position = new Vector3(selectionpos.x, selectionpos.y + 0.6f, selectionpos.z); 
+                    interactionText.GetComponent<RectTransform>().position = screenPos;
                     interactionText.SetActive(true);
-                    
+
                     previousMaterial = selectionRenderer.material;
                     selectionRenderer.material = highlightMaterial;
                 }

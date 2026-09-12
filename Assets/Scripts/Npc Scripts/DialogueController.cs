@@ -47,6 +47,8 @@ public class DialogueController : MonoBehaviour
         dialogueText.text = text;
     }
 
+
+
     public void ClearChoices()
     {
         foreach (Transform child in choiceContainer)

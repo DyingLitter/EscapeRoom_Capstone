@@ -17,6 +17,7 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         Interacted = FindAnyObjectByType<Interact>();
+
     }
 
     // Update is called once per frame

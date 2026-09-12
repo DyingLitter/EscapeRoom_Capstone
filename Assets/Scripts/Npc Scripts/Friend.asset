@@ -24,6 +24,10 @@ MonoBehaviour:
   OneTimeDialogue: 0
   autoProgress: 1
   endDialogueLines: 000001
+  endDialogueActions:
+  - 
+  - 
+  - Next
   Italics: 0
   choices:
   - dialogueIndex: 0

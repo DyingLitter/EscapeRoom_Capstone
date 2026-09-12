@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 7280127811732984179}
+  Items: {fileID: 11400000, guid: 642d7c94b76541140983c4641474868d, type: 2}
   parentAfterDrag: {fileID: 0}
 --- !u!61 &6418073361830642479
 BoxCollider2D:

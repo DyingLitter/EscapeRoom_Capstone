@@ -16,5 +16,5 @@ MonoBehaviour:
   ItemDescription: 
   InventoryPrefab: {fileID: 0}
   ItemPrefab: {fileID: 0}
-  Player: {fileID: 0}
+  CanBePickedUp: 0
   combinations: []
