@@ -6,15 +6,12 @@ public class WorldInteractSlot : MonoBehaviour, IDropHandler
 {
     [SerializeField] private string requiredItemName = "Stick";
 
-    [Header("Ground Spawn Settings")]
-    [Tooltip("The 3D world prefab to spawn on the ground (e.g., Broken Stick GameObject with collider/pickup)")]
+    
     [SerializeField] private GameObject returnItem;
 
-    [Tooltip("Where on the ground the 3D item will appear")]
     [SerializeField] private Transform groundSpawnPoint;
 
-    [Header("Optional Slot Cleanup")]
-    [Tooltip("If true, removes this slot once the item has been spawned")]
+   
     [SerializeField] private bool destroySlotAfterUse = false;
 
     public UnityEvent onCorrectItemPlaced;
@@ -31,11 +28,9 @@ public class WorldInteractSlot : MonoBehaviour, IDropHandler
 
         if (!string.IsNullOrEmpty(requiredItemName) && droppedItemName == requiredItemName)
         {
-            // 1. Destroy the held UI item from the player
             incomingItem.parentAfterDrag = null;
             Destroy(incomingItem.gameObject);
 
-            // 2. Spawn the 3D physical prefab onto the ground
             if (returnItem != null)
             {
                 Vector3 spawnPos = groundSpawnPoint != null ? groundSpawnPoint.position : transform.position;
@@ -45,10 +40,8 @@ public class WorldInteractSlot : MonoBehaviour, IDropHandler
                 spawnedItem.name = returnItem.name;
             }
 
-            // 3. Trigger events (gate animation, sound, etc.)
             onCorrectItemPlaced?.Invoke();
 
-            // 4. Optionally clean up this world slot
             if (destroySlotAfterUse)
             {
                 Destroy(gameObject);
