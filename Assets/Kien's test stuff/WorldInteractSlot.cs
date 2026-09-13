@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class WorldInteractSlot : MonoBehaviour, IDropHandler
 {
-    [SerializeField] private string requiredItemName = "Stick";
+    [SerializeField] private ItemsSO ISO;
     [SerializeField] private bool consumeItemOnSuccess = true;
 
     public UnityEvent onCorrectItemPlaced;
@@ -20,7 +20,7 @@ public class WorldInteractSlot : MonoBehaviour, IDropHandler
 
         string droppedItemName = GetBaseName(incomingItem.gameObject.name);
 
-        if (!string.IsNullOrEmpty(requiredItemName) && droppedItemName == requiredItemName)
+        if (!string.IsNullOrEmpty(ISO.name) && droppedItemName == ISO.name)
         {
             if (consumeItemOnSuccess)
             {

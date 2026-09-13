@@ -16,6 +16,7 @@ public class Interactables : MonoBehaviour
     private GameObject Player;
     public ItemsSO ISO;
     [SerializeField] private string SceneName;
+    [SerializeField] private GameObject WorldSlot;
     private Animator CanAni;
     public void Start()
     {
@@ -30,13 +31,29 @@ public class Interactables : MonoBehaviour
     public void Interact()
     {
         var pickup = Interacted.selection.GetComponent<Interactables>();
+
+        if (WorldSlot == null)
+        {
+            WorldSlot = null;
+        }
+
         ISO.InteractChecks();
         if (pickup.ISO.name == "Desk")
         {
             CanAni.SetTrigger("OpenInv");
         }
 
-          if (ISO.CanBePickedUp == false)
+        if (Interacted.selection.name == "Gate")
+        {
+            WorldSlot.SetActive(true);
+        }
+
+        if (Interacted.selection.name == "Door")
+        {
+            WorldSlot.SetActive(true);
+        }
+
+        if (ISO.CanBePickedUp == false)
         {
             return;
         }
@@ -71,6 +88,16 @@ public class Interactables : MonoBehaviour
 
         
 
+    }
+
+    public void OpenGate()
+    {
+        Animator gateAnimator = GetComponent<Animator>();
+        BoxCollider gatecol = GetComponent<BoxCollider>();
+
+        BKey.StickGet = false;
+        gateAnimator.SetTrigger("Open");
+        gatecol.enabled = false;
     }
 
     public void PlayerHide()

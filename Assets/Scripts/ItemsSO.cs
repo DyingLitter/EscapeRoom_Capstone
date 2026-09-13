@@ -112,33 +112,8 @@ public class ItemsSO : ScriptableObject
             }
         }
 
-        if (Interacted.selection.name == "Door")
-        {
-            
-            if (BKey.StickFixed == true)
-            {
-                Animator DoorAnimator = Interacted.selection.GetComponent<Animator>();
-                DoorAnimator.SetTrigger("LevelEnd");
-            }
-            
-        }
-        
-       
+      
 
         return;
-    }
-    public void OpenGate()
-    {
-        GameObject BrokenStick = Resources.Load<GameObject>("Stick (Broken)");
-        Animator gateAnimator = Interacted.selection.GetComponent<Animator>();
-        BoxCollider gatecol = Interacted.selection.GetComponent<BoxCollider>();
-
-        BKey.StickGet = false;
-        gateAnimator.SetTrigger("Open");
-        if (BrokenStick != null)
-        {
-            gatecol.enabled = false;
-            Inventory?.ReplaceItem("Stick", BrokenStick);
-        }
     }
 }
