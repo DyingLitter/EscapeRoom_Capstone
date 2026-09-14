@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Friend
   m_EditorClassIdentifier: 
   npcName: Friend
-  NPCPortrait: {fileID: -1262743199, guid: d78414c5e3d3cb54586f76e808ff94e2, type: 3}
+  NPCPortrait: {fileID: 21300000, guid: 37b3b3c152c888c4b910778ce320b5a3, type: 3}
   playerPortrait: {fileID: -1728574421, guid: 7e1228c108ed1bd47905fc1952af9bf1, type: 3}
   dialogueLines:
   - Yo we got da party at 10pm

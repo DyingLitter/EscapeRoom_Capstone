@@ -117,7 +117,7 @@ public class NPC : MonoBehaviour
         var current = dialogueData;
         string currentLine = "";
 
-        if (dialogueUI != null) dialogueUI.SetPortraitBrightness(true);
+        if (dialogueUI != null) dialogueUI.SetPortraitBrightness(false);
 
         if (current.Italics)
         {
@@ -159,7 +159,7 @@ public class NPC : MonoBehaviour
 
     void DisplayChoices(NPCDialogue.DialogueChoice choice) //Allows for displaying choices and handling the logic when a choice is selected
     {
-        if (dialogueUI != null) dialogueUI.SetPortraitBrightness(false);
+        if (dialogueUI != null) dialogueUI.SetPortraitBrightness(true);
 
         for (int i = 0; i < choice.choices.Length; i++)
         {
