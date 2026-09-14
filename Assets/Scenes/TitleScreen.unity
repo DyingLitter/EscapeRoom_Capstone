@@ -2229,7 +2229,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2122859035}
         m_TargetAssemblyTypeName: Scene_Manager, Assembly-CSharp
-        m_MethodName: MoveToGame
+        m_MethodName: ChangeScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3740,6 +3740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d435b7ebc04d5794ea30228ad49e12ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneName: Baby Level
 --- !u!4 &2122859036
 Transform:
   m_ObjectHideFlags: 0

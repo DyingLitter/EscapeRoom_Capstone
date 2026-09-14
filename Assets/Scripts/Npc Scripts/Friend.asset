@@ -27,7 +27,7 @@ MonoBehaviour:
   endDialogueActions:
   - 
   - 
-  - Next
+  - Fade
   Italics: 0
   choices:
   - dialogueIndex: 0

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using NUnit.Framework;
 using System;
 using System.Collections;
@@ -24,7 +25,7 @@ public class NPCDialogue : ScriptableObject
         public float textSpeed = 0.05f;
 
         public bool OneTimeDialogue;
-        //public bool useSecondBox;
+        
         public bool autoProgress;
         public bool[] endDialogueLines;
         public string[] endDialogueActions;
@@ -32,6 +33,7 @@ public class NPCDialogue : ScriptableObject
         public bool Italics;
 
         public DialogueChoice[] choices;
+
     
 
     [System.Serializable]
@@ -78,10 +80,12 @@ public class NPCDialogue : ScriptableObject
     public void TriggerWorldChange(string action)
     {
         NPC npc = GameObject.FindAnyObjectByType<NPC>();
+        GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+        Animator camani = camera.GetComponent<Animator>();
 
-        if (action == ("Next"))
+        if (action == ("Fade"))
         {
-            SceneManager.LoadScene("Teen Level");
+            camani.SetTrigger("Fade");
         }
     }
 }
