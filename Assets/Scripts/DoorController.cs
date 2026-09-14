@@ -66,6 +66,7 @@ public class DoorController : MonoBehaviour
         }
 
         ReverseControls();
+        doorCollider.enabled = true;
         Player.enabled = true;
 
     }
