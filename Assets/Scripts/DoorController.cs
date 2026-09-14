@@ -6,6 +6,10 @@ public class DoorController : MonoBehaviour
 {
     [SerializeField] private Camera ToggledCam;
     [SerializeField] private Camera DisCam;
+
+    [SerializeField] private GameObject Trig1;
+    [SerializeField] private GameObject Trig2;
+
     private Camera CurrentCam;
     private float colliderDisableDuration = 1.5f;
 
@@ -19,6 +23,10 @@ public class DoorController : MonoBehaviour
         CurrentCam = DisCam;
     }
 
+    void Update()
+    {
+
+    }
 
     public void OnTriggerEnter(Collider other)
     {
@@ -37,6 +45,18 @@ public class DoorController : MonoBehaviour
         else
         {
             Player.SetControlsReversed(false);
+        }
+    }
+
+    void TriggersDisable()
+    {
+        if (Trig1.activeSelf == true)
+        {
+            Trig2.SetActive(false);
+        }
+        else
+        {
+            Trig1.SetActive(true);
         }
     }
 
@@ -61,9 +81,7 @@ public class DoorController : MonoBehaviour
         }
 
         ReverseControls();
-
-        doorCollider.enabled = true;
-     
+        TriggersDisable();
         Player.enabled = true;
     }
 }
