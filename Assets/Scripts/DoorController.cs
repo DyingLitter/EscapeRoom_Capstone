@@ -65,5 +65,8 @@ public class DoorController : MonoBehaviour
             CurrentCam = ToggledCam;
         }
 
+        ReverseControls();
+        Player.enabled = true;
+
     }
 }
