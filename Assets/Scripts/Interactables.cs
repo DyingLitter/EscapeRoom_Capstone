@@ -14,7 +14,9 @@ public class Interactables : MonoBehaviour
     private GameObject Canvass;
     private Inventory Inventory;
     private GameObject Player;
+    private NPC npc;
     public ItemsSO ISO;
+    [SerializeField] private NPC dialogue;
     [SerializeField] private string SceneName;
     [SerializeField] private GameObject WorldSlot;
     private Animator CanAni;
@@ -46,11 +48,33 @@ public class Interactables : MonoBehaviour
         if (Interacted.selection.name == "Gate")
         {
             WorldSlot.SetActive(true);
+           
+            if(BKey.StickGet == false)
+            {
+                npc = Interacted.selection.GetComponent<NPC>();
+                if (npc != null)
+                {
+                    npc.InteractedWith(Interacted.selection.gameObject);
+                }
+            }
+        }
+        else if (Interacted.selection == null)
+        {
+            WorldSlot.SetActive(false);
         }
 
         if (Interacted.selection.name == "Door")
         {
             WorldSlot.SetActive(true);
+
+            if (BKey.StickFixed == false)
+            {
+                npc = Interacted.selection.GetComponent<NPC>();
+                if (npc != null)
+                {
+                    npc.InteractedWith(Interacted.selection.gameObject);
+                }
+            }
         }
 
         if (ISO.CanBePickedUp == false)

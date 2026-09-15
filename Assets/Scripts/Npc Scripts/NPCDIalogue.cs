@@ -25,12 +25,11 @@ public class NPCDialogue : ScriptableObject
         public float textSpeed = 0.05f;
 
         public bool OneTimeDialogue;
+        public bool IsPassiveDialogue;
         
         public bool autoProgress;
         public bool[] endDialogueLines;
         public string[] endDialogueActions;
-
-        public bool Italics;
 
         public DialogueChoice[] choices;
 
@@ -69,6 +68,7 @@ public class NPCDialogue : ScriptableObject
         // Check if this is an end dialogue line
         if (currentDialogueIndex >= 0 && currentDialogueIndex < endDialogueLines.Length && endDialogueLines[currentDialogueIndex])
         {
+
             // Check if there's a corresponding action
             if (currentDialogueIndex < endDialogueActions.Length && !string.IsNullOrEmpty(endDialogueActions[currentDialogueIndex]))
             {

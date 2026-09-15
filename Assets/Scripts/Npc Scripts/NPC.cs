@@ -55,8 +55,11 @@ public class NPC : MonoBehaviour
     {
         isDialogueActive = true;
         dialogueIndex = 0;
-        player.speed = 0;
-       
+        if (dialogueData.IsPassiveDialogue == false)
+        {
+            player.speed = 0;
+        }
+        
         if (dialogueUI != null) dialogueUI.SetPortraitBrightness(true);
 
         DisplayCurrentLine();
@@ -70,11 +73,22 @@ public class NPC : MonoBehaviour
 
             var current = dialogueData;
 
+            if (dialogueData.IsPassiveDialogue == true)
+            {
+                dialogueUI.SetDialogueText2(current.dialogueLines[dialogueIndex]);
+            }
+            else
             {
                 dialogueUI.SetDialogueText(current.dialogueLines[dialogueIndex]);
             }
 
             isTyping = false;
+        }
+
+        if (isTyping == false)
+        {
+            EndDialogue();
+            return;
         }
 
         dialogueUI.ClearChoices();
@@ -119,15 +133,13 @@ public class NPC : MonoBehaviour
 
         if (dialogueUI != null) dialogueUI.SetPortraitBrightness(false);
 
-        if (current.Italics)
+        if (dialogueData.IsPassiveDialogue == true)
         {
-            dialogueUI.dialogueText.fontStyle = FontStyles.Italic;
+            dialogueUI.SetNPCInfo2(current.NPCPortrait);
+            dialogueUI.ShowDialogueUI2(true);
+            dialogueUI.SetDialogueText2("");
         }
         else
-        {
-            dialogueUI.dialogueText.fontStyle = FontStyles.Normal;
-        }
-
         {
             dialogueUI.SetNPCInfo(current.npcName, current.NPCPortrait);
             dialogueUI.SetPlayerInfo(current.playerPortrait);
@@ -139,7 +151,12 @@ public class NPC : MonoBehaviour
         foreach (char letter in current.dialogueLines[dialogueIndex].ToCharArray())
         {
             currentLine += letter;
-
+            
+            if (dialogueData.IsPassiveDialogue == true)
+            {
+                dialogueUI.SetDialogueText2(currentLine);
+            }
+            else
             {
                 dialogueUI.SetDialogueText(currentLine);
             }
@@ -199,6 +216,8 @@ public class NPC : MonoBehaviour
         dialogueUI.SetDialogueText("");
         dialogueUI.ShowDialogueUI(false);
 
+        dialogueUI.SetDialogueText2("");
+        dialogueUI.ShowDialogueUI2(false);
 
         if (dialogueUI != null) dialogueUI.SetPortraitBrightness(true);
 
@@ -212,6 +231,7 @@ public class NPC : MonoBehaviour
     public void EmergencyClear()
     {
         dialogueUI.SetDialogueText("");
+        dialogueUI.SetDialogueText2("");
 
     }
 }

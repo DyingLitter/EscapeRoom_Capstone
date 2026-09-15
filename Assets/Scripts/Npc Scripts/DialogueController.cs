@@ -12,6 +12,10 @@ public class DialogueController : MonoBehaviour
     public Image portraitImage;
     public Image PlayerImage;
 
+    public GameObject dialoguePanel2;
+    public TMP_Text dialogueText2;
+    public Image portraitImage2;
+
     [Range(0f, 1f)]
     public float dimFactor = 0.5f;
 
@@ -47,7 +51,20 @@ public class DialogueController : MonoBehaviour
         dialogueText.text = text;
     }
 
+    public void ShowDialogueUI2(bool show)
+    {
+        dialoguePanel2.SetActive(show);
+    }
 
+    public void SetNPCInfo2(Sprite npcPortrait)
+    {
+        portraitImage2.sprite = npcPortrait;
+    }
+
+    public void SetDialogueText2(string text)
+    {
+        dialogueText2.text = text;
+    }
 
     public void ClearChoices()
     {
