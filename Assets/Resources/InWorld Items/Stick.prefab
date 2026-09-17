@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3935550629206689915}
+  - component: {fileID: 8819252196083790334}
   - component: {fileID: 8355447829454414676}
   - component: {fileID: 8946290614880397765}
-  - component: {fileID: 8819252196083790334}
   m_Layer: 0
   m_Name: Stick
   m_TagString: Stick
@@ -34,6 +34,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15.434}
+--- !u!114 &8819252196083790334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8553619482867813406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161e2a8648e13234b9037f5750ba0af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interacted: {fileID: 0}
+  Pickable: 0
+  ISO: {fileID: 11400000, guid: 4b605ae62a25c8447990b1cdeb9b2532, type: 2}
+  dialogue: {fileID: 0}
+  SceneName: 
+  WorldSlot: {fileID: 0}
 --- !u!212 &8355447829454414676
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -110,16 +128,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 20.480026, y: 20.480026, z: 6.960047}
   m_Center: {x: 0, y: 0, z: 0.8080622}
---- !u!114 &8819252196083790334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8553619482867813406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 161e2a8648e13234b9037f5750ba0af0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ISO: {fileID: 11400000, guid: 4b605ae62a25c8447990b1cdeb9b2532, type: 2}

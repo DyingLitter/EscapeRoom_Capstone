@@ -12,27 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f32f9d42d5c6094194fa9e37b5eb95a, type: 3}
   m_Name: Friend
   m_EditorClassIdentifier: 
-  npcName: Friend
-  NPCPortrait: {fileID: 21300000, guid: 37b3b3c152c888c4b910778ce320b5a3, type: 3}
-  playerPortrait: {fileID: -1262743199, guid: 2084b9f0b86d0054c860c9a39062d250, type: 3}
+  npcInfo:
+    npcName: Friend
+    portrait: {fileID: -1262743199, guid: 2084b9f0b86d0054c860c9a39062d250, type: 3}
+  playerPortrait: {fileID: 21300000, guid: 37b3b3c152c888c4b910778ce320b5a3, type: 3}
   dialogueLines:
-  - Yo we got da party at 10pm
-  - 'gotta figure sumting out den. '
-  - I'll send you the details l8tr
+  - speaker: 0
+    text: Hey bro, do you have some free time tonight?
+    endAction: 
+  - speaker: 1
+    text: What time?
+    endAction: 
+  - speaker: 0
+    text: Aaaround 10PM-ish?
+    endAction: 
+  - speaker: 1
+    text: Bro, you know my parents don't let me leave after 9.
+    endAction: 
+  - speaker: 0
+    text: So you're not coming?
+    endAction: 
+  - speaker: 1
+    text: When did I say that?
+    endAction: Fade
+  choices: []
   autoProgressDelay: 2
   textSpeed: 0.05
   OneTimeDialogue: 0
   IsPassiveDialogue: 0
   autoProgress: 1
-  endDialogueLines: 000001
-  endDialogueActions:
-  - 
-  - 
-  - Fade
-  Italics: 0
-  choices:
-  - dialogueIndex: 0
-    choices:
-    - but me ma m8ke me slep at tiem
-    nextDialogueIndexes: 01000000
-    actions: []

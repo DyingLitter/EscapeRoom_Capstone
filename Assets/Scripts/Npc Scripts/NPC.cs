@@ -11,56 +11,50 @@ public class NPC : MonoBehaviour
     public bool isTyping, isDialogueActive;
     private PlayerController player;
     [SerializeField] Canvas canvas;
-
-
     private void Start()
     {
         dialogueUI = DialogueController.instance;
         player = FindAnyObjectByType<PlayerController>();
     }
 
-    public bool CanInteract()
-    {
-        return !isDialogueActive;
-    }
+    public bool CanInteract() => !isDialogueActive;
 
     public void InteractedWith(GameObject NPC)
     {
-
         if (dialogueData == null)
         {
             return;
         }
-        else if (isDialogueActive)
+
+        if (!isDialogueActive)
         {
-            
-            if (isTyping)
-            {
-                StopAllCoroutines();
-                dialogueUI.SetDialogueText(dialogueData.dialogueLines[dialogueIndex]);
-                isTyping = false;
-            }
-            else
-            {
-                NextLine();
-            }
+            StartDialogue();
+            return;
+        }
+
+        if (isTyping)
+        {
+            StopAllCoroutines();
+            DisplayLineText(dialogueData.dialogueLines[dialogueIndex].text);
+            isTyping = false;
+
+            isTyping = false;
         }
         else
         {
-            StartDialogue();
+            NextLine();
         }
+
     }
 
-    public void StartDialogue() //Initializes dialogue, sets up UI, and disables player movement and camera control
+    public void StartDialogue() 
     {
         isDialogueActive = true;
         dialogueIndex = 0;
-        if (dialogueData.IsPassiveDialogue == false)
+        if (dialogueData.IsPassiveDialogue == false && player != null)
         {
             player.speed = 0;
         }
-        
-        if (dialogueUI != null) dialogueUI.SetPortraitBrightness(true);
 
         DisplayCurrentLine();
     }
@@ -70,42 +64,22 @@ public class NPC : MonoBehaviour
         if (isTyping)
         {
             StopAllCoroutines();
-
-            var current = dialogueData;
-
-            if (dialogueData.IsPassiveDialogue == true)
-            {
-                dialogueUI.SetDialogueText2(current.dialogueLines[dialogueIndex]);
-            }
-            else
-            {
-                dialogueUI.SetDialogueText(current.dialogueLines[dialogueIndex]);
-            }
-
+            DisplayLineText(dialogueData.dialogueLines[dialogueIndex].text);
             isTyping = false;
-        }
-
-        if (isTyping == false)
-        {
-            EndDialogue();
             return;
         }
 
         dialogueUI.ClearChoices();
 
-        if (dialogueUI != null) dialogueUI.SetPortraitBrightness(false);
-
-        if (dialogueData.endDialogueLines.Length > dialogueIndex && dialogueData.endDialogueLines[dialogueIndex])
+        var currentLine = dialogueData.dialogueLines[dialogueIndex];
+        if (currentLine.IsEndLine)
         {
-            if (dialogueIndex < dialogueData.endDialogueActions.Length && !string.IsNullOrEmpty(dialogueData.endDialogueActions[dialogueIndex]))
-            {
-                dialogueData.TriggerWorldChange(dialogueData.endDialogueActions[dialogueIndex]);
-            }
+            dialogueData.TriggerWorldChange(currentLine.endAction);
             EndDialogue();
             return;
         }
 
-        foreach(NPCDialogue.DialogueChoice dialogueChoice in dialogueData.choices)
+        foreach (NPCDialogue.DialogueChoice dialogueChoice in dialogueData.choices)
         {
             if(dialogueChoice.dialogueIndex == dialogueIndex)
             {
@@ -128,55 +102,66 @@ public class NPC : MonoBehaviour
     {
         isTyping = true;
 
-        var current = dialogueData;
-        string currentLine = "";
+        var currentDialogueLine = dialogueData.dialogueLines[dialogueIndex];
+        var currentLine = "";
 
-        if (dialogueUI != null) dialogueUI.SetPortraitBrightness(false);
+        if (dialogueUI != null) dialogueUI.SetPortraitBrightness(currentDialogueLine.speaker);
 
         if (dialogueData.IsPassiveDialogue == true)
         {
-            dialogueUI.SetNPCInfo2(current.NPCPortrait);
+            SetSpeakerInfo(currentDialogueLine.speaker, null);
             dialogueUI.ShowDialogueUI2(true);
             dialogueUI.SetDialogueText2("");
         }
         else
         {
-            dialogueUI.SetNPCInfo(current.npcName, current.NPCPortrait);
-            dialogueUI.SetPlayerInfo(current.playerPortrait);
+            SetSpeakerInfo(currentDialogueLine.speaker, null);
             dialogueUI.ShowDialogueUI(true);
             dialogueUI.SetDialogueText("");
         }
 
-       
-        foreach (char letter in current.dialogueLines[dialogueIndex].ToCharArray())
+
+        foreach (char letter in currentDialogueLine.text.ToCharArray())
         {
             currentLine += letter;
-            
-            if (dialogueData.IsPassiveDialogue == true)
-            {
-                dialogueUI.SetDialogueText2(currentLine);
-            }
-            else
-            {
-                dialogueUI.SetDialogueText(currentLine);
-            }
-
+            DisplayLineText(currentLine);
             yield return new WaitForSeconds(dialogueData.textSpeed);
         }
 
         isTyping = false;
 
-        
-        if (current.autoProgress)
+
+        if (dialogueData.autoProgress)
         {
             yield return new WaitForSeconds(dialogueData.autoProgressDelay);
             NextLine();
         }
     }
+    private void SetSpeakerInfo(NPCDialogue.Speaker speaker, Sprite portraitOverride)
+    {
+        if (speaker == NPCDialogue.Speaker.NPC)
+        {
+            var portrait = portraitOverride ?? dialogueData.npcInfo.portrait;
+            dialogueUI.SetNPCInfo(dialogueData.npcInfo.npcName, portrait);
+        }
+        else if (speaker == NPCDialogue.Speaker.You)
+        {
+            var portrait = portraitOverride ?? dialogueData.playerPortrait;
+            dialogueUI.SetPlayerInfo("You", portrait);
+        }
+    }
+
+    private void DisplayLineText(string text)
+    {
+        if (dialogueData.IsPassiveDialogue)
+            dialogueUI.SetDialogueText2(text);
+        else
+            dialogueUI.SetDialogueText(text);
+    }
 
     void DisplayChoices(NPCDialogue.DialogueChoice choice) //Allows for displaying choices and handling the logic when a choice is selected
     {
-        if (dialogueUI != null) dialogueUI.SetPortraitBrightness(true);
+        if (dialogueUI != null) dialogueUI.SetPortraitBrightness(NPCDialogue.Speaker.You);
 
         for (int i = 0; i < choice.choices.Length; i++)
         {
@@ -196,9 +181,6 @@ public class NPC : MonoBehaviour
         dialogueIndex = nextIndex;
         dialogueUI.ClearChoices();
 
-        if (dialogueUI != null) dialogueUI.SetPortraitBrightness(true);
-
-
         DisplayCurrentLine();
     }
 
@@ -212,20 +194,22 @@ public class NPC : MonoBehaviour
         StopAllCoroutines();
         isDialogueActive = false;
 
-        player.speed = 4;
+        if (player != null)
+        {
+            player.speed = 4;
+        }
+
         dialogueUI.SetDialogueText("");
         dialogueUI.ShowDialogueUI(false);
-
         dialogueUI.SetDialogueText2("");
         dialogueUI.ShowDialogueUI2(false);
 
-        if (dialogueUI != null) dialogueUI.SetPortraitBrightness(true);
+        if (dialogueUI != null) dialogueUI.SetPortraitBrightness(NPCDialogue.Speaker.NPC);
 
         if (dialogueData.OneTimeDialogue)
         {
-            gameObject.GetComponent<NPC>().enabled = false;
+            enabled = false;
         }
-
     }
 
     public void EmergencyClear()

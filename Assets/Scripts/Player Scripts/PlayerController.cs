@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         PlayerRotateOnDir();
-        InteractWObject();
+        //InteractWObject();
      
         if (npc != null && npc.isDialogueActive)
         {

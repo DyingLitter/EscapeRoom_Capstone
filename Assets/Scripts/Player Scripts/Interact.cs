@@ -6,7 +6,7 @@ using TMPro;
 public class Interact : MonoBehaviour
 {
     public GameObject selection;
-    [SerializeField] GameObject TouchZone;
+    [SerializeField] Collider TouchZone;
     [SerializeField] Material highlightMaterial;
     private Material previousMaterial;
     [SerializeField] public GameObject interactionText;

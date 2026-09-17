@@ -2,13 +2,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using TMPro;
-public class Interactables : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler
+public class Interactables : MonoBehaviour
 {
     [SerializeField] private Interact Interacted;
 
     private BabyLevelManager BKey;
     private Canvas Canvas;
-    private GameObject Canvass;
     private Inventory Inventory;
     private GameObject Player;
     private NPC npc;
@@ -25,47 +24,96 @@ public class Interactables : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
         Interacted = FindAnyObjectByType<Interact>();
         BKey = FindAnyObjectByType<BabyLevelManager>();
         Inventory = FindAnyObjectByType<Inventory>();
-        Player = FindAnyObjectByType<PlayerController>().gameObject;
+        if (Player == null)
+        {
+
+        }
+        else
+        {
+            Player = FindAnyObjectByType<PlayerController>().gameObject;
+        }
         Canvas = FindAnyObjectByType<Canvas>();
         CanAni = Canvas.GetComponent<Animator>();
     }
-
- 
-    public void OnPointerDown(PointerEventData eventData)
+    void Update()
     {
-        if (Pickable == true)
+        if (Input.GetMouseButtonDown(0))
         {
-            Interacted.selection.GetComponent<Interactables>().Interact();
-            Interacted.interactionText.SetActive(false);
-            Debug.Log("Item has Itemed");
+            HandleMouseClick();
         }
-        else if (Pickable == false)
+
+        if (Pickable)
         {
-            Debug.Log("Item Not Found");
+            ShowInteractionText();
+        }
+    }
+    private void HandleMouseClick()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        int layerMask = ~(1 << LayerMask.NameToLayer("IgnoreRaycast"));
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, layerMask, QueryTriggerInteraction.Ignore))
+        {
+            Debug.Log($"Raycast hit: {hit.collider.gameObject.name}");
+            Debug.Log($"Hit object transform: {hit.transform.name}");
+
+            // Check the hit object first, then search parents
+            Interactables clickedObject = hit.collider.GetComponent<Interactables>();
+
+            if (clickedObject == null)
+            {
+                Debug.Log("Script not on hit object, checking parents...");
+                clickedObject = hit.collider.GetComponentInParent<Interactables>();
+            }
+
+            if (clickedObject != null)
+            {
+                Debug.Log($"Found Interactables on {clickedObject.gameObject.name}");
+                Debug.Log($"Pickable: {clickedObject.Pickable}");
+                Debug.Log($"ISO: {clickedObject.ISO?.name}");
+
+                if (clickedObject.Pickable)
+                {
+                    Interacted.selection = clickedObject.gameObject;
+                    clickedObject.Interact();
+                    Debug.Log("Interact called!");
+                }
+                else
+                {
+                    Debug.Log("Object not pickable (player not in range)");
+                }
+            }
+            else
+            {
+                Debug.Log($"No Interactables script found on {hit.collider.gameObject.name} or its parents!");
+            }
+        }
+        else
+        {
+            Debug.Log("Raycast didn't hit anything");
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    private void ShowInteractionText()
     {
-        Debug.Log("Mouse Detected");
-        if (Pickable == true)
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0));
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f))
         {
-            Interacted.interactionText.SetActive(true);
+            if (hit.collider.gameObject == gameObject && Pickable)
+            {
+                Interacted.interactionText.SetActive(true);
+            }
+            else
+            {
+                Interacted.interactionText.SetActive(false);
+            }
         }
         else
         {
             Interacted.interactionText.SetActive(false);
         }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-     
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-      
     }
 
     private void OnTriggerEnter(Collider other)
@@ -87,17 +135,18 @@ public class Interactables : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
 
     public void Interact()
     {
+        if (Interacted.selection == null) return;
+
         var pickup = Interacted.selection.GetComponent<Interactables>();
-
-        if (WorldSlot == null)
-        {
-            WorldSlot = null;
-        }
-
         ISO.InteractChecks();
+
         if (pickup.ISO.name == "Desk")
         {
-            CanAni.SetTrigger("OpenInv");
+            if (CanAni != null)
+            {
+                CanAni.SetTrigger("OpenInv");
+            }
+         
         }
 
         if (Interacted.selection.name == "Gate")
@@ -131,8 +180,6 @@ public class Interactables : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
             return;
         }
 
-        if (Interacted == null || Interacted.selection == null) return;
-
         
         if (pickup != null && pickup.ISO != null && pickup.ISO.CanBePickedUp == true)
         {
@@ -150,11 +197,8 @@ public class Interactables : MonoBehaviour, IPointerDownHandler, IPointerEnterHa
 
 
             Interacted.selection.SetActive(false);
-            if (Interacted.interactionText != null) Interacted.interactionText.SetActive(false);
-            {
-                Interacted.selection = null;
-            }
- 
+            Interacted.interactionText.SetActive(false);
+            Interacted.selection = null;
             return;
 
         }

@@ -22,48 +22,75 @@ public class DialogueController : MonoBehaviour
     public Transform choiceContainer;
     public GameObject choiceButtonPrefab;
 
+    public UnityEvent onDialogueTextClicked = new UnityEvent();
 
     void Awake()
     {
-        if (instance == null) instance = this;  
+        if (instance == null) instance = this;
         else Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        AddClickListener(dialogueText);
+        AddClickListener(dialogueText2);
+    }
+    private void AddClickListener(TMP_Text textComponent)
+    {
+        if (textComponent == null) return;
+
+        Button btn = textComponent.GetComponent<Button>();
+        if (btn == null)
+        {
+            btn = textComponent.gameObject.AddComponent<Button>();
+        }
+
+        btn.onClick.AddListener(() => onDialogueTextClicked.Invoke());
     }
 
     public void ShowDialogueUI(bool show)
     {
-        dialoguePanel.SetActive(show);
+        if (dialoguePanel != null)
+        {
+            dialoguePanel.SetActive(show);
+            if (show && dialoguePanel2 != null) dialoguePanel2.SetActive(false);
+        }
     }
 
     public void SetNPCInfo(string npcName, Sprite npcPortrait)
     {
-        nameText.text = npcName;
-        portraitImage.sprite = npcPortrait;
+        if (nameText != null) nameText.text = npcName;
+        if (portraitImage != null) portraitImage.sprite = npcPortrait;
     }
 
-    public void SetPlayerInfo(Sprite playerPortrait)
+    public void SetPlayerInfo(string playerName, Sprite playerPortrait)
     {
-
-        PlayerImage.sprite = playerPortrait;
+        if (nameText != null) nameText.text = playerName;
+        if (PlayerImage != null) PlayerImage.sprite = playerPortrait;
     }
 
     public void SetDialogueText(string text)
     {
-        dialogueText.text = text;
+        if (dialogueText != null) dialogueText.text = text;
     }
 
     public void ShowDialogueUI2(bool show)
     {
-        dialoguePanel2.SetActive(show);
+        if (dialoguePanel2 != null)
+        {
+            dialoguePanel2.SetActive(show);
+            if (show && dialoguePanel != null) dialoguePanel.SetActive(false);
+        }
     }
 
     public void SetNPCInfo2(Sprite npcPortrait)
     {
-        portraitImage2.sprite = npcPortrait;
+        if (portraitImage2 != null) portraitImage2.sprite = npcPortrait;
     }
 
     public void SetDialogueText2(string text)
     {
-        dialogueText2.text = text;
+        if (dialogueText2 != null) dialogueText2.text = text;
     }
 
     public void ClearChoices()
@@ -89,18 +116,18 @@ public class DialogueController : MonoBehaviour
 
     }
 
-    public void SetPortraitBrightness(bool bright)
+    public void SetPortraitBrightness(NPCDialogue.Speaker speaker)
     {
         if (portraitImage == null && PlayerImage == null) return;
 
         float dim = Mathf.Clamp01(dimFactor);
 
-        if (bright)
+        if (speaker == NPCDialogue.Speaker.NPC)
         {
             if (portraitImage != null) portraitImage.color = new Color(1f, 1f, 1f, portraitImage.color.a);
             if (PlayerImage != null) PlayerImage.color = new Color(dim, dim, dim, PlayerImage.color.a);
         }
-        else
+        else if (speaker == NPCDialogue.Speaker.You)
         {
             if (portraitImage != null) portraitImage.color = new Color(dim, dim, dim, portraitImage.color.a);
             if (PlayerImage != null) PlayerImage.color = new Color(1f, 1f, 1f, PlayerImage.color.a);

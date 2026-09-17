@@ -12,41 +12,48 @@ using UnityEngine.SceneManagement;
 [CreateAssetMenu(fileName = "NewNPCDialogue", menuName = "Dialogue System/Dialogue")]
 public class NPCDialogue : ScriptableObject
 {
-  
-        public string npcName;
-        public Sprite NPCPortrait;
-        public Sprite playerPortrait; 
-        
-        [TextArea(2, 5)]
-   
-        public string[] dialogueLines;
+    [System.Serializable]
+    public class DialogueLine
+    {
+        public Speaker speaker;
+        public string text;
+        public string endAction; // Replaces endDialogueLines + endDialogueActions
 
-        public float autoProgressDelay = 2f;
-        public float textSpeed = 0.05f;
-
-        public bool OneTimeDialogue;
-        public bool IsPassiveDialogue;
-        
-        public bool autoProgress;
-        public bool[] endDialogueLines;
-        public string[] endDialogueActions;
-
-        public DialogueChoice[] choices;
-
-    
+        public bool IsEndLine => !string.IsNullOrEmpty(endAction);
+    }
 
     [System.Serializable]
     public class DialogueChoice
     {
-        public int dialogueIndex; //Current dialogue line index where the choice is presented
-        public string[] choices; //Selectable Choices
-        public int[] nextDialogueIndexes; //Where the choices lead
-        public string[] actions;//If anything is to happen
+        public int dialogueIndex;
+        public string[] choices;
+        public int[] nextDialogueIndexes;
+        public string[] actions;
     }
 
+    [System.Serializable]
+    public class NPCInfo
+    {
+        public string npcName;
+        public Sprite portrait;
+    }
 
+    public enum Speaker { NPC, You }
 
-    public void OnChoiceSelected(NPCDialogue.DialogueChoice choice, int selectedOptionIndex) //Allows changes in the game based on choice
+    // Consolidated container
+    public NPCInfo npcInfo = new();
+    public Sprite playerPortrait;
+
+    public DialogueLine[] dialogueLines; 
+    public DialogueChoice[] choices;
+
+    public float autoProgressDelay = 2f;
+    public float textSpeed = 0.05f;
+    public bool OneTimeDialogue;
+    public bool IsPassiveDialogue;
+    public bool autoProgress;
+
+    public void OnChoiceSelected(NPCDialogue.DialogueChoice choice, int selectedOptionIndex) 
     {
         Debug.Log($"Choice group {choice.dialogueIndex}, option {selectedOptionIndex} selected.");
 
@@ -65,14 +72,12 @@ public class NPCDialogue : ScriptableObject
 
     public void OnDialogueEnd(int currentDialogueIndex)
     {
-        // Check if this is an end dialogue line
-        if (currentDialogueIndex >= 0 && currentDialogueIndex < endDialogueLines.Length && endDialogueLines[currentDialogueIndex])
+        if (currentDialogueIndex >= 0 && currentDialogueIndex < dialogueLines.Length && dialogueLines[currentDialogueIndex].IsEndLine)
         {
 
-            // Check if there's a corresponding action
-            if (currentDialogueIndex < endDialogueActions.Length && !string.IsNullOrEmpty(endDialogueActions[currentDialogueIndex]))
+            if (currentDialogueIndex < dialogueLines.Length && !string.IsNullOrEmpty(dialogueLines[currentDialogueIndex].endAction))
             {
-                TriggerWorldChange(endDialogueActions[currentDialogueIndex]);
+                TriggerWorldChange(dialogueLines[currentDialogueIndex].endAction);
             }
         }
     }
