@@ -1,13 +1,10 @@
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
-public class Interactables : MonoBehaviour
+using UnityEngine.EventSystems;
+using TMPro;
+public class Interactables : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler
 {
-    private Interact Interacted;
+    [SerializeField] private Interact Interacted;
 
     private BabyLevelManager BKey;
     private Canvas Canvas;
@@ -15,6 +12,9 @@ public class Interactables : MonoBehaviour
     private Inventory Inventory;
     private GameObject Player;
     private NPC npc;
+
+    public bool Pickable = false; 
+
     public ItemsSO ISO;
     [SerializeField] private NPC dialogue;
     [SerializeField] private string SceneName;
@@ -27,9 +27,64 @@ public class Interactables : MonoBehaviour
         Inventory = FindAnyObjectByType<Inventory>();
         Player = FindAnyObjectByType<PlayerController>().gameObject;
         Canvas = FindAnyObjectByType<Canvas>();
-        Canvass = FindAnyObjectByType<Canvas>().gameObject;
         CanAni = Canvas.GetComponent<Animator>();
     }
+
+ 
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (Pickable == true)
+        {
+            Interacted.selection.GetComponent<Interactables>().Interact();
+            Interacted.interactionText.SetActive(false);
+            Debug.Log("Item has Itemed");
+        }
+        else if (Pickable == false)
+        {
+            Debug.Log("Item Not Found");
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("Mouse Detected");
+        if (Pickable == true)
+        {
+            Interacted.interactionText.SetActive(true);
+        }
+        else
+        {
+            Interacted.interactionText.SetActive(false);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+     
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+      
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Pickable = true;
+        }
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Pickable = false;
+        }
+    }
+
     public void Interact()
     {
         var pickup = Interacted.selection.GetComponent<Interactables>();
@@ -47,8 +102,7 @@ public class Interactables : MonoBehaviour
 
         if (Interacted.selection.name == "Gate")
         {
-            WorldSlot.SetActive(true);
-           
+            Interacted.interactionText.SetActive(false);
             if(BKey.StickGet == false)
             {
                 npc = Interacted.selection.GetComponent<NPC>();
@@ -58,15 +112,10 @@ public class Interactables : MonoBehaviour
                 }
             }
         }
-        else if (Interacted.selection == null)
-        {
-            WorldSlot.SetActive(false);
-        }
 
         if (Interacted.selection.name == "Door")
         {
-            WorldSlot.SetActive(true);
-
+            Interacted.interactionText.SetActive(false);
             if (BKey.StickFixed == false)
             {
                 npc = Interacted.selection.GetComponent<NPC>();
@@ -124,11 +173,7 @@ public class Interactables : MonoBehaviour
         gatecol.enabled = false;
     }
 
-    public void PlayerHide()
-    {
-        Player.SetActive(false);
-        Canvass.SetActive(false);
-    }
+   
 
     private void QuitGame()
     {
@@ -139,7 +184,6 @@ public class Interactables : MonoBehaviour
     {
         SceneManager.LoadScene(SceneName);
     }
- 
 
-
+   
 }

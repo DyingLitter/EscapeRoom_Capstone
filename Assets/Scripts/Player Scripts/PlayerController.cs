@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Interact Interacted;
     [SerializeField] GameObject Inventory;
 
+
   
 
     void Start()
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerRotateOnDir();
         InteractWObject();
-
+     
         if (npc != null && npc.isDialogueActive)
         {
            
@@ -126,10 +127,9 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Item Not Found");
             }
 
-          
-
         }
     }
+
 
     void OpenInventory()
     {

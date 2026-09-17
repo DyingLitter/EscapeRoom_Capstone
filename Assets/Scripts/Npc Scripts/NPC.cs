@@ -10,7 +10,7 @@ public class NPC : MonoBehaviour
     private int dialogueIndex;
     public bool isTyping, isDialogueActive;
     private PlayerController player;
-
+    [SerializeField] Canvas canvas;
 
 
     private void Start()
@@ -233,5 +233,11 @@ public class NPC : MonoBehaviour
         dialogueUI.SetDialogueText("");
         dialogueUI.SetDialogueText2("");
 
+    }
+
+    public void PlayerHide()
+    {
+        player.gameObject.SetActive(false);
+        canvas.gameObject.SetActive(false);
     }
 }

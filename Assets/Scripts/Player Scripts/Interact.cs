@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Interact : MonoBehaviour
 {
@@ -48,7 +50,6 @@ public class Interact : MonoBehaviour
 
                     interactionText.GetComponent<RectTransform>().position = screenPos;
                     interactionText.SetActive(true);
-
                     previousMaterial = selectionRenderer.material;
                     selectionRenderer.material = highlightMaterial;
                 }
