@@ -4,11 +4,9 @@ using UnityEngine.EventSystems;
 using System.Collections;
 public class DoorController : MonoBehaviour
 {
-    [SerializeField] private Camera ToggledCam;
-    [SerializeField] private Camera DisCam;
-
-    private Camera CurrentCam;
-    private float colliderDisableDuration = 1.5f;
+    [SerializeField] private Camera CurrentCam;
+    [SerializeField] private Camera DisabledCam1;
+    [SerializeField] private Camera DisabledCam2;
 
     private PlayerController Player;
     private Collider doorCollider;
@@ -17,7 +15,6 @@ public class DoorController : MonoBehaviour
     {
         Player = FindAnyObjectByType<PlayerController>();
         doorCollider = GetComponent<Collider>();
-        CurrentCam = DisCam;
     }
 
     void Update()
@@ -29,45 +26,9 @@ public class DoorController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(DisableColliderTemporarily(colliderDisableDuration));
+            CurrentCam.gameObject.SetActive(true);
+            DisabledCam1.gameObject.SetActive(false);
+            DisabledCam2.gameObject.SetActive(false);
         }
-    }
-
-    void ReverseControls()
-    {
-        if (CurrentCam.name == "LivingCam")
-        {
-            Player.SetControlsReversed(true);
-        }
-        else
-        {
-            Player.SetControlsReversed(false);
-        }
-    }
-
-    private IEnumerator DisableColliderTemporarily(float duration)
-    {
-    
-        doorCollider.enabled = false;
-        yield return new WaitForSeconds(duration);
-        Player.enabled = false;
-
-        if (ToggledCam.gameObject.activeSelf)
-        {
-            ToggledCam.gameObject.SetActive(false);
-            DisCam.gameObject.SetActive(true);
-            CurrentCam = DisCam;
-        }
-        else
-        {
-            ToggledCam.gameObject.SetActive(true);
-            DisCam.gameObject.SetActive(false);
-            CurrentCam = ToggledCam;
-        }
-
-        ReverseControls();
-        doorCollider.enabled = true;
-        Player.enabled = true;
-
     }
 }

@@ -196,7 +196,7 @@ public class NPC : MonoBehaviour
 
         if (player != null)
         {
-            player.speed = 4;
+            player.speed = 2;
         }
 
         dialogueUI.SetDialogueText("");

@@ -21,3 +21,6 @@ MonoBehaviour:
   - itemA: Stick (Broken)
     itemB: Tape
     resultPrefab: Stick (Fixed)
+  - itemA: Yarn
+    itemB: Tape
+    resultPrefab: Lasso

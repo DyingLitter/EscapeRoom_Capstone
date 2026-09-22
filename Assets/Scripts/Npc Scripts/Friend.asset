@@ -34,7 +34,7 @@ MonoBehaviour:
     endAction: 
   - speaker: 1
     text: When did I say that?
-    endAction: Fade
+    endAction: 
   choices: []
   autoProgressDelay: 2
   textSpeed: 0.05

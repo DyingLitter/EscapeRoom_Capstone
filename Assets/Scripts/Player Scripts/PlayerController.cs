@@ -28,12 +28,6 @@ public class PlayerController : MonoBehaviour
         PlayerRotateOnDir();
         //InteractWObject();
      
-        if (npc != null && npc.isDialogueActive)
-        {
-           
-            Interacted.interactionText.SetActive(false); // Hide the interaction text
-
-        }
     }
 
     [SerializeField] private bool controlsReversed = false;
@@ -112,23 +106,22 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void InteractWObject()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (Interacted.selection != null)
-            {
-                Interacted.selection.GetComponent<Interactables>().Interact();
-                Interacted.interactionText.SetActive(false);
-                Debug.Log("Item has Itemed");
-            }
-            else
-            {
-                Debug.Log("Item Not Found");
-            }
+    //void InteractWObject()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.E))
+    //    {
+    //        if (Interacted.selection != null)
+    //        {
+    //            Interacted.selection.GetComponent<Interactables>().Interact();
+    //            Debug.Log("Item has Itemed");
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("Item Not Found");
+    //        }
 
-        }
-    }
+    //    }
+    //}
 
 
     void OpenInventory()

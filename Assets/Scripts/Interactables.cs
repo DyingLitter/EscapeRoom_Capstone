@@ -44,7 +44,7 @@ public class Interactables : MonoBehaviour
 
         if (Pickable)
         {
-            ShowInteractionText();
+            //ShowInteractionText();
         }
     }
     private void HandleMouseClick()
@@ -95,26 +95,26 @@ public class Interactables : MonoBehaviour
         }
     }
 
-    private void ShowInteractionText()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0));
+    //private void ShowInteractionText()
+    //{
+    //    Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0));
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f))
-        {
-            if (hit.collider.gameObject == gameObject && Pickable)
-            {
-                Interacted.interactionText.SetActive(true);
-            }
-            else
-            {
-                Interacted.interactionText.SetActive(false);
-            }
-        }
-        else
-        {
-            Interacted.interactionText.SetActive(false);
-        }
-    }
+    //    if (Physics.Raycast(ray, out RaycastHit hit, 100f))
+    //    {
+    //        if (hit.collider.gameObject == gameObject && Pickable)
+    //        {
+    //            Interacted.interactionText.SetActive(true);
+    //        }
+    //        else
+    //        {
+    //            Interacted.interactionText.SetActive(false);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        Interacted.interactionText.SetActive(false);
+    //    }
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -151,7 +151,6 @@ public class Interactables : MonoBehaviour
 
         if (Interacted.selection.name == "Gate")
         {
-            Interacted.interactionText.SetActive(false);
             if(BKey.StickGet == false)
             {
                 npc = Interacted.selection.GetComponent<NPC>();
@@ -160,11 +159,12 @@ public class Interactables : MonoBehaviour
                     npc.InteractedWith(Interacted.selection.gameObject);
                 }
             }
+
+            WorldSlot.SetActive(true);
         }
 
         if (Interacted.selection.name == "Door")
         {
-            Interacted.interactionText.SetActive(false);
             if (BKey.StickFixed == false)
             {
                 npc = Interacted.selection.GetComponent<NPC>();
@@ -188,16 +188,25 @@ public class Interactables : MonoBehaviour
             if (pickup.ISO.ItemName == "Stick" && BKey != null)
             {
                 BKey.StickGet = true;
+
+                npc = Interacted.selection.GetComponent<NPC>();
+                if (npc != null)
+                {
+                    npc.InteractedWith(Interacted.selection.gameObject);
+
+                }
+
+              
             }
 
             if (pickup.ISO.ItemName == "Tape" && BKey != null)
             {
                 BKey.TapeGet = true;
             }
+            
 
 
             Interacted.selection.SetActive(false);
-            Interacted.interactionText.SetActive(false);
             Interacted.selection = null;
             return;
 

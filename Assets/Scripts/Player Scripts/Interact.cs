@@ -9,7 +9,6 @@ public class Interact : MonoBehaviour
     [SerializeField] Collider TouchZone;
     [SerializeField] Material highlightMaterial;
     private Material previousMaterial;
-    [SerializeField] public GameObject interactionText;
     [HideInInspector] public Transform _selection;
     private Camera mainCamera;
     
@@ -48,8 +47,6 @@ public class Interact : MonoBehaviour
                     Vector3 screenPos = mainCamera.WorldToScreenPoint(selectionpos);
                     screenPos.y += 70f; 
 
-                    interactionText.GetComponent<RectTransform>().position = screenPos;
-                    interactionText.SetActive(true);
                     previousMaterial = selectionRenderer.material;
                     selectionRenderer.material = highlightMaterial;
                 }
@@ -63,15 +60,9 @@ public class Interact : MonoBehaviour
             if (previousRenderer != null)
             {
                 previousRenderer.material = previousMaterial;
-                interactionText.SetActive(false);
             }
             _selection = null;
             selection = null;
-        }
-        else if (_selection == null)
-        {
-            interactionText.SetActive(false);
-           
         }
     }
 
@@ -82,7 +73,6 @@ public class Interact : MonoBehaviour
             var selectionRenderer = selection.GetComponent<Renderer>();
 
             selectionRenderer.material = previousMaterial;
-            interactionText.SetActive(false);
             _selection = null;
             selection = null;
         }
