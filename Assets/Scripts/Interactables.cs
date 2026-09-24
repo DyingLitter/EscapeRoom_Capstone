@@ -164,7 +164,6 @@ public class Interactables : MonoBehaviour
                     return;
                 }
             }
-
             WorldSlot.SetActive(true);
         }
 
@@ -175,9 +174,11 @@ public class Interactables : MonoBehaviour
                 npc = Interacted.selection.GetComponent<NPC>();
                 if (npc != null)
                 {
-                    npc.InteractedWith(Interacted.selection.gameObject);
+                    StartCoroutine(DialogueCheck(npc, Interacted.selection));
+                    return;
                 }
             }
+            WorldSlot.SetActive(true);
         }
 
         if (ISO.CanBePickedUp == false)
@@ -227,8 +228,15 @@ public class Interactables : MonoBehaviour
         {
             yield return null;
         }
-
-        item.SetActive(false);
+        if (ISO.CanBePickedUp == false)
+        {
+            WorldSlot.SetActive(true);
+        }
+        else if (ISO.CanBePickedUp == true)
+        {
+            item.SetActive(false);
+        }
+            
         Interacted.selection = null;
     }
 

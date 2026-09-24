@@ -1589,7 +1589,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 37b3b3c152c888c4b910778ce320b5a3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9122e3672173ab448b4c910a4ddc27ea, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1923,7 +1923,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &478649459
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4954,7 +4954,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7506165621738557, guid: 2c260854f6fc30544b965f2a2ea3ec6b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4310615656720776996, guid: 2c260854f6fc30544b965f2a2ea3ec6b, type: 3}
       propertyPath: m_Pivot.x
@@ -5113,8 +5113,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6707388046699855416, guid: 2c260854f6fc30544b965f2a2ea3ec6b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 70519a9f200e3fa4c820fe141945e1dd, type: 3}
+    - target: {fileID: 6707388046699855416, guid: 2c260854f6fc30544b965f2a2ea3ec6b, type: 3}
       propertyPath: m_Color.a
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6707388046699855416, guid: 2c260854f6fc30544b965f2a2ea3ec6b, type: 3}
       propertyPath: m_Color.b
@@ -7394,6 +7398,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6f92fc07603d2d9449d3c311f3553e86, type: 3}
   m_PrefabInstance: {fileID: 1041935080}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2023574323 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7506165621738557, guid: 2c260854f6fc30544b965f2a2ea3ec6b, type: 3}
+  m_PrefabInstance: {fileID: 1180702194}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2033831454
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7632,11 +7641,11 @@ GameObject:
   - component: {fileID: 2115837283}
   - component: {fileID: 2115837287}
   - component: {fileID: 2115837291}
+  - component: {fileID: 2115837290}
   - component: {fileID: 2115837289}
   - component: {fileID: 2115837285}
   - component: {fileID: 2115837284}
   - component: {fileID: 2115837288}
-  - component: {fileID: 2115837290}
   m_Layer: 0
   m_Name: Gate
   m_TagString: Untagged
@@ -7807,6 +7816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Interacted: {fileID: 0}
   Pickable: 0
+  Picked: 0
   ISO: {fileID: 11400000, guid: 5eca395b972255343abebb69f47998e0, type: 2}
   dialogue: {fileID: 2115837289}
   SceneName: 
@@ -8208,7 +8218,9 @@ GameObject:
   - component: {fileID: 919132147985004993}
   - component: {fileID: 919132147985004995}
   - component: {fileID: 919132147985004996}
+  - component: {fileID: 919132147985004999}
   - component: {fileID: 919132147985004997}
+  - component: {fileID: 919132147985004998}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -8311,12 +8323,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.28792992, y: 4.142438, z: 1.5785553}
-  m_Center: {x: 0.79790837, y: 0.72244555, z: -0.021233708}
+  m_Size: {x: 0.9721521, y: 4.142438, z: 1.5785553}
+  m_Center: {x: 0.45579734, y: 0.7224456, z: -0.021233708}
 --- !u!114 &919132147985004997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8329,10 +8341,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1254f75fd031fa743a02517993bd62c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueData: {fileID: 0}
+  dialogueData: {fileID: 11400000, guid: 38144da0c3f35894a857342ec8393890, type: 2}
   isTyping: 0
   isDialogueActive: 0
   canvas: {fileID: 1137041553}
+--- !u!114 &919132147985004998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147985004989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161e2a8648e13234b9037f5750ba0af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interacted: {fileID: 8342997276746474159}
+  Pickable: 0
+  Picked: 0
+  ISO: {fileID: 11400000, guid: 5eca395b972255343abebb69f47998e0, type: 2}
+  dialogue: {fileID: 919132147985004997}
+  SceneName: 
+  WorldSlot: {fileID: 2023574323}
+--- !u!65 &919132147985004999
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147985004989}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.25577813, y: 4.506096, z: 1.5872517}
+  m_Center: {x: 0.95109195, y: 0.7378117, z: -0.05272761}
 --- !u!1 &919132149618317055
 GameObject:
   m_ObjectHideFlags: 0
@@ -9690,7 +9742,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d8457ac1db861a41a79334bd0afe98c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 70519a9f200e3fa4c820fe141945e1dd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
