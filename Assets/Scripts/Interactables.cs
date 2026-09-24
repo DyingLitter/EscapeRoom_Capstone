@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using TMPro;
@@ -13,6 +14,7 @@ public class Interactables : MonoBehaviour
     private NPC npc;
 
     public bool Pickable = false; 
+    [SerializeField] bool Picked = false;
 
     public ItemsSO ISO;
     [SerializeField] private NPC dialogue;
@@ -135,7 +137,9 @@ public class Interactables : MonoBehaviour
 
     public void Interact()
     {
-        if (Interacted.selection == null) return;
+        if (Interacted.selection == null || Picked) return;
+
+        Picked = true;
 
         var pickup = Interacted.selection.GetComponent<Interactables>();
         ISO.InteractChecks();
@@ -156,7 +160,8 @@ public class Interactables : MonoBehaviour
                 npc = Interacted.selection.GetComponent<NPC>();
                 if (npc != null)
                 {
-                    npc.InteractedWith(Interacted.selection.gameObject);
+                    StartCoroutine(DialogueCheck(npc, Interacted.selection));
+                    return;
                 }
             }
 
@@ -192,8 +197,8 @@ public class Interactables : MonoBehaviour
                 npc = Interacted.selection.GetComponent<NPC>();
                 if (npc != null)
                 {
-                    npc.InteractedWith(Interacted.selection.gameObject);
-
+                    StartCoroutine(DialogueCheck(npc, Interacted.selection));
+                    return;
                 }
 
               
@@ -203,8 +208,6 @@ public class Interactables : MonoBehaviour
             {
                 BKey.TapeGet = true;
             }
-            
-
 
             Interacted.selection.SetActive(false);
             Interacted.selection = null;
@@ -214,6 +217,19 @@ public class Interactables : MonoBehaviour
 
         
 
+    }
+
+    private IEnumerator DialogueCheck(NPC npc, GameObject item)
+    {
+        npc.StartDialogue();
+
+        while (npc.isDialogueActive)
+        {
+            yield return null;
+        }
+
+        item.SetActive(false);
+        Interacted.selection = null;
     }
 
     public void OpenGate()
