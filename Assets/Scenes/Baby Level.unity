@@ -2232,7 +2232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &478649459
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7749,6 +7749,9 @@ MonoBehaviour:
   dialogue: {fileID: 1786291658}
   SceneName: 
   WorldSlot: {fileID: 469258885}
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1786291657
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7844,7 +7847,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 99eae22d35397dc4280ee68ceb8e9333, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -8955,6 +8958,9 @@ MonoBehaviour:
   dialogue: {fileID: 2115837289}
   SceneName: 
   WorldSlot: {fileID: 7506165499290683}
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &2115837291
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9498,6 +9504,9 @@ MonoBehaviour:
   dialogue: {fileID: 919132147985004997}
   SceneName: 
   WorldSlot: {fileID: 2023574323}
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &919132147985004999
 BoxCollider:
   m_ObjectHideFlags: 0
