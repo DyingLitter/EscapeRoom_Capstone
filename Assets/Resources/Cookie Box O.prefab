@@ -91,11 +91,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 989259959090358594}
   CanBeOpened: 1
-  onClick:
-    m_PersistentCalls:
-      m_Calls: []
   Items: {fileID: 11400000, guid: 55e360f147323bd49b0664a8636c4fc9, type: 2}
   parentAfterDrag: {fileID: 0}
+  CanvasTag: CookieBoxO
 --- !u!61 &2581523926568735828
 BoxCollider2D:
   m_ObjectHideFlags: 0

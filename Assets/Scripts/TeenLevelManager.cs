@@ -3,6 +3,7 @@ using UnityEngine;
 public class TeenLevelManager : MonoBehaviour
 {
     [SerializeField] Inventory Inventory;
+    public GameObject CanvasScreen;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

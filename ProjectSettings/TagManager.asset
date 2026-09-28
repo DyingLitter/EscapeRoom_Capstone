@@ -11,6 +11,7 @@ TagManager:
   - BabyGate
   - Tape
   - NPC
+  - CookieBoxO
   layers:
   - Default
   - TransparentFX

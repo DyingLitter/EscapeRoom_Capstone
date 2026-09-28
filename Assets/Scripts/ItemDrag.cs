@@ -4,23 +4,21 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform))]
-public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     public Image image;
     public bool CanBeOpened;
-    private GameObject CanvasScreen;
-    public UnityEvent onClick;
-
     [SerializeField] private ItemsSO Items;
     public static bool mouseButtonReleased;
     [HideInInspector] public Transform parentAfterDrag;
-
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
-
+    private TeenLevelManager TM;
+    private bool isLeftDragging = false;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+        TM = FindAnyObjectByType<TeenLevelManager>();
 
         // CanvasGroup guarantees mouse raycasts pass through to the slot underneath
         canvasGroup = GetComponent<CanvasGroup>();
@@ -31,6 +29,10 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left) return;
+
+        isLeftDragging = true;
+
         Debug.Log("Begin Drag");
         parentAfterDrag = transform.parent;
 
@@ -48,6 +50,8 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (!isLeftDragging) return;
+
         mouseButtonReleased = false;
 
         if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
@@ -62,6 +66,9 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!isLeftDragging) return;
+        isLeftDragging = false;
+
         Debug.Log("End Drag");
 
         canvasGroup.blocksRaycasts = true;
@@ -87,5 +94,19 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
     }
 
- 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button != PointerEventData.InputButton.Right) return;
+
+        if (Items == null)
+        {
+            Debug.LogWarning($"ItemDrag: Items is null on '{name}'");
+            return;
+        }
+
+        if (Items.name != "Cookie Box O") return;
+
+        TM.CanvasScreen.SetActive(!TM.CanvasScreen.activeSelf);
+    }
+
 }

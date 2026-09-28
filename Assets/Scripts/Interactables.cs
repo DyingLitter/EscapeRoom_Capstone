@@ -142,7 +142,7 @@ public class Interactables : MonoBehaviour
         }
         if (Interacted.selection.name == "Vase")
         {
-            if (BKey.StickGet == false)
+            if (BM.StickGet == false)
             {
                 Debug.Log("Yeet");
             }
