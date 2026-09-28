@@ -10,14 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d58072da1aed6ac4292f99df66f8d21c, type: 3}
-  m_Name: Cookie Box
+  m_Name: Handle
   m_EditorClassIdentifier: 
-  ItemName: Cookie Box
+  ItemName: 
   ItemDescription: 
-  InventoryPrefab: {fileID: 8196104567029561044, guid: 4a3f4195080611e44b15567cd72b2772, type: 3}
-  ItemPrefab: {fileID: 8196104567029561044, guid: 4a3f4195080611e44b15567cd72b2772, type: 3}
-  CanBePickedUp: 1
-  combinations:
-  - itemA: Spoon
-    itemB: Cookie Box
-    resultPrefab: Cookie Box O
+  InventoryPrefab: {fileID: 0}
+  ItemPrefab: {fileID: 0}
+  CanBePickedUp: 0
+  combinations: []

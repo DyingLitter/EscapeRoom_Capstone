@@ -1,13 +1,14 @@
-using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 public class Interactables : MonoBehaviour
 {
     [SerializeField] private Interact Interacted;
 
-    private BabyLevelManager BKey;
+    private BabyLevelManager BM;
     private Canvas Canvas;
     private Inventory Inventory;
     private GameObject Player;
@@ -21,10 +22,12 @@ public class Interactables : MonoBehaviour
     [SerializeField] private string SceneName;
     [SerializeField] private GameObject WorldSlot;
     private Animator CanAni;
+
+    public UnityEvent onClick;
     public void Start()
     {
         Interacted = FindAnyObjectByType<Interact>();
-        BKey = FindAnyObjectByType<BabyLevelManager>();
+        BM = FindAnyObjectByType<BabyLevelManager>();
         Inventory = FindAnyObjectByType<Inventory>();
         if (Player == null)
         {
@@ -96,28 +99,6 @@ public class Interactables : MonoBehaviour
             Debug.Log("Raycast didn't hit anything");
         }
     }
-
-    //private void ShowInteractionText()
-    //{
-    //    Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0));
-
-    //    if (Physics.Raycast(ray, out RaycastHit hit, 100f))
-    //    {
-    //        if (hit.collider.gameObject == gameObject && Pickable)
-    //        {
-    //            Interacted.interactionText.SetActive(true);
-    //        }
-    //        else
-    //        {
-    //            Interacted.interactionText.SetActive(false);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        Interacted.interactionText.SetActive(false);
-    //    }
-    //}
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -144,18 +125,11 @@ public class Interactables : MonoBehaviour
         var pickup = Interacted.selection.GetComponent<Interactables>();
         ISO.InteractChecks();
 
-        if (pickup.ISO.name == "Desk")
-        {
-            if (CanAni != null)
-            {
-                CanAni.SetTrigger("OpenInv");
-            }
-         
-        }
+        onClick?.Invoke();
 
         if (Interacted.selection.name == "Gate")
         {
-            if(BKey.StickGet == false)
+            if(BM.StickGet == false)
             {
                 npc = Interacted.selection.GetComponent<NPC>();
                 if (npc != null)
@@ -177,7 +151,7 @@ public class Interactables : MonoBehaviour
 
         if (Interacted.selection.name == "Door")
         {
-            if (BKey.StickFixed == false)
+            if (BM.StickFixed == false)
             {
                 npc = Interacted.selection.GetComponent<NPC>();
                 if (npc != null)
@@ -199,9 +173,9 @@ public class Interactables : MonoBehaviour
         {
             Inventory?.AddItem(pickup.ISO);
 
-            if (pickup.ISO.ItemName == "Stick" && BKey != null)
+            if (pickup.ISO.ItemName == "Stick" && BM != null)
             {
-                BKey.StickGet = true;
+                BM.StickGet = true;
 
                 npc = Interacted.selection.GetComponent<NPC>();
                 if (npc != null)
@@ -213,9 +187,9 @@ public class Interactables : MonoBehaviour
               
             }
 
-            if (pickup.ISO.ItemName == "Tape" && BKey != null)
+            if (pickup.ISO.ItemName == "Tape" && BM != null)
             {
-                BKey.TapeGet = true;
+                BM.TapeGet = true;
             }
 
             Interacted.selection.SetActive(false);
@@ -253,7 +227,7 @@ public class Interactables : MonoBehaviour
         Animator gateAnimator = GetComponent<Animator>();
         BoxCollider gatecol = GetComponent<BoxCollider>();
 
-        BKey.StickGet = false;
+        BM.StickGet = false;
         gateAnimator.SetTrigger("Open");
         gatecol.enabled = false;
     }

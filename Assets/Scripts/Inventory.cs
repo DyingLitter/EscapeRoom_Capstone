@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     private Transform ItemSlot;
     private Interactables Interactables;
     private Interact Interacted;
-    private BabyLevelManager BKey;
+    private BabyLevelManager BM;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

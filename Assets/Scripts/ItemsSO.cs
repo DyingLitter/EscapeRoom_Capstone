@@ -11,11 +11,11 @@ public class ItemsSO : ScriptableObject
     public GameObject InventoryPrefab; //Inventory Object
     public GameObject ItemPrefab; //In-Game Object
     public bool CanBePickedUp;
-
     private PlayerController Player;
     private NPC npc;
     private Interact Interacted;
-    private BabyLevelManager BKey;
+    private BabyLevelManager BM;
+    private TeenLevelManager TM;
     private Inventory Inventory;
     private Canvas Canvas;
     private DoorController Door;
@@ -98,7 +98,8 @@ public class ItemsSO : ScriptableObject
     {
         if (Player == null) Player = FindAnyObjectByType<PlayerController>();
         if (Interacted == null) Interacted = FindAnyObjectByType<Interact>();
-        if (BKey == null) BKey = FindAnyObjectByType<BabyLevelManager>();
+        if (BM == null) BM = FindAnyObjectByType<BabyLevelManager>();
+        if (TM == null) TM = FindAnyObjectByType<TeenLevelManager>();
         if (Inventory == null) Inventory = FindAnyObjectByType<Inventory>();
 
       

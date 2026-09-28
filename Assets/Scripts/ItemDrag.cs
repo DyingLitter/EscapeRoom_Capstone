@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -6,6 +7,9 @@ using UnityEngine.UI;
 public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Image image;
+    public bool CanBeOpened;
+    private GameObject CanvasScreen;
+    public UnityEvent onClick;
 
     [SerializeField] private ItemsSO Items;
     public static bool mouseButtonReleased;
@@ -25,13 +29,11 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
         }
     }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("Begin Drag");
         parentAfterDrag = transform.parent;
 
-        // Reparent to the root Canvas rather than the scene root (transform.root)
         Canvas currentCanvas = GetComponentInParent<Canvas>();
         if (currentCanvas != null)
         {
@@ -40,7 +42,6 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
         transform.SetAsLastSibling();
 
-        // Disable raycasting so the world slot or target item beneath detects the pointer
         canvasGroup.blocksRaycasts = false;
         if (image != null) image.raycastTarget = false;
     }
@@ -49,7 +50,6 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         mouseButtonReleased = false;
 
-        // Converts screen mouse input into proper coordinates for Overlay, Camera, or World Space
         if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
             rectTransform,
             eventData.position,
@@ -68,19 +68,15 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (image != null) image.raycastTarget = true;
         mouseButtonReleased = true;
 
-        // If the item was consumed and destroyed (e.g., opened the gate), exit immediately
         if (this == null || parentAfterDrag == null) return;
 
-        // Return or snap to the target slot
         transform.SetParent(parentAfterDrag, false);
 
-        // Reset local transformations so the item fits the slot without scaling bugs
         rectTransform.anchoredPosition = Vector2.zero;
         rectTransform.localPosition = Vector3.zero;
         rectTransform.localRotation = Quaternion.identity;
         rectTransform.localScale = Vector3.one;
 
-        // Check for item combination
         if (eventData != null && eventData.pointerEnter != null && Items != null)
         {
             var targetItem = Items.FindItemDragFrom(eventData.pointerEnter);
@@ -90,4 +86,6 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             }
         }
     }
+
+ 
 }
