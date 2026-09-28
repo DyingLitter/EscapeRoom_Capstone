@@ -166,6 +166,14 @@ public class Interactables : MonoBehaviour
             }
             WorldSlot.SetActive(true);
         }
+        if (Interacted.selection.name == "Vase")
+        {
+            if (BKey.StickGet == false)
+            {
+                Debug.Log("Yeet");
+            }
+            WorldSlot.SetActive(true);
+        }
 
         if (Interacted.selection.name == "Door")
         {
