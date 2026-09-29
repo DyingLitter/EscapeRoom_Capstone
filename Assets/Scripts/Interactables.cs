@@ -119,8 +119,16 @@ public class Interactables : MonoBehaviour
     public void Interact()
     {
         if (Interacted.selection == null || Picked) return;
-
-        Picked = true;
+        
+        if (Interacted.selection.name == "Inventory")
+        {
+            
+        }
+        else
+        {
+            Picked = true;
+        }
+         
 
         var pickup = Interacted.selection.GetComponent<Interactables>();
         ISO.InteractChecks();
@@ -204,6 +212,8 @@ public class Interactables : MonoBehaviour
 
     private IEnumerator DialogueCheck(NPC npc, GameObject item)
     {
+        item.GetComponent<SpriteRenderer>().enabled = false;
+
         npc.StartDialogue();
 
         while (npc.isDialogueActive)
