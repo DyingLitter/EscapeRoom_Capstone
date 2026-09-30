@@ -16,7 +16,7 @@ MonoBehaviour:
   ItemDescription: 
   InventoryPrefab: {fileID: 85959382082752235, guid: 0e7b7bfb82684a24bb3e67ea9fc001c2, type: 3}
   ItemPrefab: {fileID: 85959382082752235, guid: 0e7b7bfb82684a24bb3e67ea9fc001c2, type: 3}
-  CanBePickedUp: 0
+  CanBePickedUp: 1
   combinations:
   - itemA: Spoon
     itemB: Cookie Box
