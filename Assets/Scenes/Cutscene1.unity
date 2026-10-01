@@ -820,7 +820,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 3be9b3c88234e8e449653a01067014f9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -861,6 +861,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Interacted: {fileID: 8886734210985791916}
+  myLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   Pickable: 0
   Picked: 0
   ISO: {fileID: 11400000, guid: cc9f2d4b49922e84d85b1097d43c9fd7, type: 2}
