@@ -14,6 +14,8 @@ public class Interactables : MonoBehaviour
     private GameObject Player;
     private NPC npc;
 
+    public LayerMask myLayerMask;
+
     public bool Pickable = false; 
 
     
@@ -58,9 +60,9 @@ public class Interactables : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        int layerMask = ~(1 << LayerMask.NameToLayer("IgnoreRaycast"));
+        //int layerMask = ~(1 << LayerMask.NameToLayer("IgnoreRaycast"));
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, layerMask, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, myLayerMask, QueryTriggerInteraction.Ignore))
         {
             Debug.Log($"Raycast hit: {hit.collider.gameObject.name}");
             Debug.Log($"Hit object transform: {hit.transform.name}");
@@ -122,19 +124,16 @@ public class Interactables : MonoBehaviour
     {
         if (Interacted.selection == null || Picked) return;
         
-        
-            if (WorldSlot == null)
-            {
+        if (WorldSlot != null)
+        {
             
-            }
-        
-        else
+        }
+        else if (ISO.CanBePickedUp == true)
         {
             Picked = true;
         }
-         
 
-        var pickup = Interacted.selection.GetComponent<Interactables>();
+            var pickup = Interacted.selection.GetComponent<Interactables>();
         ISO.InteractChecks();
 
         onClick?.Invoke();
