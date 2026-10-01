@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d58072da1aed6ac4292f99df66f8d21c, type: 3}
-  m_Name: Handle
+  m_Name: KitchenCabinet
   m_EditorClassIdentifier: 
   ItemName: 
   ItemDescription: 
