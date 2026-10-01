@@ -53,7 +53,7 @@ public class NPC : MonoBehaviour
         dialogueIndex = 0;
         if (dialogueData.IsPassiveDialogue == false && player != null)
         {
-            player.speed = 0;
+           // player.speed = 0;
         }
 
         DisplayCurrentLine();
@@ -196,7 +196,7 @@ public class NPC : MonoBehaviour
 
         if (player != null)
         {
-            player.speed = 2;
+           // player.speed = 4;
         }
 
         dialogueUI.SetDialogueText("");
