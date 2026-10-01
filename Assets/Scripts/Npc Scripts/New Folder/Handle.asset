@@ -31,4 +31,4 @@ MonoBehaviour:
   textSpeed: 0.05
   OneTimeDialogue: 1
   IsPassiveDialogue: 1
-  autoProgress: 0
+  autoProgress: 1

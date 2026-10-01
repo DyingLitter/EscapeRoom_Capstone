@@ -3967,11 +3967,11 @@ PrefabInstance:
     - target: {fileID: 5354898770982452323, guid: 2c260854f6fc30544b965f2a2ea3ec6b, type: 3}
       propertyPath: onCorrectItemPlaced.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
-      objectReference: {fileID: 1850931421}
+      objectReference: {fileID: 7041628271067036135}
     - target: {fileID: 5354898770982452323, guid: 2c260854f6fc30544b965f2a2ea3ec6b, type: 3}
       propertyPath: onCorrectItemPlaced.m_PersistentCalls.m_Calls.Array.data[6].m_Target
       value: 
-      objectReference: {fileID: 1850931420}
+      objectReference: {fileID: 7041628271067036134}
     - target: {fileID: 5354898770982452323, guid: 2c260854f6fc30544b965f2a2ea3ec6b, type: 3}
       propertyPath: onCorrectItemPlaced.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -6598,113 +6598,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1850931417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9014776605336338093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1254f75fd031fa743a02517993bd62c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueData: {fileID: 11400000, guid: 7c04a670720d0d54e8ce3adaf33e4da7, type: 2}
-  isTyping: 0
-  isDialogueActive: 0
-  canvas: {fileID: 1868611435}
---- !u!114 &1850931419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9014776605336338093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 161e2a8648e13234b9037f5750ba0af0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Interacted: {fileID: 0}
-  myLayerMask:
-    serializedVersion: 2
-    m_Bits: 1011
-  Pickable: 0
-  Picked: 0
-  ISO: {fileID: 11400000, guid: 1b9a7bcb92038ea46a2705827d207a56, type: 2}
-  dialogue: {fileID: 1850931417}
-  SceneName: 
-  WorldSlot: {fileID: 363841398}
-  onClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 438653035}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Fall
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1850931417}
-        m_TargetAssemblyTypeName: NPC, Assembly-CSharp
-        m_MethodName: StartDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Fall
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!65 &1850931420
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9014776605336338093}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.020000001, y: 0.009419104, z: 0.020000001}
-  m_Center: {x: -7.7343143e-10, y: 0.015995448, z: -0.0000000027672828}
---- !u!65 &1850931421
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9014776605336338093}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.020000001, y: 0.021157831, z: 0.020000001}
-  m_Center: {x: -1.241109e-11, y: 0.00057824375, z: 2.4087426e-11}
 --- !u!1 &1868611431
 GameObject:
   m_ObjectHideFlags: 0
@@ -18036,6 +17929,10 @@ GameObject:
   - component: {fileID: 4870004670593359338}
   - component: {fileID: 1442450554047499347}
   - component: {fileID: 1480972309}
+  - component: {fileID: 7041628271067036135}
+  - component: {fileID: 7041628271067036134}
+  - component: {fileID: 7041628271067036133}
+  - component: {fileID: 7041628271067036132}
   m_Layer: 0
   m_Name: CabinetDoorKitchen
   m_TagString: Untagged
@@ -18043,6 +17940,113 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7041628271067036132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7041628271067036131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1254f75fd031fa743a02517993bd62c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueData: {fileID: 11400000, guid: 7c04a670720d0d54e8ce3adaf33e4da7, type: 2}
+  isTyping: 0
+  isDialogueActive: 0
+  canvas: {fileID: 1868611435}
+--- !u!114 &7041628271067036133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7041628271067036131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161e2a8648e13234b9037f5750ba0af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interacted: {fileID: 0}
+  myLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  Pickable: 0
+  Picked: 0
+  ISO: {fileID: 11400000, guid: 1b9a7bcb92038ea46a2705827d207a56, type: 2}
+  dialogue: {fileID: 7041628271067036132}
+  SceneName: 
+  WorldSlot: {fileID: 363841398}
+  onClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 438653035}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Fall
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7041628271067036132}
+        m_TargetAssemblyTypeName: NPC, Assembly-CSharp
+        m_MethodName: StartDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Fall
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!65 &7041628271067036134
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7041628271067036131}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.019352831, y: 0.004695683, z: 0.017615499}
+  m_Center: {x: -0.003380283, y: 0.0029367805, z: -0.008807642}
+--- !u!65 &7041628271067036135
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7041628271067036131}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.007635296, y: 0.0011571306, z: 0.017615499}
+  m_Center: {x: -0.0034443247, y: 0.00004353392, z: -0.008807641}
 --- !u!4 &7054643186092585583
 Transform:
   m_ObjectHideFlags: 0
@@ -22155,10 +22159,6 @@ GameObject:
   - component: {fileID: 5949365508015032019}
   - component: {fileID: 1703912658506799063}
   - component: {fileID: 8102382928878273157}
-  - component: {fileID: 1850931421}
-  - component: {fileID: 1850931420}
-  - component: {fileID: 1850931419}
-  - component: {fileID: 1850931417}
   m_Layer: 0
   m_Name: CabinetKitchen
   m_TagString: Untagged
