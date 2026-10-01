@@ -12,9 +12,9 @@ public class BabyLevelManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StickGet = false;
+        
         TapeGet = false;
-        StickFixed = false;
+        
     }
 
     // Update is called once per frame
@@ -29,10 +29,6 @@ public class BabyLevelManager : MonoBehaviour
             Tut2.SetActive(false);
         }
 
-        if (Inventory.HasItem("Stick (Fixed)"))
-        {
-            StickFixed = true;
-        }
     }
 
   

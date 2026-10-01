@@ -15,6 +15,8 @@ public class Interactables : MonoBehaviour
     private NPC npc;
 
     public bool Pickable = false; 
+
+    
     [SerializeField] bool Picked = false;
 
     public ItemsSO ISO;
@@ -135,42 +137,17 @@ public class Interactables : MonoBehaviour
 
         onClick?.Invoke();
 
-        if (Interacted.selection.name == "Gate")
+        if (ISO.CanBePickedUp == false)
         {
-            if(BM.StickGet == false)
-            {
-                npc = Interacted.selection.GetComponent<NPC>();
-                if (npc != null)
+            WorldSlot.SetActive(true);
+            npc = Interacted.selection.GetComponent<NPC>();
+            if (npc != null)
                 {
                     StartCoroutine(DialogueCheck(npc, Interacted.selection));
                     return;
                 }
-            }
-            WorldSlot.SetActive(true);
         }
-        if (Interacted.selection.name == "Vase")
-        {
-            if (BM.StickGet == false)
-            {
-                Debug.Log("Yeet");
-            }
-            WorldSlot.SetActive(true);
-        }
-
-        if (Interacted.selection.name == "Door")
-        {
-            if (BM.StickFixed == false)
-            {
-                npc = Interacted.selection.GetComponent<NPC>();
-                if (npc != null)
-                {
-                    StartCoroutine(DialogueCheck(npc, Interacted.selection));
-                    return;
-                }
-            }
-            WorldSlot.SetActive(true);
-        }
-
+        
         if (ISO.CanBePickedUp == false)
         {
             return;
@@ -181,25 +158,17 @@ public class Interactables : MonoBehaviour
         {
             Inventory?.AddItem(pickup.ISO);
 
-            if (pickup.ISO.ItemName == "Stick" && BM != null)
-            {
-                BM.StickGet = true;
-
+            
                 npc = Interacted.selection.GetComponent<NPC>();
                 if (npc != null)
                 {
                     StartCoroutine(DialogueCheck(npc, Interacted.selection));
                     return;
                 }
-
-              
-            }
-
-            if (pickup.ISO.ItemName == "Tape" && BM != null)
-            {
-                BM.TapeGet = true;
-            }
-
+                if (pickup.ISO.ItemName == "Tape" && BM != null)
+                {
+                    BM.TapeGet = true;
+                }
             Interacted.selection.SetActive(false);
             Interacted.selection = null;
             return;
@@ -213,7 +182,7 @@ public class Interactables : MonoBehaviour
     private IEnumerator DialogueCheck(NPC npc, GameObject item)
     {
         item.GetComponent<SpriteRenderer>().enabled = false;
-
+        Debug.Log("Play");
         npc.StartDialogue();
 
         while (npc.isDialogueActive)
@@ -226,6 +195,7 @@ public class Interactables : MonoBehaviour
         }
         else if (ISO.CanBePickedUp == true)
         {
+            item.GetComponent<SpriteRenderer>().enabled = false;
             item.SetActive(false);
         }
             
