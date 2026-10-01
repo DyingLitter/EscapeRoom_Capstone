@@ -122,10 +122,12 @@ public class Interactables : MonoBehaviour
     {
         if (Interacted.selection == null || Picked) return;
         
-        if (Interacted.selection.name == "Inventory")
-        {
+        
+            if (WorldSlot == null)
+            {
             
-        }
+            }
+        
         else
         {
             Picked = true;
@@ -148,10 +150,7 @@ public class Interactables : MonoBehaviour
                 }
         }
         
-        if (ISO.CanBePickedUp == false)
-        {
-            return;
-        }
+        
 
         
         if (pickup != null && pickup.ISO != null && pickup.ISO.CanBePickedUp == true)

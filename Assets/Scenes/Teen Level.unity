@@ -1281,7 +1281,7 @@ Transform:
   m_GameObject: {fileID: 428310391}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.9153423, y: -0.36, z: -0.40000057}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1556,7 +1556,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Interacted: {fileID: 0}
   Pickable: 0
-  WorldItem: 0
   Picked: 0
   ISO: {fileID: 11400000, guid: 1b9a7bcb92038ea46a2705827d207a56, type: 2}
   dialogue: {fileID: 0}
@@ -15935,7 +15934,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Interacted: {fileID: 0}
   Pickable: 0
-  WorldItem: 0
   Picked: 0
   ISO: {fileID: 11400000, guid: 02054349fcf962e4ebacf4ebffbb0555, type: 2}
   dialogue: {fileID: 0}
