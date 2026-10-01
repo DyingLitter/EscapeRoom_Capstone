@@ -85,12 +85,12 @@ public class NPCDialogue : ScriptableObject
     public void TriggerWorldChange(string action)
     {
         NPC npc = GameObject.FindAnyObjectByType<NPC>();
-        GameObject CutCont = FindAnyObjectByType<GameObject>();
-        Animator camani = CutCont.GetComponent<Animator>();
+        GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+        Animator camani = camera.GetComponentInParent<Animator>();
 
         if (action == ("Fade"))
         {
-            camani.SetTrigger("Fade");
+            camani.Play("CutFade");
         }
     }
 }
