@@ -25,8 +25,8 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 2.41
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.7058824, g: 0.3447255, b: 0.30980393, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 0b7f74a8b3b6dae4995c1b57438d88a7, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -6176,6 +6176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Interacted: {fileID: 8342997276746474159}
+  clickCursorTexture: {fileID: 0}
   myLayerMask:
     serializedVersion: 2
     m_Bits: 1011
@@ -7252,6 +7253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Interacted: {fileID: 8342997276746474159}
+  clickCursorTexture: {fileID: 0}
   myLayerMask:
     serializedVersion: 2
     m_Bits: 1011
@@ -7756,6 +7758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Interacted: {fileID: 8342997276746474159}
+  clickCursorTexture: {fileID: 0}
   myLayerMask:
     serializedVersion: 2
     m_Bits: 1011
