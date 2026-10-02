@@ -43,10 +43,6 @@ public class Interact : MonoBehaviour
 
                 if (_selection != selection.transform)
                 {
-                    Vector3 selectionpos = selection.transform.position;
-                    Vector3 screenPos = mainCamera.WorldToScreenPoint(selectionpos);
-                    screenPos.y += 70f; 
-
                     previousMaterial = selectionRenderer.material;
                     selectionRenderer.material = highlightMaterial;
                 }

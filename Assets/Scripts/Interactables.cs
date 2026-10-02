@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 public class Interactables : MonoBehaviour
 {
-    [SerializeField] private Interact Interacted;
+    [SerializeField] private Texture2D clickCursorTexture;
+    private Vector2 hotspot = Vector2.zero;
 
     private BabyLevelManager BM;
     private Canvas Canvas;
@@ -14,16 +15,14 @@ public class Interactables : MonoBehaviour
     private GameObject Player;
     private NPC npc;
 
-    [SerializeField] private Texture2D clickCursorTexture;
-    private Vector2 hotspot = Vector2.zero;
+    [SerializeField] private Material highlightMaterial;
+    private Material previousMaterial;
+    private static Interactables currentlyHighlighted;
 
     public LayerMask myLayerMask;
 
     public bool Pickable = false; 
-
-    
     [SerializeField] bool Picked = false;
-
     public ItemsSO ISO;
     [SerializeField] private NPC dialogue;
     [SerializeField] private string SceneName;
@@ -33,17 +32,9 @@ public class Interactables : MonoBehaviour
     public UnityEvent onClick;
     public void Start()
     {
-        Interacted = FindAnyObjectByType<Interact>();
         BM = FindAnyObjectByType<BabyLevelManager>();
         Inventory = FindAnyObjectByType<Inventory>();
-        if (Player == null)
-        {
-
-        }
-        else
-        {
-            Player = FindAnyObjectByType<PlayerController>().gameObject;
-        }
+        Player = FindAnyObjectByType<PlayerController>()?.gameObject;
         Canvas = FindAnyObjectByType<Canvas>();
         CanAni = Canvas.GetComponent<Animator>();
     }
@@ -53,71 +44,90 @@ public class Interactables : MonoBehaviour
         {
             HandleMouseClick();
         }
-
-        if (Pickable)
+       
+        if (Pickable == false)
         {
-            //ShowInteractionText();
+            currentlyHighlighted = null;
         }
     }
 
     private void OnMouseEnter()
     {
+        var selectionRenderer = GetComponent<Renderer>();
+        if (selectionRenderer == null) return;
+      
         if (Pickable)
         {
             Cursor.SetCursor(clickCursorTexture, hotspot, CursorMode.Auto);
+
+            if (currentlyHighlighted != this)
+            {
+                previousMaterial = selectionRenderer.material;
+                selectionRenderer.material = highlightMaterial;
+                currentlyHighlighted = this;   
+            }
+
+        }
+        else if (Pickable == false && tag == "NPC")
+        {
+            Cursor.SetCursor(clickCursorTexture, hotspot, CursorMode.Auto);
+            previousMaterial = selectionRenderer.material;
+            selectionRenderer.material = highlightMaterial;
+            currentlyHighlighted = this;
         }
     }
 
     private void OnMouseExit()
     {
         Cursor.SetCursor(null, hotspot, CursorMode.Auto);
+        RestoreMaterial();
+        currentlyHighlighted = null;
     }
 
     private void HandleMouseClick()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        //int layerMask = ~(1 << LayerMask.NameToLayer("IgnoreRaycast"));
-
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, myLayerMask, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, myLayerMask, QueryTriggerInteraction.Ignore))
         {
-            Debug.Log($"Raycast hit: {hit.collider.gameObject.name}");
-            Debug.Log($"Hit object transform: {hit.transform.name}");
-
             // Check the hit object first, then search parents
             Interactables clickedObject = hit.collider.GetComponent<Interactables>();
 
             if (clickedObject == null)
             {
-                Debug.Log("Script not on hit object, checking parents...");
                 clickedObject = hit.collider.GetComponentInParent<Interactables>();
             }
 
             if (clickedObject != null)
             {
+                clickedObject = hit.collider.GetComponentInParent<Interactables>();
+
                 Debug.Log($"Found Interactables on {clickedObject.gameObject.name}");
                 Debug.Log($"Pickable: {clickedObject.Pickable}");
                 Debug.Log($"ISO: {clickedObject.ISO?.name}");
 
+                bool isNpc = clickedObject.gameObject.CompareTag("NPC");
+
+                if (clickedObject.Pickable == false)
+                {
+                    
+                }
+
+                if (isNpc)
+                {
+                    if (clickedObject.dialogue != null && clickedObject.ISO.CanBePickedUp == false)
+                    {
+                        StartCoroutine(DialogueCheck(clickedObject.dialogue, clickedObject.gameObject));
+                    }
+                }
+                
                 if (clickedObject.Pickable)
                 {
-                    Interacted.selection = clickedObject.gameObject;
                     clickedObject.Interact();
                     Debug.Log("Interact called!");
                 }
-                else
-                {
-                    Debug.Log("Object not pickable (player not in range)");
-                }
+
             }
-            else
-            {
-                Debug.Log($"No Interactables script found on {hit.collider.gameObject.name} or its parents!");
-            }
-        }
-        else
-        {
-            Debug.Log("Raycast didn't hit anything");
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -131,15 +141,24 @@ public class Interactables : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!other.CompareTag("Player")) return;
+
+        Pickable = false;
+       
+    }
+
+    private void RestoreMaterial()
+    {
+        var r = GetComponent<Renderer>();
+        if (r != null && previousMaterial != null)
         {
-            Pickable = false;
+            r.material = previousMaterial;
         }
     }
 
     public void Interact()
     {
-        if (Interacted.selection == null || Picked) return;
+        if (Picked) return;
         
         if (WorldSlot != null)
         {
@@ -150,18 +169,17 @@ public class Interactables : MonoBehaviour
             Picked = true;
         }
 
-            var pickup = Interacted.selection.GetComponent<Interactables>();
-        ISO.InteractChecks();
+        var pickup = this;
 
         onClick?.Invoke();
 
         if (ISO.CanBePickedUp == false)
         {
             WorldSlot.SetActive(true);
-            npc = Interacted.selection.GetComponent<NPC>();
+            npc = gameObject.GetComponent<NPC>();
             if (npc != null)
                 {
-                    StartCoroutine(DialogueCheck(npc, Interacted.selection));
+                    StartCoroutine(DialogueCheck(npc, gameObject));
                     return;
                 }
         }
@@ -174,18 +192,17 @@ public class Interactables : MonoBehaviour
             Inventory?.AddItem(pickup.ISO);
 
             
-                npc = Interacted.selection.GetComponent<NPC>();
+                npc = gameObject.GetComponent<NPC>();
                 if (npc != null)
                 {
-                    StartCoroutine(DialogueCheck(npc, Interacted.selection));
+                    StartCoroutine(DialogueCheck(npc, gameObject));
                     return;
                 }
                 if (pickup.ISO.ItemName == "Tape" && BM != null)
                 {
                     BM.TapeGet = true;
                 }
-            Interacted.selection.SetActive(false);
-            Interacted.selection = null;
+            gameObject.SetActive(false);
             return;
 
         }
@@ -196,7 +213,23 @@ public class Interactables : MonoBehaviour
 
     private IEnumerator DialogueCheck(NPC npc, GameObject item)
     {
-        item.GetComponent<SpriteRenderer>().enabled = false;
+        if (ISO.CanBePickedUp == false)
+        {
+            if (WorldSlot == null)
+            {
+
+            }
+            else if (WorldSlot != null)
+            {
+                WorldSlot.SetActive(true);
+            }
+
+        }
+        if (ISO.CanBePickedUp == true)
+        {
+            item.GetComponent<SpriteRenderer>().enabled = false;
+        }
+
         Debug.Log("Play");
         npc.StartDialogue();
 
@@ -204,17 +237,16 @@ public class Interactables : MonoBehaviour
         {
             yield return null;
         }
+
         if (ISO.CanBePickedUp == false)
         {
-            WorldSlot.SetActive(true);
+            
         }
         else if (ISO.CanBePickedUp == true)
         {
-            item.GetComponent<SpriteRenderer>().enabled = false;
             item.SetActive(false);
         }
-            
-        Interacted.selection = null;
+       
     }
 
     public void OpenGate()

@@ -12,8 +12,8 @@ public class ItemsSO : ScriptableObject
     public GameObject ItemPrefab; //In-Game Object
     public bool CanBePickedUp;
     private PlayerController Player;
+    private Interactables Interacted;
     private NPC npc;
-    private Interact Interacted;
     private BabyLevelManager BM;
     private TeenLevelManager TM;
     private Inventory Inventory;
@@ -92,29 +92,5 @@ public class ItemsSO : ScriptableObject
                 return;
             }
         }
-    }
-
-    public void InteractChecks()
-    {
-        if (Player == null) Player = FindAnyObjectByType<PlayerController>();
-        if (Interacted == null) Interacted = FindAnyObjectByType<Interact>();
-        if (BM == null) BM = FindAnyObjectByType<BabyLevelManager>();
-        if (TM == null) TM = FindAnyObjectByType<TeenLevelManager>();
-        if (Inventory == null) Inventory = FindAnyObjectByType<Inventory>();
-
-      
-
-        if (Interacted.selection.name == "NPC")
-        {
-            npc = Interacted.selection.GetComponent<NPC>();
-            if (npc != null)
-            {
-                npc.InteractedWith(Interacted.selection.gameObject);
-            }
-        }
-
-      
-
-        return;
     }
 }

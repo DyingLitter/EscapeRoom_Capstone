@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public LayerMask TerrainLayer;
     public Rigidbody rb;
     public SpriteRenderer sr;
-    [SerializeField] Interact Interacted;
     [SerializeField] GameObject Inventory;
 
 
@@ -26,8 +25,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         PlayerRotateOnDir();
-        //InteractWObject();
-     
     }
 
     [SerializeField] private bool controlsReversed = false;

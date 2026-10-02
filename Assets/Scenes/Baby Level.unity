@@ -3751,7 +3751,6 @@ Transform:
   m_Children:
   - {fileID: 543450653269445701}
   - {fileID: 1786291654}
-  - {fileID: 469258886}
   - {fileID: 1788105723}
   - {fileID: 1605583832}
   - {fileID: 1913832530}
@@ -4748,6 +4747,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stick
       objectReference: {fileID: 0}
+    - target: {fileID: 8553619482867813406, guid: 57744c255ffdfca41824614af7ed2dcf, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8819252196083790334, guid: 57744c255ffdfca41824614af7ed2dcf, type: 3}
       propertyPath: ISO
       value: 
@@ -4765,8 +4768,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8819252196083790334, guid: 57744c255ffdfca41824614af7ed2dcf, type: 3}
+      propertyPath: highlightMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0586e932051570d4791556ec13f77e51, type: 2}
+    - target: {fileID: 8819252196083790334, guid: 57744c255ffdfca41824614af7ed2dcf, type: 3}
       propertyPath: myLayerMask.m_Bits
-      value: 1011
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8819252196083790334, guid: 57744c255ffdfca41824614af7ed2dcf, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.size
@@ -5037,8 +5044,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 423815803929414319, guid: acd762c78dfd5774fa4a36f423230acf, type: 3}
+      propertyPath: highlightMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 0586e932051570d4791556ec13f77e51, type: 2}
+    - target: {fileID: 423815803929414319, guid: acd762c78dfd5774fa4a36f423230acf, type: 3}
       propertyPath: myLayerMask.m_Bits
-      value: 1011
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 423815803929414319, guid: acd762c78dfd5774fa4a36f423230acf, type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.size
@@ -5077,12 +5088,24 @@ PrefabInstance:
       value: Tape
       objectReference: {fileID: 0}
     - target: {fileID: 3677847719352319568, guid: acd762c78dfd5774fa4a36f423230acf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.028138
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677847719352319568, guid: acd762c78dfd5774fa4a36f423230acf, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.028138
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677847719352319568, guid: acd762c78dfd5774fa4a36f423230acf, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.028138
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677847719352319568, guid: acd762c78dfd5774fa4a36f423230acf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.013
+      value: 0.584
       objectReference: {fileID: 0}
     - target: {fileID: 3677847719352319568, guid: acd762c78dfd5774fa4a36f423230acf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.074
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: 3677847719352319568, guid: acd762c78dfd5774fa4a36f423230acf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5115,6 +5138,10 @@ PrefabInstance:
     - target: {fileID: 3677847719352319568, guid: acd762c78dfd5774fa4a36f423230acf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757678442749509414, guid: acd762c78dfd5774fa4a36f423230acf, type: 3}
+      propertyPath: m_FlipX
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4757678442749509414, guid: acd762c78dfd5774fa4a36f423230acf, type: 3}
       propertyPath: m_Enabled
@@ -6134,11 +6161,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1786291654}
   - component: {fileID: 1786291655}
-  - component: {fileID: 1786291657}
   - component: {fileID: 1786291658}
+  - component: {fileID: 1786291657}
+  - component: {fileID: 1786291661}
   - component: {fileID: 1786291659}
   - component: {fileID: 1786291660}
-  - component: {fileID: 1786291661}
   m_Layer: 0
   m_Name: Vase
   m_TagString: Untagged
@@ -6161,6 +6188,7 @@ Transform:
   m_Children:
   - {fileID: 790282915}
   - {fileID: 687409816}
+  - {fileID: 469258886}
   m_Father: {fileID: 1099210305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1786291655
@@ -6175,8 +6203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161e2a8648e13234b9037f5750ba0af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Interacted: {fileID: 8342997276746474159}
-  clickCursorTexture: {fileID: 0}
+  clickCursorTexture: {fileID: 2800000, guid: b32f7c6e40a02ff46beb2164b31c451a, type: 3}
+  highlightMaterial: {fileID: 2100000, guid: 0586e932051570d4791556ec13f77e51, type: 2}
   myLayerMask:
     serializedVersion: 2
     m_Bits: 1011
@@ -6208,8 +6236,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 4, z: 3}
-  m_Center: {x: -2.589314, y: -1.049507, z: 4.593997}
+  m_Size: {x: 0.35471344, y: 1.9237647, z: 1.6823812}
+  m_Center: {x: -2.5918922, y: -1.7465723, z: 3.935188}
 --- !u!114 &1786291658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6325,7 +6353,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1099210305}
+    m_TransformParent: {fileID: 1786291654}
     m_Modifications:
     - target: {fileID: 7506165621738557, guid: 2c260854f6fc30544b965f2a2ea3ec6b, type: 3}
       propertyPath: m_Name
@@ -6393,15 +6421,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4310615656720776996, guid: 2c260854f6fc30544b965f2a2ea3ec6b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4310615656720776996, guid: 2c260854f6fc30544b965f2a2ea3ec6b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4310615656720776996, guid: 2c260854f6fc30544b965f2a2ea3ec6b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4310615656720776996, guid: 2c260854f6fc30544b965f2a2ea3ec6b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -7252,8 +7280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161e2a8648e13234b9037f5750ba0af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Interacted: {fileID: 8342997276746474159}
-  clickCursorTexture: {fileID: 0}
+  clickCursorTexture: {fileID: 2800000, guid: b32f7c6e40a02ff46beb2164b31c451a, type: 3}
+  highlightMaterial: {fileID: 2100000, guid: 0586e932051570d4791556ec13f77e51, type: 2}
   myLayerMask:
     serializedVersion: 2
     m_Bits: 1011
@@ -7757,8 +7785,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161e2a8648e13234b9037f5750ba0af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Interacted: {fileID: 8342997276746474159}
-  clickCursorTexture: {fileID: 0}
+  clickCursorTexture: {fileID: 2800000, guid: b32f7c6e40a02ff46beb2164b31c451a, type: 3}
+  highlightMaterial: {fileID: 2100000, guid: 0586e932051570d4791556ec13f77e51, type: 2}
   myLayerMask:
     serializedVersion: 2
     m_Bits: 1011
@@ -8567,9 +8595,7 @@ GameObject:
   - component: {fileID: 6627698013748908394}
   - component: {fileID: 5730088418018979396}
   - component: {fileID: 340513208460021647}
-  - component: {fileID: 8342997276746474160}
   - component: {fileID: 1750909212175202083}
-  - component: {fileID: 8342997276746474159}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -8622,7 +8648,6 @@ MonoBehaviour:
     m_Bits: 64
   rb: {fileID: 6627698013748908394}
   sr: {fileID: 5064260440566982066}
-  Interacted: {fileID: 8342997276746474159}
   Inventory: {fileID: 1843152787}
   controlsReversed: 0
 --- !u!23 &5861394472401577314
@@ -9237,10 +9262,10 @@ MonoBehaviour:
   onCorrectItemPlaced:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2115837284}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
+      - m_Target: {fileID: 2115837290}
+        m_TargetAssemblyTypeName: Interactables, Assembly-CSharp
+        m_MethodName: OpenGate
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9292,43 +9317,6 @@ Transform:
   - {fileID: 2424018700201855060}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8342997276746474159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5250189119268250394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b743896913a64e42b457d4a5fa0c5fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selection: {fileID: 0}
-  TouchZone: {fileID: 8342997276746474160}
-  highlightMaterial: {fileID: 2100000, guid: 0586e932051570d4791556ec13f77e51, type: 2}
-  _selection: {fileID: 0}
---- !u!65 &8342997276746474160
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5250189119268250394}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.4642682, y: 2.9567137, z: 1}
-  m_Center: {x: 0.2321341, y: 1.0667114, z: 0}
 --- !u!33 &8401952776875398574
 MeshFilter:
   m_ObjectHideFlags: 0
