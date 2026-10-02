@@ -62,7 +62,10 @@ public class Interactables : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        Cursor.SetCursor(clickCursorTexture, hotspot, CursorMode.Auto);
+        if (Pickable)
+        {
+            Cursor.SetCursor(clickCursorTexture, hotspot, CursorMode.Auto);
+        }
     }
 
     private void OnMouseExit()

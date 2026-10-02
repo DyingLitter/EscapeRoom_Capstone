@@ -54,7 +54,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnDrag(PointerEventData eventData)
     {
         if (!isLeftDragging) return;
-
+        Cursor.SetCursor(clickCursorTexture, hotspot, CursorMode.Auto);
         mouseButtonReleased = false;
 
         if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
@@ -72,7 +72,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (!isLeftDragging) return;
         isLeftDragging = false;
         Debug.Log("End Drag");
-
+        Cursor.SetCursor(null, hotspot, CursorMode.Auto);
         canvasGroup.blocksRaycasts = true;
         if (image != null) image.raycastTarget = true;
         mouseButtonReleased = true;

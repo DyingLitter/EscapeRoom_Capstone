@@ -1,2 +1,16 @@
 fileFormatVersion: 2
 guid: 161e2a8648e13234b9037f5750ba0af0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Interacted: {instanceID: 0}
+  - clickCursorTexture: {fileID: 2800000, guid: b32f7c6e40a02ff46beb2164b31c451a, type: 3}
+  - ISO: {instanceID: 0}
+  - dialogue: {instanceID: 0}
+  - WorldSlot: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
