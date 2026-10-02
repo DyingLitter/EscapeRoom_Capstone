@@ -47,11 +47,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Interacted: {fileID: 0}
+  clickCursorTexture: {fileID: 2800000, guid: b32f7c6e40a02ff46beb2164b31c451a, type: 3}
+  myLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   Pickable: 0
+  Picked: 0
   ISO: {fileID: 11400000, guid: 4b605ae62a25c8447990b1cdeb9b2532, type: 2}
   dialogue: {fileID: 0}
   SceneName: 
   WorldSlot: {fileID: 0}
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!212 &8355447829454414676
 SpriteRenderer:
   m_ObjectHideFlags: 0

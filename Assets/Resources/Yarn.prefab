@@ -92,6 +92,7 @@ MonoBehaviour:
   image: {fileID: 8005447874657985946}
   CanBeOpened: 0
   Items: {fileID: 11400000, guid: 369beb45ae376bf42a54a5e6037af7cf, type: 2}
+  clickCursorTexture: {fileID: 2800000, guid: b32f7c6e40a02ff46beb2164b31c451a, type: 3}
   parentAfterDrag: {fileID: 0}
 --- !u!61 &1813964567561654371
 BoxCollider2D:

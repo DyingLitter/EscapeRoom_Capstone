@@ -5295,6 +5295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Interacted: {fileID: 0}
+  clickCursorTexture: {fileID: 0}
   myLayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -12209,6 +12210,10 @@ PrefabInstance:
       propertyPath: WorldItem
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2751771106902763575, guid: 6484c03d7d032cd41b6c04cb416b9612, type: 3}
+      propertyPath: clickCursorTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: b32f7c6e40a02ff46beb2164b31c451a, type: 3}
     - target: {fileID: 5674745081588346766, guid: 6484c03d7d032cd41b6c04cb416b9612, type: 3}
       propertyPath: m_Size.x
       value: 84.14368
@@ -17485,6 +17490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Interacted: {fileID: 0}
+  clickCursorTexture: {fileID: 2800000, guid: b32f7c6e40a02ff46beb2164b31c451a, type: 3}
   myLayerMask:
     serializedVersion: 2
     m_Bits: 1011
@@ -17969,6 +17975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Interacted: {fileID: 0}
+  clickCursorTexture: {fileID: 2800000, guid: b32f7c6e40a02ff46beb2164b31c451a, type: 3}
   myLayerMask:
     serializedVersion: 2
     m_Bits: 0

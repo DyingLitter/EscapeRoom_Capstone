@@ -1,12 +1,10 @@
 using System.Collections;
-using System;
-using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-public class Interactables : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Interactables : MonoBehaviour
 {
     [SerializeField] private Interact Interacted;
 
@@ -15,6 +13,9 @@ public class Interactables : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private Inventory Inventory;
     private GameObject Player;
     private NPC npc;
+
+    [SerializeField] private Texture2D clickCursorTexture;
+    private Vector2 hotspot = Vector2.zero;
 
     public LayerMask myLayerMask;
 
@@ -27,22 +28,6 @@ public class Interactables : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField] private NPC dialogue;
     [SerializeField] private string SceneName;
     [SerializeField] private GameObject WorldSlot;
-
-    // Native Windows API setup
-    [DllImport("user32.dll", EntryPoint = "LoadCursor")]
-    private static extern IntPtr LoadCursor(IntPtr hInstance, int lpCursorName);
-
-    [DllImport("user32.dll", EntryPoint = "SetCursor")]
-    private static extern IntPtr SetCursor(IntPtr hCursor);
-
-    // Standard Windows Cursor IDs
-    private const int IDC_ARROW = 32512;
-    private const int IDC_HAND = 32649;
-
-    private IntPtr handCursor;
-    private IntPtr arrowCursor;
-    private bool isHovering = false;
-
     private Animator CanAni;
 
     public UnityEvent onClick;
@@ -51,10 +36,6 @@ public class Interactables : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         Interacted = FindAnyObjectByType<Interact>();
         BM = FindAnyObjectByType<BabyLevelManager>();
         Inventory = FindAnyObjectByType<Inventory>();
-
-        handCursor = LoadCursor(IntPtr.Zero, IDC_HAND);
-        arrowCursor = LoadCursor(IntPtr.Zero, IDC_ARROW);
-
         if (Player == null)
         {
 
@@ -68,11 +49,6 @@ public class Interactables : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
     void Update()
     {
-        if (isHovering)
-        {
-            SetCursor(handCursor);
-        }
-
         if (Input.GetMouseButtonDown(0))
         {
             HandleMouseClick();
@@ -84,15 +60,14 @@ public class Interactables : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    private void OnMouseEnter()
     {
-        isHovering = true;
+        Cursor.SetCursor(clickCursorTexture, hotspot, CursorMode.Auto);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    private void OnMouseExit()
     {
-        isHovering = false;
-        SetCursor(arrowCursor);
+        Cursor.SetCursor(null, hotspot, CursorMode.Auto);
     }
 
     private void HandleMouseClick()

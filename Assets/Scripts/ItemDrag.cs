@@ -4,12 +4,16 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform))]
-public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
+public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Image image;
     public bool CanBeOpened;
     [SerializeField] private ItemsSO Items;
     public static bool mouseButtonReleased;
+
+    [SerializeField] private Texture2D clickCursorTexture;
+    private Vector2 hotspot = Vector2.zero;
+
     [HideInInspector] public Transform parentAfterDrag;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
@@ -32,7 +36,6 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (eventData.button != PointerEventData.InputButton.Left) return;
 
         isLeftDragging = true;
-
         Debug.Log("Begin Drag");
         parentAfterDrag = transform.parent;
 
@@ -68,7 +71,6 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if (!isLeftDragging) return;
         isLeftDragging = false;
-
         Debug.Log("End Drag");
 
         canvasGroup.blocksRaycasts = true;
@@ -109,4 +111,16 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         TM.CanvasScreen.SetActive(!TM.CanvasScreen.activeSelf);
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (isLeftDragging) return; // keep drag cursor when dragging
+        var tex = clickCursorTexture != null ? clickCursorTexture : clickCursorTexture;
+        Cursor.SetCursor(tex, hotspot, CursorMode.Auto);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (isLeftDragging) return;
+        Cursor.SetCursor(null, hotspot, CursorMode.Auto);
+    }
 }
