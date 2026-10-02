@@ -583,9 +583,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.01
       objectReference: {fileID: 0}
+    - target: {fileID: -445816144720959184, guid: 9b48569e8e06bde43bf88f7c45c978b9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9b48569e8e06bde43bf88f7c45c978b9, type: 3}
       propertyPath: m_Name
       value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9b48569e8e06bde43bf88f7c45c978b9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2550463727306718371, guid: 9b48569e8e06bde43bf88f7c45c978b9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16769,7 +16781,7 @@ Transform:
   m_GameObject: {fileID: 2271968641297292320}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.76, y: 0.37, z: -16.22}
+  m_LocalPosition: {x: -32.76, y: 1.07, z: -16.22}
   m_LocalScale: {x: 8.9041, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
