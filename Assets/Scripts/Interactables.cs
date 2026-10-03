@@ -145,7 +145,7 @@ public class Interactables : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.CompareTag("Player"))
+        if (!other.CompareTag("Player")) ;
         {
             Pickable = false;
             if (Pickable == false)
