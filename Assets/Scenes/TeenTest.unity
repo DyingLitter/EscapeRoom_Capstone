@@ -15656,7 +15656,6 @@ GameObject:
   - component: {fileID: 4452506440458528160}
   - component: {fileID: 3599730393909747553}
   - component: {fileID: 3750788635974600253}
-  - component: {fileID: 5483996193364216762}
   - component: {fileID: 546049976852933334}
   - component: {fileID: 1024432346848760386}
   m_Layer: 10
@@ -15666,22 +15665,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5483996193364216762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5483996193364216761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b743896913a64e42b457d4a5fa0c5fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selection: {fileID: 0}
-  TouchZone: {fileID: 546049976852933334}
-  highlightMaterial: {fileID: 2100000, guid: 0586e932051570d4791556ec13f77e51, type: 2}
-  _selection: {fileID: 0}
 --- !u!1 &5497821014986508755
 GameObject:
   m_ObjectHideFlags: 0

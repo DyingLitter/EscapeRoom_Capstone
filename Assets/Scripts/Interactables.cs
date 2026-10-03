@@ -10,6 +10,7 @@ public class Interactables : MonoBehaviour
     private Vector2 hotspot = Vector2.zero;
 
     private BabyLevelManager BM;
+    private TeenLevelManager TM;
     private Canvas Canvas;
     private Inventory Inventory;
     private GameObject Player;
@@ -33,6 +34,7 @@ public class Interactables : MonoBehaviour
     public void Start()
     {
         BM = FindAnyObjectByType<BabyLevelManager>();
+        TM = FindAnyObjectByType<TeenLevelManager>();
         Inventory = FindAnyObjectByType<Inventory>();
         Player = FindAnyObjectByType<PlayerController>()?.gameObject;
         Canvas = FindAnyObjectByType<Canvas>();
@@ -127,6 +129,8 @@ public class Interactables : MonoBehaviour
                     Debug.Log("Interact called!");
                 }
 
+               
+
             }
         }
     }
@@ -141,9 +145,16 @@ public class Interactables : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player"))
+        {
+            Pickable = false;
+            if (Pickable == false)
+            {
+                Canvas.GetComponent<Animator>().SetTrigger("CloseInv");
 
-        Pickable = false;
+                TM.BirdCage.SetActive(false);
+            }
+        }
        
     }
 
