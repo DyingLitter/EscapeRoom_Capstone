@@ -1611,6 +1611,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305536200}
   m_CullTransparentMesh: 1
+--- !u!224 &1376603889 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2698750273155509230, guid: 9977814301894844d8578397e800c7db, type: 3}
+  m_PrefabInstance: {fileID: 2405603995087616949}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1668450508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,7 +1716,7 @@ MonoBehaviour:
   dialogueText2: {fileID: 7156889675472750077}
   portraitImage2: {fileID: 6824378802320424526}
   dimFactor: 0.5
-  choiceContainer: {fileID: 0}
+  choiceContainer: {fileID: 1376603889}
   choiceButtonPrefab: {fileID: 5277829860051314340, guid: 4676da988641cfb4c8f4c94e962123a2, type: 3}
   onDialogueTextClicked:
     m_PersistentCalls:
@@ -1866,6 +1871,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7c4bd7058c7d65347b428bc428f8ec02, type: 3}
+    - target: {fileID: 2698750273155509230, guid: 9977814301894844d8578397e800c7db, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 556.5948
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698750273155509230, guid: 9977814301894844d8578397e800c7db, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 491.6046
+      objectReference: {fileID: 0}
     - target: {fileID: 3030705642261075167, guid: 9977814301894844d8578397e800c7db, type: 3}
       propertyPath: m_IsActive
       value: 0
