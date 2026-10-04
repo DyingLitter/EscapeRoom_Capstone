@@ -15,18 +15,18 @@ MonoBehaviour:
   npcInfo:
     npcName: 
     portrait: {fileID: 0}
-  playerPortrait: {fileID: 21300000, guid: 9122e3672173ab448b4c910a4ddc27ea, type: 3}
+  playerPortrait: {fileID: 21300000, guid: 02185d59f663a044989e372fb7775c93, type: 3}
   dialogueLines:
   - speaker: 1
-    text: Am I hungry tho and also
+    text: Wonder if I have enough time to whip up a quick snack...
     endAction: 
   - speaker: 1
-    text: If I fire this up I might risk burning the house down. Better leave this
-      alone
+    text: Nevermind, Mum pays too much attention on what comes in and out of the
+      fridge.
     endAction: 
   choices: []
   autoProgressDelay: 2
-  textSpeed: 0.01
+  textSpeed: 0.05
   OneTimeDialogue: 0
   IsPassiveDialogue: 1
   autoProgress: 1

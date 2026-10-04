@@ -11,13 +11,16 @@ public class NPC : MonoBehaviour
     public bool isTyping, isDialogueActive;
     private PlayerController player;
     [SerializeField] Canvas canvas;
+
+    private static NPC activeDialogueNPC;
+
     private void Start()
     {
         dialogueUI = DialogueController.instance;
         player = FindAnyObjectByType<PlayerController>();
     }
 
-    public bool CanInteract() => !isDialogueActive;
+    public bool CanInteract() => !isDialogueActive && (activeDialogueNPC == null || activeDialogueNPC == this);
 
     public void InteractedWith(GameObject NPC)
     {
@@ -26,7 +29,12 @@ public class NPC : MonoBehaviour
             return;
         }
 
-        if (!isDialogueActive)
+        if (!CanInteract())
+        {
+            return;
+        }
+
+        if (isDialogueActive == false)
         {
             StartDialogue();
             return;
@@ -36,8 +44,6 @@ public class NPC : MonoBehaviour
         {
             StopAllCoroutines();
             DisplayLineText(dialogueData.dialogueLines[dialogueIndex].text);
-            isTyping = false;
-
             isTyping = false;
         }
         else
@@ -49,6 +55,14 @@ public class NPC : MonoBehaviour
 
     public void StartDialogue() 
     {
+        if (activeDialogueNPC != null && activeDialogueNPC != this)
+        {
+            activeDialogueNPC.EndDialogue();
+            return;
+        }
+        
+        activeDialogueNPC = this;
+
         isDialogueActive = true;
         dialogueIndex = 0;
         if (dialogueData.IsPassiveDialogue == false && player != null)
@@ -194,6 +208,8 @@ public class NPC : MonoBehaviour
         StopAllCoroutines();
         isDialogueActive = false;
 
+        if (activeDialogueNPC == this) activeDialogueNPC = null;
+
         if (player != null)
         {
            // player.speed = 4;
@@ -216,6 +232,8 @@ public class NPC : MonoBehaviour
     {
         dialogueUI.SetDialogueText("");
         dialogueUI.SetDialogueText2("");
+
+        if (activeDialogueNPC == this) activeDialogueNPC = null;
 
     }
 

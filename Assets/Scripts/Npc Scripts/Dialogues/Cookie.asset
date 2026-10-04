@@ -29,6 +29,6 @@ MonoBehaviour:
   choices: []
   autoProgressDelay: 2
   textSpeed: 0.05
-  OneTimeDialogue: 1
+  OneTimeDialogue: 0
   IsPassiveDialogue: 1
   autoProgress: 1

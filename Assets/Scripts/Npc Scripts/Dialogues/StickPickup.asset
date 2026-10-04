@@ -15,14 +15,14 @@ MonoBehaviour:
   npcInfo:
     npcName: 
     portrait: {fileID: 0}
-  playerPortrait: {fileID: 21300000, guid: 37b3b3c152c888c4b910778ce320b5a3, type: 3}
+  playerPortrait: {fileID: 21300000, guid: 9122e3672173ab448b4c910a4ddc27ea, type: 3}
   dialogueLines:
   - speaker: 1
-    text: Ah, I could use this...
+    text: Ga Ga... (Ah, I could use this...)
     endAction: 
   choices: []
   autoProgressDelay: 1
-  textSpeed: 0.001
+  textSpeed: 0.05
   OneTimeDialogue: 0
   IsPassiveDialogue: 1
   autoProgress: 1

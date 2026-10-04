@@ -15,20 +15,17 @@ MonoBehaviour:
   npcInfo:
     npcName: 
     portrait: {fileID: 0}
-  playerPortrait: {fileID: 21300000, guid: 9122e3672173ab448b4c910a4ddc27ea, type: 3}
+  playerPortrait: {fileID: 21300000, guid: 02185d59f663a044989e372fb7775c93, type: 3}
   dialogueLines:
   - speaker: 1
-    text: It's Journey to the West
+    text: It's Journey to the West.
     endAction: 
   - speaker: 1
-    text: I think we imported this from China but the story is so good though
-    endAction: 
-  - speaker: 1
-    text: Might have to snuck out some time later for the DVD of this film
+    text: The movie was imported from China but the story was pretty good.
     endAction: 
   choices: []
   autoProgressDelay: 1
-  textSpeed: 0.01
+  textSpeed: 0.05
   OneTimeDialogue: 0
   IsPassiveDialogue: 1
   autoProgress: 1

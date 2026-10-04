@@ -66,6 +66,12 @@ public class Inventory : MonoBehaviour
         if (SelectedItem.InventoryPrefab != null)
         {
             itemspawn = Instantiate(SelectedItem.InventoryPrefab, spawnPoint, false);
+            
+            itemspawn.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+            itemspawn.GetComponent<RectTransform>().localPosition = Vector3.zero;
+            itemspawn.GetComponent<RectTransform>().localRotation = Quaternion.identity;
+            itemspawn.GetComponent<RectTransform>().localScale = Vector3.one;
+            
             itemspawn.name = SelectedItem.ItemName;
         }
         else

@@ -15,20 +15,20 @@ MonoBehaviour:
   npcInfo:
     npcName: 
     portrait: {fileID: 0}
-  playerPortrait: {fileID: 21300000, guid: 9122e3672173ab448b4c910a4ddc27ea, type: 3}
+  playerPortrait: {fileID: 21300000, guid: 02185d59f663a044989e372fb7775c93, type: 3}
   dialogueLines:
   - speaker: 1
-    text: Oh the vases
+    text: It's Mum's vase collection...
     endAction: 
   - speaker: 1
-    text: Somehow mom kept them despite I broke a bunch of them when I was small
+    text: Which also includes the ones I broke during childhood.
     endAction: 
   - speaker: 1
-    text: What a great way to grow up
+    text: I don't know why she hasn't thrown them away...
     endAction: 
   choices: []
   autoProgressDelay: 1
-  textSpeed: 0.01
+  textSpeed: 0.05
   OneTimeDialogue: 0
   IsPassiveDialogue: 1
   autoProgress: 1
