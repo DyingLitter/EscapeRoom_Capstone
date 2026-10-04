@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f32f9d42d5c6094194fa9e37b5eb95a, type: 3}
-  m_Name: ParentsDoor
+  m_Name: Books
   m_EditorClassIdentifier: 
   npcInfo:
     npcName: 
@@ -18,16 +18,10 @@ MonoBehaviour:
   playerPortrait: {fileID: 21300000, guid: 9122e3672173ab448b4c910a4ddc27ea, type: 3}
   dialogueLines:
   - speaker: 1
-    text: 'It''s my parent''s room. '
+    text: Books, somehow I still have a bunch of them
     endAction: 
   - speaker: 1
-    text: Might not be the brightest idea to unlock it
-    endAction: 
-  - speaker: 1
-    text: If mom comes out that's fine but if dad came out then I fear...
-    endAction: 
-  - speaker: 1
-    text: I may not see tomorrow
+    text: Not a big reader myself but I did finished half of these
     endAction: 
   choices: []
   autoProgressDelay: 2
