@@ -6215,10 +6215,21 @@ MonoBehaviour:
   ISO: {fileID: 11400000, guid: b8b704caedd003a40a4b73773343c777, type: 2}
   dialogue: {fileID: 1786291658}
   SceneName: 
-  WorldSlot: {fileID: 469258885}
   onClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 469258885}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!65 &1786291657
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7402,7 +7413,6 @@ MonoBehaviour:
   ISO: {fileID: 11400000, guid: 5eca395b972255343abebb69f47998e0, type: 2}
   dialogue: {fileID: 2115837289}
   SceneName: 
-  WorldSlot: {fileID: 7506165499290683}
   onClick:
     m_PersistentCalls:
       m_Calls:
@@ -7417,6 +7427,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7506165499290683}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!65 &2115837291
 BoxCollider:
@@ -8134,10 +8156,21 @@ MonoBehaviour:
   ISO: {fileID: 11400000, guid: 5eca395b972255343abebb69f47998e0, type: 2}
   dialogue: {fileID: 919132147985004997}
   SceneName: 
-  WorldSlot: {fileID: 2023574323}
   onClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2023574323}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!65 &919132147985004999
 BoxCollider:
   m_ObjectHideFlags: 0

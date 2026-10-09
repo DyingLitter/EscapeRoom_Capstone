@@ -27,10 +27,10 @@ public class Interactables : MonoBehaviour
     public ItemsSO ISO;
     [SerializeField] private NPC dialogue;
     [SerializeField] private string SceneName;
-    [SerializeField] private GameObject WorldSlot;
     private Animator CanAni;
 
     public UnityEvent onClick;
+
     public void Start()
     {
         BM = FindAnyObjectByType<BabyLevelManager>();
@@ -110,11 +110,6 @@ public class Interactables : MonoBehaviour
 
                 bool isNpc = clickedObject.gameObject.CompareTag("NPC");
 
-                if (clickedObject.Pickable == false)
-                {
-                    
-                }
-
                 if (isNpc)
                 {
                     if (clickedObject.dialogue != null && clickedObject.ISO.CanBePickedUp == false)
@@ -145,7 +140,7 @@ public class Interactables : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.CompareTag("Player")) ;
+        if (!other.CompareTag("Player")) return;
         {
             Pickable = false;
             if (Pickable == false)
@@ -153,6 +148,7 @@ public class Interactables : MonoBehaviour
                 Canvas.GetComponent<Animator>().SetTrigger("CloseInv");
 
                 TM.BirdCage.SetActive(false);
+                TM.KeyDrawer.SetActive(false);
             }
         }
        
@@ -171,11 +167,7 @@ public class Interactables : MonoBehaviour
     {
         if (Picked) return;
         
-        if (WorldSlot != null)
-        {
-            
-        }
-        else if (ISO.CanBePickedUp == true)
+        if (ISO.CanBePickedUp == true)
         {
             Picked = true;
         }
@@ -186,7 +178,6 @@ public class Interactables : MonoBehaviour
 
         if (ISO.CanBePickedUp == false)
         {
-            WorldSlot.SetActive(true);
             npc = gameObject.GetComponent<NPC>();
             if (npc != null)
                 {
@@ -224,18 +215,7 @@ public class Interactables : MonoBehaviour
 
     private IEnumerator DialogueCheck(NPC npc, GameObject item)
     {
-        if (ISO.CanBePickedUp == false)
-        {
-            if (WorldSlot == null)
-            {
 
-            }
-            else if (WorldSlot != null)
-            {
-                WorldSlot.SetActive(true);
-            }
-
-        }
         if (ISO.CanBePickedUp == true)
         {
             item.GetComponent<SpriteRenderer>().enabled = false;
@@ -270,11 +250,14 @@ public class Interactables : MonoBehaviour
         gatecol.enabled = false;
     }
 
-   
-
     private void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void KeyDrawer()
+    {
+        TM.KeyDrawer.SetActive(true);
     }
 
     private void SceneTransition()
