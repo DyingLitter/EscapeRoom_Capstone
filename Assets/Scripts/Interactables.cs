@@ -48,7 +48,7 @@ public class Interactables : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             HandleMouseClick();
-            audioSource.Play();
+
         }
        
         if (Pickable == false)
@@ -174,6 +174,7 @@ public class Interactables : MonoBehaviour
         if (ISO.CanBePickedUp == true)
         {
             Picked = true;
+            audioSource.Play();
         }
 
         var pickup = this;
