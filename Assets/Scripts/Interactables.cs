@@ -28,6 +28,8 @@ public class Interactables : MonoBehaviour
     [SerializeField] private NPC dialogue;
     [SerializeField] private string SceneName;
     private Animator CanAni;
+    
+    public AudioSource audioSource;
 
     public UnityEvent onClick;
 
@@ -39,12 +41,14 @@ public class Interactables : MonoBehaviour
         Player = FindAnyObjectByType<PlayerController>()?.gameObject;
         Canvas = FindAnyObjectByType<Canvas>();
         CanAni = Canvas.GetComponent<Animator>();
+        audioSource = Canvas.GetComponent<AudioSource>();  
     }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             HandleMouseClick();
+            audioSource.Play();
         }
        
         if (Pickable == false)
@@ -264,6 +268,7 @@ public class Interactables : MonoBehaviour
     {
         SceneManager.LoadScene(SceneName);
     }
+
 
   
 }

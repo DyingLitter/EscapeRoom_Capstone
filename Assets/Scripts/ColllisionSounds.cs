@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ColllisionSounds : MonoBehaviour
 {
-    private AudioSource source;
+    public AudioSource source;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
