@@ -17,6 +17,11 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             if (transform.childCount == 0)
             {
                 incomingItem.parentAfterDrag = transform;
+
+                incomingItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                incomingItem.GetComponent<RectTransform>().localPosition = Vector3.zero;
+                incomingItem.GetComponent<RectTransform>().localRotation = Quaternion.identity;
+                incomingItem.GetComponent<RectTransform>().localScale = Vector3.one;
             }
         }
     }
