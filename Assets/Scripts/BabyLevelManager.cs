@@ -9,11 +9,13 @@ public class BabyLevelManager : MonoBehaviour
     public bool TapeGet;
     [SerializeField] Inventory Inventory;
     public GameObject Tut2;
+    public AudioSource audioSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
         TapeGet = false;
+        audioSource = GetComponent<AudioSource>();
         
     }
 
@@ -29,7 +31,13 @@ public class BabyLevelManager : MonoBehaviour
             Tut2.SetActive(false);
         }
 
+        if (Inventory.HasItem("Stick (Fixed)"))
+        {
+            audioSource.Play();
+        }
     }
+
+
 
   
 }

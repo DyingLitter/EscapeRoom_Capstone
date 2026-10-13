@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7280127811732984179}
   - component: {fileID: 7939497947858758892}
   - component: {fileID: 6418073361830642479}
-  - component: {fileID: 8729695147550065004}
+  - component: {fileID: 4831710429028824579}
   m_Layer: 5
   m_Name: Stick (Fixed)
   m_TagString: Untagged
@@ -141,7 +141,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!82 &8729695147550065004
+--- !u!82 &4831710429028824579
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,7 +152,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 86f12ac56ced40b4f905876841176351, type: 3}
+  m_Resource: {fileID: 8300000, guid: 31b2ef9192815c1408d520831465fa31, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
