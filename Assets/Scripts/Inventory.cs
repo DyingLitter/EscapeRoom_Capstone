@@ -13,6 +13,8 @@ public class Inventory : MonoBehaviour
     private Interact Interacted;
     private BabyLevelManager BM;
 
+    private Image test;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,7 +25,7 @@ public class Inventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+       
     }
 
     public void AddItem(ItemsSO SelectedItem)
