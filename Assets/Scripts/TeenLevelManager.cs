@@ -9,24 +9,21 @@ public class TeenLevelManager : MonoBehaviour
     public GameObject BirdCage;
     public GameObject CanvasScreen;
     public GameObject KeyDrawer;
+    public Camera LivCam;
+    public Camera Clock;
     public bool KeyDrawerUnlocked;
-    public Image fadeScreen;
+    
 
-    public Animator Hour;
-    public Animator Minutes;
+    public Animator hour;
+    public Animator minutes;
+
+    public Animator fadeIn;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         KeyDrawerUnlocked = false;
-        StartCoroutine(StartFadeIn());
-        if(Hour != null)
-        {
-            Hour.SetTrigger("Start");
-        }
-        if(Minutes != null)
-        {
-            Minutes.SetTrigger("Start");
-        }
+        fadeIn.SetTrigger("Fade");
+        
     }
 
     // Update is called once per frame
@@ -39,9 +36,5 @@ public class TeenLevelManager : MonoBehaviour
     {
         KeyDrawerUnlocked = true;
     }
-    IEnumerator StartFadeIn()
-    {
-        yield return new WaitForSeconds(1f);
-        fadeScreen.CrossFadeAlpha(0f, 5f, false);
-    }
+    
 }

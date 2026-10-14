@@ -33,6 +33,8 @@ public class Interactables : MonoBehaviour
 
     public UnityEvent onClick;
 
+    public UnityEvent onExit;
+
     public void Start()
     {
         BM = FindAnyObjectByType<BabyLevelManager>();
@@ -149,13 +151,15 @@ public class Interactables : MonoBehaviour
             Pickable = false;
             if (Pickable == false)
             {
+              
                 Canvas.GetComponent<Animator>().SetTrigger("CloseInv");
 
                 TM.BirdCage.SetActive(false);
                 TM.KeyDrawer.SetActive(false);
+                
             }
         }
-       
+        onExit?.Invoke();
     }
 
     private void RestoreMaterial()
@@ -271,9 +275,10 @@ public class Interactables : MonoBehaviour
         TM.KeyDrawer.SetActive(true);
     }
 
-    private void SceneTransition()
+    IEnumerator SceneTransition()
     {
         SceneManager.LoadScene(SceneName);
+        yield return null;  
     }
 
 
