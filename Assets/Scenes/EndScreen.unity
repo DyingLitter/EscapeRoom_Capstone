@@ -443,8 +443,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: You Escaped!!!!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 324fb69bb9e1aa84bb625db4ad121aa8, type: 2}
-  m_sharedMaterial: {fileID: 7277471727946473818, guid: 324fb69bb9e1aa84bb625db4ad121aa8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9fe1dee9a185119449fac9a1d6a0c28b, type: 2}
+  m_sharedMaterial: {fileID: -8919831564475578163, guid: 9fe1dee9a185119449fac9a1d6a0c28b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -539,7 +539,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7277471727946473818, guid: 324fb69bb9e1aa84bb625db4ad121aa8, type: 2}
+  - {fileID: -8919831564475578163, guid: 9fe1dee9a185119449fac9a1d6a0c28b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -793,7 +793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1671789360
 RectTransform:
   m_ObjectHideFlags: 0
