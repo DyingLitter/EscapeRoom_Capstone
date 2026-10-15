@@ -147,6 +147,7 @@ public class Interactables : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         onExit?.Invoke();
+        Pickable = false;
     }
 
     private void RestoreMaterial()
