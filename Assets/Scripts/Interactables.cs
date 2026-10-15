@@ -146,6 +146,19 @@ public class Interactables : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (!other.CompareTag("Player")) return;
+        {
+            Pickable = false;
+            if (Pickable == false)
+            {
+              
+                Canvas.GetComponent<Animator>().SetTrigger("CloseInv");
+
+                TM.BirdCage.SetActive(false);
+                TM.KeyDrawer.SetActive(false);
+                
+            }
+        }
         onExit?.Invoke();
     }
 
