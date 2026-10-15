@@ -17,12 +17,12 @@ public class TeenLevelManager : MonoBehaviour
     public Animator hour;
     public Animator minutes;
 
-    public Animator fadeIn;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         KeyDrawerUnlocked = false;
-        fadeIn.SetTrigger("Fade");
+        
     }
 
     // Update is called once per frame
