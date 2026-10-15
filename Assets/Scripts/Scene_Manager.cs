@@ -23,6 +23,11 @@ public class Scene_Manager : MonoBehaviour
         Application.Quit();
     }
 
+    public void ReturnToTitle()
+    {
+        SceneManager.LoadScene("TitleScreen");
+    }
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
