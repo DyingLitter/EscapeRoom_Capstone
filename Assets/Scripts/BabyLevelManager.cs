@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections;
+using static System.TimeZoneInfo;
 public class BabyLevelManager : MonoBehaviour
 {
     public bool StickGet;
@@ -13,6 +15,8 @@ public class BabyLevelManager : MonoBehaviour
     public AudioSource audioSource;
     public Image fadeScreen;
     public NPC dialouge;
+    [SerializeReference] ItemsSO items;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,17 +32,16 @@ public class BabyLevelManager : MonoBehaviour
         if (TapeGet == true)
         {
             Tut2.SetActive(true);
+            audioSource.Play();
         }
         else
         {
             Tut2.SetActive(false);
         }
 
-        if (Inventory.HasItem("Stick (Fixed)"))
-        {
-            audioSource.Play();
-        }
+
     }
+
     IEnumerator StartFadeIn()
     {
         yield return new WaitForSeconds(1f);
@@ -47,4 +50,4 @@ public class BabyLevelManager : MonoBehaviour
 
 
 
-}
+    }
