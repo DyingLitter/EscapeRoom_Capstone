@@ -159,7 +159,7 @@ public class Interactables : MonoBehaviour
                 
             }
         }
-        onExit?.Invoke();
+        //onExit?.Invoke();
     }
 
     private void RestoreMaterial()

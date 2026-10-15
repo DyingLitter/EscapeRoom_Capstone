@@ -23,7 +23,6 @@ public class TeenLevelManager : MonoBehaviour
     {
         KeyDrawerUnlocked = false;
         fadeIn.SetTrigger("Fade");
-        
     }
 
     // Update is called once per frame
