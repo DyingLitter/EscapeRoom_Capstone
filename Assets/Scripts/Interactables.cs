@@ -35,6 +35,7 @@ public class Interactables : MonoBehaviour
 
     public UnityEvent onExit;
 
+    public UnityEvent onEnter;
     public void Start()
     {
         BM = FindAnyObjectByType<BabyLevelManager>();
@@ -137,10 +138,8 @@ public class Interactables : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            Pickable = true;
-        }
+        Pickable = true;
+        onEnter?.Invoke();
 
     }
 
