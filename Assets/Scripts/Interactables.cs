@@ -17,6 +17,7 @@ public class Interactables : MonoBehaviour
     private NPC npc;
 
     [SerializeField] private Material highlightMaterial;
+    [SerializeField] private Material npcMaterial;
     private Material previousMaterial;
     private static Interactables currentlyHighlighted;
 
@@ -63,6 +64,7 @@ public class Interactables : MonoBehaviour
     private void OnMouseEnter()
     {
         var selectionRenderer = GetComponent<Renderer>();
+        var npcRenderer = GetComponent<Renderer>();
         if (selectionRenderer == null) return;
       
         if (Pickable)
@@ -80,8 +82,8 @@ public class Interactables : MonoBehaviour
         else if (Pickable == false && tag == "NPC")
         {
             Cursor.SetCursor(clickCursorTexture, hotspot, CursorMode.Auto);
-            previousMaterial = selectionRenderer.material;
-            selectionRenderer.material = highlightMaterial;
+            previousMaterial = npcRenderer.material;
+            npcRenderer.material = npcMaterial;
             currentlyHighlighted = this;
         }
     }
