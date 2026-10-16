@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour
     [SerializeField] private float timeRemaining = 360;
     public bool timerIsRunning = false;
     [SerializeField] private TMP_Text timer;
-
+    
     public UnityEvent OnTimerEnd;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
