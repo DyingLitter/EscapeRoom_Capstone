@@ -2363,7 +2363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &306566724
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3876,7 +3876,6 @@ GameObject:
   m_Component:
   - component: {fileID: 480764698}
   - component: {fileID: 480764701}
-  - component: {fileID: 480764700}
   - component: {fileID: 480764699}
   m_Layer: 0
   m_Name: ClockCam
@@ -3945,14 +3944,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &480764700
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 480764697}
-  m_Enabled: 1
 --- !u!20 &480764701
 Camera:
   m_ObjectHideFlags: 0
@@ -10865,7 +10856,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1421285364}
   - component: {fileID: 1421285367}
-  - component: {fileID: 1421285366}
   - component: {fileID: 1421285365}
   m_Layer: 0
   m_Name: Camera
@@ -10934,14 +10924,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1421285366
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1421285363}
-  m_Enabled: 1
 --- !u!20 &1421285367
 Camera:
   m_ObjectHideFlags: 0
