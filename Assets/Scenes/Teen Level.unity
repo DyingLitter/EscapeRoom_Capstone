@@ -2363,7 +2363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &306566724
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15100,8 +15100,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "The bright silver key is for the shed. \n\nI left it in the drawer, if
-    someone loses it again they better start praying."
+  m_text: "The bright silver key is for the shed. \n\nI left it in the drawer with
+    the other keys, if someone loses it again they better start praying."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6f6496277c99eb747a8afe20228f567d, type: 2}
   m_sharedMaterial: {fileID: -8919831564475578163, guid: 6f6496277c99eb747a8afe20228f567d, type: 2}
