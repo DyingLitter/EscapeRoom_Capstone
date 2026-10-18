@@ -19,8 +19,9 @@ public class NPC : MonoBehaviour
 
     private void Start()
     {
-        dialogueUI = DialogueController.instance;
+        dialogueUI = DialogueController.instance ?? FindAnyObjectByType<DialogueController>();
         player = FindAnyObjectByType<PlayerController>();
+
 
         if (dialogueUI != null)
         {
@@ -165,6 +166,8 @@ public class NPC : MonoBehaviour
     }
     private void SetSpeakerInfo(NPCDialogue.Speaker speaker, Sprite portraitOverride)
     {
+        if (dialogueUI == null || dialogueData == null) return;
+
         if (speaker == NPCDialogue.Speaker.NPC)
         {
             var portrait = portraitOverride ?? dialogueData.npcInfo.portrait;

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcInfo:
     npcName: 
-    portrait: {fileID: 21300000, guid: 02185d59f663a044989e372fb7775c93, type: 3}
+    portrait: {fileID: 0}
   playerPortrait: {fileID: 21300000, guid: 02185d59f663a044989e372fb7775c93, type: 3}
   dialogueLines:
   - speaker: 1

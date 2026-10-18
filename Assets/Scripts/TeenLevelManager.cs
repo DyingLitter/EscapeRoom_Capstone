@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class TeenLevelManager : MonoBehaviour
 {
     [SerializeField] Inventory Inventory;
-    [SerializeField] NPC npc;
+    public NPC npc;
     public GameObject Desk;
     public GameObject BirdCage;
     public GameObject CanvasScreen;
@@ -23,14 +23,13 @@ public class TeenLevelManager : MonoBehaviour
     void Start()
     {
         KeyDrawerUnlocked = false;
-        npc.InteractedWith(gameObject);
-        
+        StartCoroutine(TriggerWhenDialogueReady());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator TriggerWhenDialogueReady()
     {
-
+        yield return null; // wait one frame so other Start/Awake run
+        if (npc != null) npc.InteractedWith(gameObject);
     }
 
     public void UnlockKeyDrawer()

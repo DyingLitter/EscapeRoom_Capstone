@@ -993,6 +993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickCursorTexture: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  npcMaterial: {fileID: 0}
   myLayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -1003,6 +1004,12 @@ MonoBehaviour:
   SceneName: Teen Level
   audioSource: {fileID: 0}
   onClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onExit:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnter:
     m_PersistentCalls:
       m_Calls: []
 --- !u!82 &879007721
@@ -1961,19 +1968,7 @@ MonoBehaviour:
   choiceButtonPrefab: {fileID: 5277829860051314340, guid: 4676da988641cfb4c8f4c94e962123a2, type: 3}
   onDialogueTextClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 879007717}
-        m_TargetAssemblyTypeName: NPC, Assembly-CSharp
-        m_MethodName: NextLine
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!4 &1743389461
 Transform:
   m_ObjectHideFlags: 0
