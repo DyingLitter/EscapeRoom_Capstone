@@ -20,7 +20,6 @@ public class BabyLevelManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
         TapeGet = false;
         audioSource = GetComponent<AudioSource>();
         dialouge.StartDialogue();
@@ -32,16 +31,12 @@ public class BabyLevelManager : MonoBehaviour
         if (TapeGet == true)
         {
             Tut2.SetActive(true);
-            audioSource.Play();
         }
         else
         {
             Tut2.SetActive(false);
         }
 
-
     }
-
-
 
     }
