@@ -18,7 +18,7 @@ MonoBehaviour:
   playerPortrait: {fileID: 21300000, guid: 9122e3672173ab448b4c910a4ddc27ea, type: 3}
   dialogueLines:
   - speaker: 1
-    text: Not this one. This is the toilet key
+    text: Not this one. This is not the right item
     endAction: 
   choices: []
   autoProgressDelay: 1
