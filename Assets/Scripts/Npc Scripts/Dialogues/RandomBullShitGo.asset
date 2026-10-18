@@ -18,10 +18,7 @@ MonoBehaviour:
   playerPortrait: {fileID: 21300000, guid: 9122e3672173ab448b4c910a4ddc27ea, type: 3}
   dialogueLines:
   - speaker: 1
-    text: 'Test 1 2 3 '
-    endAction: 
-  - speaker: 1
-    text: 123
+    text: Let's check the time
     endAction: 
   choices: []
   autoProgressDelay: 1
