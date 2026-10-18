@@ -14,12 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcInfo:
     npcName: 
-    portrait: {fileID: 0}
-  playerPortrait: {fileID: 0}
-  dialogueLines: []
+    portrait: {fileID: 21300000, guid: 02185d59f663a044989e372fb7775c93, type: 3}
+  playerPortrait: {fileID: 21300000, guid: 02185d59f663a044989e372fb7775c93, type: 3}
+  dialogueLines:
+  - speaker: 1
+    text: Right, its nearing 10pm, and the party starts in 30 minutes.
+    endAction: 
+  - speaker: 1
+    text: I've gotta figure out how to get out of here without alerting mum and dad.
+    endAction: 
+  - speaker: 1
+    text: I have some tools in my desk that could help with that.
+    endAction: 
   choices: []
   autoProgressDelay: 2
   textSpeed: 0.05
-  OneTimeDialogue: 0
-  IsPassiveDialogue: 0
-  autoProgress: 0
+  OneTimeDialogue: 1
+  IsPassiveDialogue: 1
+  autoProgress: 1

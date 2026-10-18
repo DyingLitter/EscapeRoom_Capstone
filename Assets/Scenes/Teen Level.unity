@@ -5330,6 +5330,7 @@ GameObject:
   - component: {fileID: 583200486}
   - component: {fileID: 583200487}
   - component: {fileID: 583200488}
+  - component: {fileID: 583200489}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5379,6 +5380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory: {fileID: 1254092381}
+  npc: {fileID: 583200489}
   Desk: {fileID: 1868611431}
   BirdCage: {fileID: 1741117071}
   CanvasScreen: {fileID: 480839769}
@@ -5413,19 +5415,7 @@ MonoBehaviour:
   choiceButtonPrefab: {fileID: 5277829860051314340, guid: 4676da988641cfb4c8f4c94e962123a2, type: 3}
   onDialogueTextClicked:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 583200487}
-        m_TargetAssemblyTypeName: DialogueController, Assembly-CSharp
-        m_MethodName: LineSkip
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &583200488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5439,6 +5429,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 994304690}
+--- !u!114 &583200489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583200482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1254f75fd031fa743a02517993bd62c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueData: {fileID: 11400000, guid: 86aa30fd2f844dd4099edd52ebdd8544, type: 2}
+  isTyping: 0
+  isDialogueActive: 0
+  canvas: {fileID: 0}
 --- !u!224 &584711912 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4310615656720776996, guid: 2c260854f6fc30544b965f2a2ea3ec6b, type: 3}
