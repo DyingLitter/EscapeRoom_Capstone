@@ -1,6 +1,8 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
@@ -8,6 +10,7 @@ public class NPC : MonoBehaviour
     public NPCDialogue dialogueData;
     private DialogueController dialogueUI;
     private int dialogueIndex;
+    private UnityAction dialogueClickAction;
     public bool isTyping, isDialogueActive;
     private PlayerController player;
     [SerializeField] Canvas canvas;
@@ -18,9 +21,18 @@ public class NPC : MonoBehaviour
     {
         dialogueUI = DialogueController.instance;
         player = FindAnyObjectByType<PlayerController>();
+
+        if (dialogueUI != null)
+        {
+            dialogueClickAction = () =>
+            {
+                if (activeDialogueNPC == this) InteractedWith(gameObject);
+            };
+            dialogueUI.onDialogueTextClicked.AddListener(dialogueClickAction);
+        }
     }
 
-    public bool CanInteract() => !isDialogueActive && (activeDialogueNPC == null || activeDialogueNPC == this);
+    public bool CanInteract() => (activeDialogueNPC == null || activeDialogueNPC == this);
 
     public void InteractedWith(GameObject NPC)
     {
@@ -235,6 +247,12 @@ public class NPC : MonoBehaviour
 
         if (activeDialogueNPC == this) activeDialogueNPC = null;
 
+    }
+
+    private void OnDestroy()
+    {
+        if (dialogueUI != null && dialogueClickAction != null)
+            dialogueUI.onDialogueTextClicked.RemoveListener(dialogueClickAction);
     }
 
     public void PlayerHide()

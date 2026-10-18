@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class TeenLevelManager : MonoBehaviour
 {
     [SerializeField] Inventory Inventory;
+    [SerializeField] NPC npc;
     public GameObject Desk;
     public GameObject BirdCage;
     public GameObject CanvasScreen;
@@ -22,6 +23,7 @@ public class TeenLevelManager : MonoBehaviour
     void Start()
     {
         KeyDrawerUnlocked = false;
+        npc.InteractedWith(gameObject);
         
     }
 
