@@ -5131,6 +5131,7 @@ GameObject:
   - component: {fileID: 1183239161}
   - component: {fileID: 1183239164}
   - component: {fileID: 1183239163}
+  - component: {fileID: 1183239165}
   m_Layer: 0
   m_Name: VaseLaugh
   m_TagString: Untagged
@@ -5148,7 +5149,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -23.5, y: 10.84, z: 61.95}
-  m_LocalScale: {x: 7.582, y: 7.582, z: 7.582}
+  m_LocalScale: {x: 7.013575, y: 7.582, z: 9.650369}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 790282915}
@@ -5263,6 +5264,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 1183239163}
+--- !u!65 &1183239165
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183239160}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1223773143 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 75a5dc6abdd543941ad85a4f6ba4e3a1, type: 3}
