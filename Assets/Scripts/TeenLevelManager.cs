@@ -24,6 +24,8 @@ public class TeenLevelManager : MonoBehaviour
     {
         KeyDrawerUnlocked = false;
         StartCoroutine(TriggerWhenDialogueReady());
+        hour.SetTrigger("Start");
+        minutes.SetTrigger("Start");
     }
 
     private IEnumerator TriggerWhenDialogueReady()

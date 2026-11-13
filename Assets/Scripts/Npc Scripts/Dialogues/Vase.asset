@@ -18,10 +18,10 @@ MonoBehaviour:
   playerPortrait: {fileID: 21300000, guid: 02185d59f663a044989e372fb7775c93, type: 3}
   dialogueLines:
   - speaker: 1
-    text: Mum bought this vase from some marketplace.
+    text: Babu babu...(Mum bought this vase from some marketplace.)
     endAction: 
   - speaker: 1
-    text: Would truly be a shame if someone knocked it over.
+    text: Goo gaa...(Would truly be a shame if someone knocked it over.)
     endAction: 
   choices: []
   autoProgressDelay: 2
