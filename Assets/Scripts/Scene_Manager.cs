@@ -29,6 +29,12 @@ public class Scene_Manager : MonoBehaviour
         SceneManager.LoadScene("TitleScreen");
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene(CurrentScene);
+    }
+
+
     public void Update()
     {
         
