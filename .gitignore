@@ -73,3 +73,8 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Fonts/chubby-crayon_TIMER/Blue.asset
+Assets/Fonts/chubby-crayon_TIMER/Yellow.asset
+Assets/Fonts/chubby-crayon_TIMER/ChubLine.asset
+Assets/Fonts/moyudan_Dialogues/Moyudan SDF.asset
+Assets/Fonts/chubby-crayon_TIMER/ChubbyCrayon-Regular SDF.asset

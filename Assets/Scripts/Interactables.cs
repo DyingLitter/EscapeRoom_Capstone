@@ -140,9 +140,12 @@ public class Interactables : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        
+
         Pickable = true;
         onEnter?.Invoke();
 
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -269,7 +272,10 @@ public class Interactables : MonoBehaviour
         SceneManager.LoadScene(SceneName);
         yield return null;  
     }
-
+    public void DestroyItem()
+    {
+        Destroy(gameObject);
+    }
 
   
 }
