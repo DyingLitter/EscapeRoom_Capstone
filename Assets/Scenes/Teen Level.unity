@@ -5303,7 +5303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d435b7ebc04d5794ea30228ad49e12ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: 
+  SceneName: Teen Level
 --- !u!4 &583200485
 Transform:
   m_ObjectHideFlags: 0
@@ -27082,6 +27082,14 @@ PrefabInstance:
     - target: {fileID: 481111649844852861, guid: 959113ea210a19948b1a89e1e53370e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186748829370707471, guid: 959113ea210a19948b1a89e1e53370e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 583200483}
+    - target: {fileID: 1186748829370707471, guid: 959113ea210a19948b1a89e1e53370e5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Restart
       objectReference: {fileID: 0}
     - target: {fileID: 2190200115530131115, guid: 959113ea210a19948b1a89e1e53370e5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
