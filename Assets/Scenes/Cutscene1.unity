@@ -827,7 +827,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 151.5, y: -468}
+  m_AnchoredPosition: {x: 170, y: -468}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &700915466
@@ -873,7 +873,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1430501478}
   m_HandleRect: {fileID: 0}
-  m_Direction: 0
+  m_Direction: 3
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
@@ -895,6 +895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skipBar: {fileID: 700915466}
   sceneManager: {fileID: 1266820283}
+  fillrate: 0.5
 --- !u!1 &742150284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1606,8 +1607,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -90.59985, y: -1.2999573}
-  m_SizeDelta: {x: 100, y: -50}
+  m_AnchoredPosition: {x: -172, y: -1}
+  m_SizeDelta: {x: 104.78, y: -45.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1248785282
 MonoBehaviour:
@@ -1695,7 +1696,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -75.90271, y: 0.14962769, z: 64.76184, w: 0.16534424}
+  m_margin: {x: -2.6428223, y: 0.14962769, z: 1.2110596, w: 0.16534424}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2320,7 +2321,7 @@ MonoBehaviour:
   m_FillMethod: 4
   m_FillAmount: 0
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1430501480

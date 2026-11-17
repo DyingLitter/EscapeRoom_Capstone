@@ -10,7 +10,7 @@ public class SkipCutscene : MonoBehaviour
     [SerializeField]
     private Scene_Manager sceneManager;
 
-    private float fill = 0.3f;
+    public float fillrate = 0.5f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,7 +23,7 @@ public class SkipCutscene : MonoBehaviour
         Debug.Log(isDecaying);
         if (Input.GetKey(KeyCode.Space))
         {
-            skipBar.value += fill * Time.deltaTime;
+            skipBar.value += fillrate * Time.deltaTime;
         }
         else
         {
@@ -37,7 +37,7 @@ public class SkipCutscene : MonoBehaviour
     private void Decay()
     {   
 
-        skipBar.value -= fill * Time.deltaTime;
+        skipBar.value = 0;
         
     }
 }
